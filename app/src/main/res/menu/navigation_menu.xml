@@ -6,17 +6,18 @@
 
         <item
             android:id="@+id/item_collapsing_toolbar"
-            android:title="Collapsing Toolbar"
+            android:title="@string/collapsing_toolbar_fragment_title"
             android:checked="true"/>
         <item
-            android:id="@+id/item_fab"
-            android:title="FAB"/>
-        <item
             android:id="@+id/item_tab"
-            android:title="TAB"/>
+            android:title="@string/tab_fragment_title"/>
         <item
             android:id="@+id/item_about"
-            android:title="About"/>
+            android:title="@string/about_fragment_title"/>
+        <item
+            android:id="@+id/item_champions"
+            android:title="@string/champions_fragment_title"
+            android:icon="@mipmap/ic_swallow"/>
 
     </group>
 
