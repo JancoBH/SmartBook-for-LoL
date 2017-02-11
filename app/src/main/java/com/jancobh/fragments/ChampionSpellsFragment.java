@@ -35,14 +35,14 @@ public class ChampionSpellsFragment extends Fragment implements ResponseListener
         initUI(v);
         getExtras();
 
-        ArrayList<String> pathParams = new ArrayList<String>();
+        ArrayList<String> pathParams = new ArrayList<>();
         pathParams.add("static-data");
-        pathParams.add(Commons.getInstance(getContext().getApplicationContext()).getRegion());
+        pathParams.add(Commons.getRegion());
         pathParams.add("v1.2");
         pathParams.add("champion");
         pathParams.add(String.valueOf(champId));
-        HashMap<String, String> queryParams = new HashMap<String, String>();
-        queryParams.put("locale", Commons.getInstance(getContext().getApplicationContext()).getLocale());
+        HashMap<String, String> queryParams = new HashMap<>();
+        queryParams.put("locale", Commons.getLocale());
         queryParams.put("version", Commons.LATEST_VERSION);
         queryParams.put("champData", "passive,spells");
         queryParams.put("api_key", Commons.API_KEY);
@@ -60,7 +60,7 @@ public class ChampionSpellsFragment extends Fragment implements ResponseListener
 
     private void initUI(View v){
         list = (ListView) v.findViewById(R.id.listviewChampionSpells);
-        championSpells = new ArrayList<Spell>();
+        championSpells = new ArrayList<>();
         adapter = new ChampionSpellsListAdapter(getContext(), R.layout.list_row_abilities, championSpells);
         list.setAdapter(adapter);
     }

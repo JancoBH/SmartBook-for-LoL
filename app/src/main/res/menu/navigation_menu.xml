@@ -18,6 +18,10 @@
             android:id="@+id/item_champions"
             android:title="@string/champions_fragment_title"
             android:icon="@mipmap/ic_swallow"/>
+        <item
+            android:id="@+id/item_items"
+            android:title="@string/items_fragment_title"
+            android:icon="@mipmap/ic_cash"/>
 
     </group>
 

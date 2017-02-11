@@ -7,19 +7,28 @@
     android:layout_height="match_parent"
     tools:context="com.jancobh.fragments.AboutFragment">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/champions_toolbar"
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/tab_appbar_layout"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/primary"
+        android:layout_height="wrap_content"
         android:elevation="@dimen/toolbar_elevation"
-        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/champions_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/primary"
+            android:elevation="@dimen/toolbar_elevation"
+            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
+
+    </android.support.design.widget.AppBarLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="@color/primary_dark">
+        android:background="@drawable/header2">
 
             <RelativeLayout
                 android:id="@+id/relativeLayoutSearchBar"
@@ -39,35 +48,27 @@
 
             </RelativeLayout>
 
-            <GridView
-                android:id="@+id/gridview_champions"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="5dp"
-                android:columnWidth="70dp"
-                android:drawSelectorOnTop="true"
-                android:gravity="center"
-                android:numColumns="auto_fit"
-                android:stretchMode="columnWidth"
-                android:verticalSpacing="5dp" />
+        <GridView
+            android:id="@+id/gridview_champions"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:columnWidth="70dp"
+            android:drawSelectorOnTop="true"
+            android:gravity="center"
+            android:numColumns="auto_fit"
+            android:stretchMode="columnWidth"
+            android:verticalSpacing="10dp" />
 
-            <ListView
-                android:id="@+id/listview_champions"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:listSelector="#00000000"
-                android:scrollbars="none"
-                android:visibility="gone"/>
-
-            <TextView
-                android:id="@+id/noChampsFoundTV"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:textColor="@color/text_color_light"
-                android:text="@string/noChampFound"
-                android:visibility="gone" />
+        <TextView
+            android:id="@+id/noChampsFoundTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="@string/noChampFound"
+            android:textColor="@color/text_color_light"
+            android:visibility="gone"
+            tools:text="sadasdasdasdsadsadas" />
 
     </LinearLayout>
 

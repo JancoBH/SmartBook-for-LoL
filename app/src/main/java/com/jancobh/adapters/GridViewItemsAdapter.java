@@ -2,6 +2,7 @@ package com.jancobh.adapters;
 
 import android.app.Activity;
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,17 +17,13 @@ import com.jancobh.fragments.R;
 
 import java.util.ArrayList;
 
-/**
- * Created by Janco on 09-Feb-17.
- */
+/* Created by Janco.*/
 
 public class GridViewItemsAdapter extends ArrayAdapter<Items> {
 
     private Context context;
     private int layoutResourceId;
-    private ArrayList<Items> data = new ArrayList<Items>();
-    private ViewHolder holder;
-    private AQuery aq;
+    private ArrayList<Items> data = new ArrayList<>();
 
     public GridViewItemsAdapter(Context context, int layoutResourceId,
                                 ArrayList<Items> data) {
@@ -36,11 +33,13 @@ public class GridViewItemsAdapter extends ArrayAdapter<Items> {
         this.data = data;
     }
 
+    @NonNull
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int position, View convertView, @NonNull ViewGroup parent) {
         View row = convertView;
 
 
+        ViewHolder holder;
         if (row == null) {
             LayoutInflater inflater = ((Activity) context).getLayoutInflater();
             row = inflater.inflate(layoutResourceId, parent, false);
@@ -52,12 +51,12 @@ public class GridViewItemsAdapter extends ArrayAdapter<Items> {
             holder = (ViewHolder) row.getTag();
         }
         Items item = data.get(position);
-        aq = new AQuery(holder.itemImage);
+        AQuery aq = new AQuery(holder.itemImage);
         aq.progress(holder.progress).image(Commons.ITEM_IMAGES_BASE_URL + String.valueOf(item.getId()) + ".png", true, true);
         return row;
     }
 
-    static class ViewHolder {
+    private static class ViewHolder {
         ImageView itemImage;
         ProgressBar progress;
     }

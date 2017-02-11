@@ -19,9 +19,7 @@ import com.jancobh.fragments.R;
 
 import java.util.List;
 
-/**
- * Created by Janco on 08-Feb-17.
- */
+/* Created by Janco.*/
 
 public class AllChampionsListAdapter extends ArrayAdapter<Champion> {
 
@@ -34,8 +32,9 @@ public class AllChampionsListAdapter extends ArrayAdapter<Champion> {
         this.listAq = new AQuery(this.mContext);
     }
 
+    @NonNull
     @Override
-    public View getView(int position, View convertView, ViewGroup parent){
+    public View getView(int position, View convertView, @NonNull ViewGroup parent){
 
         ViewHolder holder;
         if(convertView == null){
@@ -54,6 +53,7 @@ public class AllChampionsListAdapter extends ArrayAdapter<Champion> {
         }
 
         Champion champion = getItem(position);
+        assert champion != null;
         holder.championName.setText(champion.getChampionName());
 
         listAq.id(holder.championImage).image(champion.getChampionImageUrl(), false, true, 0, 0, null, android.R.anim.fade_in);
@@ -65,11 +65,11 @@ public class AllChampionsListAdapter extends ArrayAdapter<Champion> {
         return convertView;
     }
 
-    static class ViewHolder {
-        public RelativeLayout relativeLayoutTextContainer;
-        public ImageView championImage;
-        public ImageView rightArrow;
-        public TextView championName;
-        public TextView champInfo;
+    private static class ViewHolder {
+        RelativeLayout relativeLayoutTextContainer;
+        ImageView championImage;
+        ImageView rightArrow;
+        TextView championName;
+        TextView champInfo;
     }
 }

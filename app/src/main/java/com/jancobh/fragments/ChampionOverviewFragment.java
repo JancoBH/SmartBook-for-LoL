@@ -48,24 +48,21 @@ public class ChampionOverviewFragment extends Fragment implements ResponseListen
 
     private int champId;
     private String champLogoImageUrl;
-    private String extraChampName;
 
-    private ImageView champLogo;
     private ImageView splashImage;
     private TextView champName;
     private TextView champTitle;
-    private Typeface typeFace;
     private RelativeLayout barAttack;
     private RelativeLayout barDefense;
     private RelativeLayout barMagic;
     private RelativeLayout barDifficulty;
     private TextView tags;
-    private TextView tagsTitle;
     public static int lastSelectedChampionId;
-    private AQuery aq;
     private GridView gridviewStartingItems, gridviewEssentialItems, gridviewOffensiveItems, gridviewDeffensiveItems;
-    private GridViewItemsAdapter startingItemsAdapter, essentialItemsAdapter, offensiveItemsAdapter, deffensiveItemsAdapter;
-    private ProgressBar progress, progressStartingItems, progressEssentialItems, progressOffensiveItems, progressDeffensiveItems;
+    private ProgressBar progressStartingItems;
+    private ProgressBar progressEssentialItems;
+    private ProgressBar progressOffensiveItems;
+    private ProgressBar progressDeffensiveItems;
     private TextView textViewStartingItems, textViewEssentialItems, textViewOffensiveItems, textViewDeffensiveItems;
 
     private ChampionOverviewResponse championOverviewResponse;
@@ -78,19 +75,20 @@ public class ChampionOverviewFragment extends Fragment implements ResponseListen
         getExtras();
         initUI(v);
         getFragmentData();
+        showInterstitial();
         return v;
     }
 
     private void getFragmentData() {
         if(championOverviewResponse == null) {
-            ArrayList<String> pathParams = new ArrayList<String>();
+            ArrayList<String> pathParams = new ArrayList<>();
             pathParams.add("static-data");
-            pathParams.add(Commons.getInstance(getContext().getApplicationContext()).getRegion());
+            pathParams.add(Commons.getRegion());
             pathParams.add("v1.2");
             pathParams.add("champion");
             pathParams.add(String.valueOf(champId));
-            HashMap<String, String> queryParams = new HashMap<String, String>();
-            queryParams.put("locale", Commons.getInstance(getContext().getApplicationContext()).getLocale());
+            HashMap<String, String> queryParams = new HashMap<>();
+            queryParams.put("locale", Commons.getLocale());
             queryParams.put("version", Commons.LATEST_VERSION);
             queryParams.put("champData", "info,tags");
             queryParams.put("api_key", Commons.API_KEY);
@@ -100,13 +98,13 @@ public class ChampionOverviewFragment extends Fragment implements ResponseListen
         }
 
         if(recommendedItemsResponse == null) {
-            ArrayList<String> pathParams2 = new ArrayList<String>();
+            ArrayList<String> pathParams2 = new ArrayList<>();
             pathParams2.add("static-data");
-            pathParams2.add(Commons.getInstance(getContext().getApplicationContext()).getRegion());
+            pathParams2.add(Commons.getRegion());
             pathParams2.add("v1.2");
             pathParams2.add("champion");
             pathParams2.add(String.valueOf(champId));
-            HashMap<String, String> queryParams2 = new HashMap<String, String>();
+            HashMap<String, String> queryParams2 = new HashMap<>();
             queryParams2.put("locale", Commons.getInstance(getContext().getApplicationContext()).getLocale());
             queryParams2.put("version", Commons.RECOMMENDED_ITEMS_VERSION);
             queryParams2.put("champData", "recommended");
@@ -117,13 +115,20 @@ public class ChampionOverviewFragment extends Fragment implements ResponseListen
         }
     }
 
+    private void showInterstitial(){
+        /*try {
+            if (((LolApplication) (getActivity().getApplication())).shouldShowInterstitial()) {
+                ((LolApplication) (getActivity().getApplication())).showInterstitial();
+            }
+        }catch (Exception ignored){}*/
+    }
     private void getExtras(){
         Bundle args = getArguments();
         if(args != null){
             champId = args.getInt(ChampionDetailFragment.EXTRA_CHAMPION_ID);
             lastSelectedChampionId = champId;
             champLogoImageUrl = args.getString(ChampionDetailFragment.EXTRA_CHAMPION_IMAGE_URL);
-            extraChampName = args.getString(ChampionDetailFragment.EXTRA_CHAMPION_NAME);
+            String extraChampName = args.getString(ChampionDetailFragment.EXTRA_CHAMPION_NAME);
         }
     }
 
@@ -136,10 +141,10 @@ public class ChampionOverviewFragment extends Fragment implements ResponseListen
         gridviewEssentialItems.setOnItemClickListener(this);
         gridviewOffensiveItems.setOnItemClickListener(this);
         gridviewDeffensiveItems.setOnItemClickListener(this);
-        typeFace = Typeface.createFromAsset(getContext().getAssets(), "fonts/dinproregular.ttf");
-        champLogo = (ImageView)v.findViewById(R.id.imageViewChampionImage);
-        aq = new AQuery(champLogo);
-        progress = (ProgressBar)v.findViewById(R.id.imageProgress);
+        Typeface typeFace = Typeface.createFromAsset(getContext().getAssets(), "fonts/dinproregular.ttf");
+        ImageView champLogo = (ImageView) v.findViewById(R.id.imageViewChampionImage);
+        AQuery aq = new AQuery(champLogo);
+        ProgressBar progress = (ProgressBar) v.findViewById(R.id.imageProgress);
         progressStartingItems = (ProgressBar)v.findViewById(R.id.progressStartingItems);
         progressEssentialItems = (ProgressBar)v.findViewById(R.id.progressEssentialItems);
         progressOffensiveItems = (ProgressBar)v.findViewById(R.id.progressOffensiveItems);
@@ -152,7 +157,7 @@ public class ChampionOverviewFragment extends Fragment implements ResponseListen
         champName = (TextView)v.findViewById(R.id.textViewChampName);
         champTitle = (TextView)v.findViewById(R.id.textViewChampTitle);
         tags = (TextView)v.findViewById(R.id.textviewTags);
-        tagsTitle = (TextView) v.findViewById(R.id.textviewTagsTitle);
+        TextView tagsTitle = (TextView) v.findViewById(R.id.textviewTagsTitle);
         tagsTitle.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
         tagsTitle.setTypeface(typeFace);
         tags.setTypeface(typeFace);
@@ -202,14 +207,14 @@ public class ChampionOverviewFragment extends Fragment implements ResponseListen
                 InputMethodManager inputManager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
                 inputManager.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
             }
-        }catch(Exception e){
+        }catch(Exception ignored){
 
         }
     }
 
 
     private void setBarLength(View v, int length){
-        int pixels = 0;
+        int pixels;
         try {
             try {
                 pixels = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
@@ -220,7 +225,7 @@ public class ChampionOverviewFragment extends Fragment implements ResponseListen
             ViewGroup.LayoutParams params = v.getLayoutParams();
             params.width = pixels;
             v.setLayoutParams(params);
-        }catch (Exception e){
+        }catch (Exception ignored){
 
         }
     }
@@ -251,10 +256,10 @@ public class ChampionOverviewFragment extends Fragment implements ResponseListen
 
     private void stretchBar(View view){
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH){
-            long animationDuration = (long) (1000 * 1);
+            long animationDuration = (long) (1000);
             view.setPivotX(view.getWidth());
 
-            PropertyValuesHolder pvhSX = PropertyValuesHolder.ofFloat(View.SCALE_X, .1f, 1f);
+            PropertyValuesHolder pvhSX;
             pvhSX = PropertyValuesHolder.ofFloat(View.SCALE_X, .1f, 1f);
             ObjectAnimator stretchAnim =
                     ObjectAnimator.ofPropertyValuesHolder(view, pvhSX);
@@ -287,36 +292,42 @@ public class ChampionOverviewFragment extends Fragment implements ResponseListen
                             for (Blocks b : r.getBlocks()) {
                                 ArrayList<Items> items = b.getItems();
                                 if (items != null && items.size() > 0) {
-                                    if (b.getType().equals("starting")) {
-                                        startingOK = true;
-                                        startingItemsAdapter = new GridViewItemsAdapter(getContext(), R.layout.row_grid_items, items);
-                                        gridviewStartingItems.setAdapter(startingItemsAdapter);
-                                        startingItemsAdapter.notifyDataSetChanged();
-                                        progressStartingItems.setVisibility(View.GONE);
-                                    } else if (b.getType().equals("essential")) {
-                                        essentialOK = true;
-                                        essentialItemsAdapter = new GridViewItemsAdapter(getContext(), R.layout.row_grid_items, items);
-                                        gridviewEssentialItems.setAdapter(essentialItemsAdapter);
-                                        essentialItemsAdapter.notifyDataSetChanged();
-                                        progressEssentialItems.setVisibility(View.GONE);
-                                    } else if (b.getType().equals("offensive")) {
-                                        offensiveOK = true;
-                                        offensiveItemsAdapter = new GridViewItemsAdapter(getContext(), R.layout.row_grid_items, items);
-                                        gridviewOffensiveItems.setAdapter(offensiveItemsAdapter);
-                                        offensiveItemsAdapter.notifyDataSetChanged();
-                                        progressOffensiveItems.setVisibility(View.GONE);
-                                    } else if (b.getType().equals("defensive")) {
-                                        defensiveOK = true;
-                                        deffensiveItemsAdapter = new GridViewItemsAdapter(getContext(), R.layout.row_grid_items, items);
-                                        gridviewDeffensiveItems.setAdapter(deffensiveItemsAdapter);
-                                        deffensiveItemsAdapter.notifyDataSetChanged();
-                                        progressDeffensiveItems.setVisibility(View.GONE);
-                                    } else if (b.getType().equals("ability_scaling")) {
-                                        offensiveOK = true;
-                                        offensiveItemsAdapter = new GridViewItemsAdapter(getContext(), R.layout.row_grid_items, items);
-                                        gridviewOffensiveItems.setAdapter(offensiveItemsAdapter);
-                                        offensiveItemsAdapter.notifyDataSetChanged();
-                                        progressOffensiveItems.setVisibility(View.GONE);
+                                    switch (b.getType()) {
+                                        case "starting":
+                                            startingOK = true;
+                                            GridViewItemsAdapter startingItemsAdapter = new GridViewItemsAdapter(getContext(), R.layout.row_grid_items, items);
+                                            gridviewStartingItems.setAdapter(startingItemsAdapter);
+                                            startingItemsAdapter.notifyDataSetChanged();
+                                            progressStartingItems.setVisibility(View.GONE);
+                                            break;
+                                        case "essential":
+                                            essentialOK = true;
+                                            GridViewItemsAdapter essentialItemsAdapter = new GridViewItemsAdapter(getContext(), R.layout.row_grid_items, items);
+                                            gridviewEssentialItems.setAdapter(essentialItemsAdapter);
+                                            essentialItemsAdapter.notifyDataSetChanged();
+                                            progressEssentialItems.setVisibility(View.GONE);
+                                            break;
+                                        case "offensive":
+                                            offensiveOK = true;
+                                            GridViewItemsAdapter offensiveItemsAdapter = new GridViewItemsAdapter(getContext(), R.layout.row_grid_items, items);
+                                            gridviewOffensiveItems.setAdapter(offensiveItemsAdapter);
+                                            offensiveItemsAdapter.notifyDataSetChanged();
+                                            progressOffensiveItems.setVisibility(View.GONE);
+                                            break;
+                                        case "defensive":
+                                            defensiveOK = true;
+                                            GridViewItemsAdapter deffensiveItemsAdapter = new GridViewItemsAdapter(getContext(), R.layout.row_grid_items, items);
+                                            gridviewDeffensiveItems.setAdapter(deffensiveItemsAdapter);
+                                            deffensiveItemsAdapter.notifyDataSetChanged();
+                                            progressDeffensiveItems.setVisibility(View.GONE);
+                                            break;
+                                        case "ability_scaling":
+                                            offensiveOK = true;
+                                            offensiveItemsAdapter = new GridViewItemsAdapter(getContext(), R.layout.row_grid_items, items);
+                                            gridviewOffensiveItems.setAdapter(offensiveItemsAdapter);
+                                            offensiveItemsAdapter.notifyDataSetChanged();
+                                            progressOffensiveItems.setVisibility(View.GONE);
+                                            break;
                                     }
                                 }
                             }
@@ -361,7 +372,7 @@ public class ChampionOverviewFragment extends Fragment implements ResponseListen
             try {
                 recommendedItemsResponse = (RecommendedItemsResponse) response;
                 handleRecommendedItemsResponse();
-            }catch (Exception e){}
+            }catch (Exception ignored){}
         }
 
     }
@@ -376,5 +387,5 @@ public class ChampionOverviewFragment extends Fragment implements ResponseListen
     public Context getContext() {
         return getActivity();
     }
-
 }
+

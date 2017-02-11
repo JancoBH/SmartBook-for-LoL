@@ -6,9 +6,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 import com.jancobh.fragments.TabOneFragment;
 
-/**
- * Created by Sagar on 6/25/2015.
- */
+/* Created by Sagar.*/
 public class ViewPagerAdapter extends FragmentPagerAdapter {
 
     public ViewPagerAdapter(FragmentManager fm) {

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,15 +23,12 @@ import com.jancobh.fragments.R;
 
 import java.util.List;
 
-/**
- * Created by Janco on 09-Feb-17.
- */
+/* Created by Janco.*/
 
 public class ChampionSpellsListAdapter extends ArrayAdapter<Spell> implements View.OnClickListener {
 
     private Context mContext;
     private Typeface typeFace;
-    private AQuery aq;
 
     public ChampionSpellsListAdapter(Context context, int resource,
                                      List<Spell> objects) {
@@ -40,8 +38,9 @@ public class ChampionSpellsListAdapter extends ArrayAdapter<Spell> implements Vi
                 "fonts/dinproregular.ttf");
     }
 
+    @NonNull
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int position, View convertView, @NonNull ViewGroup parent) {
         ViewHolder holder;
         if (convertView == null) {
             LayoutInflater inflater = ((Activity) mContext).getLayoutInflater();
@@ -69,10 +68,11 @@ public class ChampionSpellsListAdapter extends ArrayAdapter<Spell> implements Vi
         }
 
         Spell championSpell = getItem(position);
+        assert championSpell != null;
         holder.spellTitle.setText(championSpell.getName());
         holder.spellBody.setText(championSpell.getSanitizedDescription());
         holder.spellKey.setText(championSpell.getSpellKey());
-        aq = new AQuery(holder.spellImage);
+        AQuery aq = new AQuery(holder.spellImage);
 
         if (championSpell.getName().contains(getContext().getResources().getString(R.string.passive))) {
             aq.progress(holder.progress).image(Commons.CHAMPION_PASSIVE_IMAGE_BASE_URL
@@ -93,14 +93,14 @@ public class ChampionSpellsListAdapter extends ArrayAdapter<Spell> implements Vi
 
     }
 
-    static class ViewHolder {
-        public ImageView spellImage;
-        public TextView spellTitle;
-        public TextView spellBody;
-        public TextView spellKey;
-        public ImageButton playVideoButton;
-        public TextView textViewVideo;
-        public ProgressBar progress;
+    private static class ViewHolder {
+        ImageView spellImage;
+        TextView spellTitle;
+        TextView spellBody;
+        TextView spellKey;
+        ImageButton playVideoButton;
+        TextView textViewVideo;
+        ProgressBar progress;
     }
 
     @Override

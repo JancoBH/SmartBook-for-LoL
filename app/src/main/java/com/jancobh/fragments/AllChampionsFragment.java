@@ -18,12 +18,10 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.GridView;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jancobh.MainActivity;
-import com.jancobh.adapters.AllChampionsListAdapter;
 import com.jancobh.adapters.GridViewAdapter;
 import com.jancobh.commons.Commons;
 import com.jancobh.data.Champion;
@@ -43,17 +41,12 @@ public class AllChampionsFragment extends Fragment implements ResponseListener, 
     private MainActivity mainActivity;
     private Toolbar toolbar;
     private GridView gridView;
-    private ListView listViewChampions;
     private GridViewAdapter adapter;
-    private AllChampionsListAdapter listAdapter;
-    private EditText searchBar;
     private TextView noChampsFoundTV;
-    private ArrayList<Champion> searchResultChampions;
 
     public AllChampionsFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public void onAttach(Activity activity) {
@@ -74,13 +67,13 @@ public class AllChampionsFragment extends Fragment implements ResponseListener, 
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    ArrayList<String> pathParams = new ArrayList<String>();
+                    ArrayList<String> pathParams = new ArrayList<>();
                     pathParams.add("static-data");
-                    pathParams.add(Commons.getInstance(getContext().getApplicationContext()).getRegion());
+                    pathParams.add(Commons.getRegion());
                     pathParams.add("v1.2");
                     pathParams.add("champion");
-                    HashMap<String, String> queryParams = new HashMap<String, String>();
-                    queryParams.put("locale", Commons.getInstance(getContext().getApplicationContext()).getLocale());
+                    HashMap<String, String> queryParams = new HashMap<>();
+                    queryParams.put("locale", Commons.getLocale());
                     queryParams.put("version", Commons.LATEST_VERSION);
                     queryParams.put("champData", "altimages");
                     queryParams.put("api_key", Commons.API_KEY);
@@ -104,8 +97,7 @@ public class AllChampionsFragment extends Fragment implements ResponseListener, 
     private void initUI(View v){
         noChampsFoundTV = (TextView)v.findViewById(R.id.noChampsFoundTV);
         gridView = (GridView)v.findViewById(R.id.gridview_champions);
-        listViewChampions = (ListView)v.findViewById(R.id.listview_champions);
-        searchBar = (EditText)v.findViewById(R.id.edittextSearchBar);
+        EditText searchBar = (EditText) v.findViewById(R.id.edittextSearchBar);
         searchBar.addTextChangedListener(this);
         gridView.setOnItemClickListener(this);
     }
@@ -125,7 +117,7 @@ public class AllChampionsFragment extends Fragment implements ResponseListener, 
     public void onTextChanged(CharSequence s, int start, int before, int count) {
         noChampsFoundTV.setVisibility(View.GONE);
         if(s.length() >= 2){
-            searchResultChampions = new ArrayList<Champion>();
+            ArrayList<Champion> searchResultChampions = new ArrayList<>();
             for(Champion c : Commons.allChampions){
                 if(containsIgnoreCase(c.getChampionName(), String.valueOf(s))){
                     searchResultChampions.add(c);
@@ -134,19 +126,19 @@ public class AllChampionsFragment extends Fragment implements ResponseListener, 
             adapter = new GridViewAdapter(getContext(), R.layout.row_grid, searchResultChampions);
             gridView.setAdapter(adapter);
             adapter.notifyDataSetChanged();
-            if(searchResultChampions != null && searchResultChampions.size() <= 0){
+            if(searchResultChampions.size() <= 0){
                 noChampsFoundTV.setVisibility(View.VISIBLE);
-            }else if(searchResultChampions != null && searchResultChampions.size() > 0){
+            }else if(searchResultChampions.size() > 0){
                 noChampsFoundTV.setVisibility(View.GONE);
             }
         }else{
             if(Commons.allChampions != null && Commons.allChampions.size() > 0) {
                 adapter = new GridViewAdapter(getContext(), R.layout.row_grid, Commons.allChampions);
-                if(adapter != null && gridView != null) {
+                if(gridView != null) {
                     try {
                         gridView.setAdapter(adapter);
                         adapter.notifyDataSetChanged();
-                    }catch (Exception e){}
+                    }catch (Exception ignored){}
                 }
             }
         }
@@ -159,7 +151,7 @@ public class AllChampionsFragment extends Fragment implements ResponseListener, 
                 InputMethodManager inputManager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
                 inputManager.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
             }
-        }catch(Exception e){
+        }catch(Exception ignored){
 
         }
     }
@@ -211,7 +203,7 @@ public class AllChampionsFragment extends Fragment implements ResponseListener, 
                 if(Commons.allChampions != null){
                     Commons.allChampions.clear();
                 }else{
-                    Commons.allChampions = new ArrayList<Champion>();
+                    Commons.allChampions = new ArrayList<>();
                 }
                 for(Map.Entry<String, Map<String, String>> entry : data.entrySet()){
                     String key = entry.getKey();

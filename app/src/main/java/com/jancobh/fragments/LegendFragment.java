@@ -31,14 +31,14 @@ public class LegendFragment extends Fragment implements ResponseListener {
         initUI(v);
         getExtras();
 
-        ArrayList<String> pathParams = new ArrayList<String>();
+        ArrayList<String> pathParams = new ArrayList<>();
         pathParams.add("static-data");
-        pathParams.add(Commons.getInstance(getContext().getApplicationContext()).getRegion());
+        pathParams.add(Commons.getRegion());
         pathParams.add("v1.2");
         pathParams.add("champion");
         pathParams.add(String.valueOf(champId));
-        HashMap<String, String> queryParams = new HashMap<String, String>();
-        queryParams.put("locale", Commons.getInstance(getContext().getApplicationContext()).getLocale());
+        HashMap<String, String> queryParams = new HashMap<>();
+        queryParams.put("locale", Commons.getLocale());
         queryParams.put("champData", "lore");
         queryParams.put("api_key", Commons.API_KEY);
 

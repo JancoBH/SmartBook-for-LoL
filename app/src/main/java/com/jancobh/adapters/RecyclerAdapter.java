@@ -11,21 +11,19 @@ import com.jancobh.models.CardItemModel;
 
 import java.util.List;
 
-/**
- * Created by Sagar on 6/14/2015.
- */
+/* Created by JancoBH.*/
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
 
-    public List<CardItemModel> cardItems;
+    private List<CardItemModel> cardItems;
 
     public RecyclerAdapter(List<CardItemModel> cardItems){
         this.cardItems = cardItems;
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    class ViewHolder extends RecyclerView.ViewHolder{
         TextView title;
         TextView content;
-        public ViewHolder(View itemView) {
+        ViewHolder(View itemView) {
             super(itemView);
             this.title = (TextView)itemView.findViewById(R.id.card_title);
             this.content = (TextView)itemView.findViewById(R.id.card_content);
@@ -35,8 +33,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_item,parent,false);
-        ViewHolder viewHolder = new ViewHolder(view);
-        return viewHolder;
+        return new ViewHolder(view);
     }
 
     @Override

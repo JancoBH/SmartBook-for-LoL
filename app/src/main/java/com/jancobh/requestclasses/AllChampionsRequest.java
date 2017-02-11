@@ -3,9 +3,7 @@ package com.jancobh.requestclasses;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-/**
- * Created by Janco on 09-Feb-17.
- */
+/* Created by Janco.*/
 
 public class AllChampionsRequest extends Request{
 
@@ -20,13 +18,13 @@ public class AllChampionsRequest extends Request{
     }
 
     private void setQueryParams() {
-        queryParams = new HashMap<String, String>();
+        queryParams = new HashMap<>();
         queryParams.put("freeToPlay", String.valueOf(freeToPlay));
 
     }
 
     private void setPathParams() {
-        pathParams = new ArrayList<String>();
+        pathParams = new ArrayList<>();
         pathParams.add(region);
     }
 

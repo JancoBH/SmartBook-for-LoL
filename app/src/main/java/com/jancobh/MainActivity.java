@@ -3,6 +3,7 @@ package com.jancobh;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -18,6 +19,7 @@ import com.jancobh.data.Champion;
 import com.jancobh.fragments.AboutFragment;
 import com.jancobh.fragments.AllChampionsFragment;
 import com.jancobh.fragments.CollapsingToolbarFragment;
+import com.jancobh.fragments.NewItemsFragment;
 import com.jancobh.fragments.R;
 import com.jancobh.fragments.TabFragment;
 import com.jancobh.listener.ResponseListener;
@@ -39,19 +41,18 @@ public class MainActivity extends AppCompatActivity implements
     private final static String TAB_FRAGMENT_TAG = "tab";
     private final static String ABOUT_FRAGMENT_TAG = "about";
     private final static String CHAMPIONS_FRAGMENT_TAG = "champions";
+    private final static String ITEMS_FRAGMENT_TAG = "items";
     private final static String SELECTED_TAG = "selected_index";
     private final static int COLLAPSING_TOOLBAR = 0;
     private final static int TAB = 1;
     private final static int ABOUT = 2;
     private final static int CHAMPIONS = 3;
+    private final static int ITEMS = 4;
 
     private static int selectedIndex;
     int allchampionsRequestCount = 0, allSpellsRequestCount = 0;
 
-    private NavigationView navigationView;
     private DrawerLayout drawerLayout;
-    private ActionBarDrawerToggle actionBarDrawerToggle;
-    private View dialogView;
 
     @SuppressLint("NewApi")
     @Override
@@ -60,7 +61,7 @@ public class MainActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        navigationView = (NavigationView)findViewById(R.id.navigation_view);
+        NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_view);
         navigationView.setNavigationItemSelectedListener(this);
         drawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
 
@@ -102,7 +103,7 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     @Override
-    public boolean onNavigationItemSelected(MenuItem menuItem) {
+    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
 
         switch(menuItem.getItemId()){
             case R.id.item_collapsing_toolbar:
@@ -141,6 +142,15 @@ public class MainActivity extends AppCompatActivity implements
                 }
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return true;
+            case R.id.item_items:
+                if(!menuItem.isChecked()){
+                    selectedIndex = ITEMS;
+                    menuItem.setChecked(true);
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                            new NewItemsFragment(),ITEMS_FRAGMENT_TAG).commit();
+                }
+                drawerLayout.closeDrawer(GravityCompat.START);
+                return true;
         }
         return false;
     }
@@ -151,8 +161,8 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     public void setupNavigationDrawer(Toolbar toolbar){
-        actionBarDrawerToggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,
-                R.string.open_drawer,R.string.close_drawer){
+        ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar,
+                R.string.open_drawer, R.string.close_drawer) {
             @Override
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
@@ -168,13 +178,13 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     private void makeGetAllChampionsRequest(){
-        ArrayList<String> pathParams = new ArrayList<String>();
+        ArrayList<String> pathParams = new ArrayList<>();
         pathParams.add("static-data");
-        pathParams.add(Commons.getInstance(getContext().getApplicationContext()).getRegion());
+        pathParams.add(Commons.getRegion());
         pathParams.add("v1.2");
         pathParams.add("champion");
-        HashMap<String, String> queryParams = new HashMap<String, String>();
-        queryParams.put("locale", Commons.getInstance(getContext().getApplicationContext()).getLocale());
+        HashMap<String, String> queryParams = new HashMap<>();
+        queryParams.put("locale", Commons.getLocale());
         queryParams.put("version", Commons.LATEST_VERSION);
         queryParams.put("champData", "altimages");
         queryParams.put("api_key", Commons.API_KEY);
@@ -184,10 +194,10 @@ public class MainActivity extends AppCompatActivity implements
     private void makeGetAllSpellsRequest(){
         ArrayList<String> pathParams2 = new ArrayList<>();
         pathParams2.add("static-data");
-        pathParams2.add(Commons.getInstance(getContext().getApplicationContext()).getRegion());
+        pathParams2.add(Commons.getRegion());
         pathParams2.add("v1.2");
         pathParams2.add("summoner-spell");
-        HashMap<String, String> queryParams2 = new HashMap<String, String>();
+        HashMap<String, String> queryParams2 = new HashMap<>();
         queryParams2.put("spellData", "image");
         queryParams2.put("api_key", Commons.API_KEY);
         ServiceRequest.getInstance(getContext()).makeGetRequest(Commons.SUMMONER_SPELLS_REQUEST, pathParams2, queryParams2, null, this);
@@ -202,7 +212,7 @@ public class MainActivity extends AppCompatActivity implements
                 if (Commons.allChampions != null) {
                     Commons.allChampions.clear();
                 } else {
-                    Commons.allChampions = new ArrayList<Champion>();
+                    Commons.allChampions = new ArrayList<>();
                 }
                 for (Map.Entry<String, Map<String, String>> entry : data.entrySet()) {
                     String key = entry.getKey();
@@ -229,12 +239,8 @@ public class MainActivity extends AppCompatActivity implements
 
 
         } else if (response instanceof SummonerSpellsResponse){
-            if(response != null) {
-                SummonerSpellsResponse summonerSpellsResponse = (SummonerSpellsResponse) response;
-                if (summonerSpellsResponse != null) {
-                    Commons.allSpells = summonerSpellsResponse.getSpells();
-                }
-            }
+            SummonerSpellsResponse summonerSpellsResponse = (SummonerSpellsResponse) response;
+            Commons.allSpells = summonerSpellsResponse.getSpells();
         }
     }
 

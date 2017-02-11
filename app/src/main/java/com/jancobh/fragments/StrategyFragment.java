@@ -3,7 +3,6 @@ package com.jancobh.fragments;
 import android.content.Context;
 import android.graphics.Paint;
 import android.graphics.Typeface;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -36,12 +35,12 @@ public class StrategyFragment extends Fragment implements ResponseListener {
 
         ArrayList<String> pathParams = new ArrayList<>();
         pathParams.add("static-data");
-        pathParams.add(Commons.getInstance(getContext().getApplicationContext()).getRegion());
+        pathParams.add(Commons.getRegion());
         pathParams.add("v1.2");
         pathParams.add("champion");
         pathParams.add(String.valueOf(champId));
         HashMap<String, String> queryParams = new HashMap<>();
-        queryParams.put("locale", Commons.getInstance(getContext().getApplicationContext()).getLocale());
+        queryParams.put("locale", Commons.getLocale());
         queryParams.put("version", Commons.LATEST_VERSION);
         queryParams.put("champData", "allytips,enemytips");
         queryParams.put("api_key", Commons.API_KEY);

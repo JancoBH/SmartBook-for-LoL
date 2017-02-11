@@ -17,6 +17,11 @@
 
     <!-- Items Strings -->
     <string name="explanation">Explanation</string>
+    <string name="itemFrom">Other Items Necessary To Build That Item</string>
+    <string name="noTo">This item cannot be upgraded into another item.</string>
+    <string name="itemTo">Other Items That This Item Can Be Upgraded To</string>
+    <string name="noFrom">There are no items to build this item.</string>
+    <string name="itemSearchHint">Enter an item name…</string>
 
     <string name="general">Overview</string>
     <string name="abilities">Abilities</string>
@@ -43,6 +48,7 @@
     <string name="tab_fragment_title">TAB</string>
     <string name="about_fragment_title">About</string>
     <string name="champions_fragment_title">Champions</string>
+    <string name="items_fragment_title">Items</string>
 
     <string name="open_drawer">Open</string>
     <string name="close_drawer">Close</string>
@@ -75,6 +81,13 @@ Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac tu
         a fan of this game needs.
         \n\nCheck out my instagram account at http://instagram.com/jancobh
     \n\nFind more about me on LinkedIn at https://www.linkedin.com/in/jancobh</string>
+    <string name="title_activity_activities">activities</string>
+    <string name="title_activity_item_detail">ItemDetailActivity</string>
+
+
+    <string name="itemDetail">Item Detail</string>
+    <string name="anErrorOccured">A connection error occurred. Please try again.</string>
+    <string name="filter">Filter</string>
 
 
 </resources>

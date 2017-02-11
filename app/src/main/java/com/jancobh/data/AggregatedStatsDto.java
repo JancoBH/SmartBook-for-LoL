@@ -2,9 +2,7 @@ package com.jancobh.data;
 
 import java.io.Serializable;
 
-/**
- * Created by yrazlik on 1/11/16.
- */
+/* Created by JancoBH.*/
 public class AggregatedStatsDto implements Serializable{
 
     private static final long serialVersionUID = 10L;

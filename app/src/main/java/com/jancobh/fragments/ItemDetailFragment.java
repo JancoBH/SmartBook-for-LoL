@@ -41,14 +41,14 @@ public class ItemDetailFragment extends Fragment implements ResponseListener {
         initUI(v);
         getExtras();
 
-        ArrayList<String> pathParams = new ArrayList<String>();
+        ArrayList<String> pathParams = new ArrayList<>();
         pathParams.add("static-data");
-        pathParams.add(Commons.getInstance(getContext().getApplicationContext()).getRegion());
+        pathParams.add(Commons.getRegion());
         pathParams.add("v1.2");
         pathParams.add("item");
         pathParams.add(String.valueOf(itemId));
-        HashMap<String, String> queryParams = new HashMap<String, String>();
-        queryParams.put("locale", Commons.getInstance(getContext().getApplicationContext()).getLocale());
+        HashMap<String, String> queryParams = new HashMap<>();
+        queryParams.put("locale", Commons.getLocale());
         queryParams.put("version", Commons.LATEST_VERSION);
         queryParams.put("itemData", "gold,sanitizedDescription");
         queryParams.put("api_key", Commons.API_KEY);

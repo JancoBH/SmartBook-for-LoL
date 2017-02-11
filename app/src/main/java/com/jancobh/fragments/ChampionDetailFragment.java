@@ -1,12 +1,13 @@
 package com.jancobh.fragments;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.DisplayMetrics;
+import android.support.v7.widget.Toolbar;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,9 +24,7 @@ public class ChampionDetailFragment extends Fragment {
     private int champId;
     private String champLogoImageUrl;
     private String splashImageUrl;
-
-    private ViewPager pager;
-    private PagerSlidingTabStrip tabs;
+    private Toolbar toolbar;
 
     @Override
     public View onCreateView(LayoutInflater inflater,
@@ -34,8 +33,13 @@ public class ChampionDetailFragment extends Fragment {
                 false);
         getExtras();
         setTabhost(v);
-
+        toolbar = (Toolbar)v.findViewById(R.id.champion_detail_toolbar);
+        setupToolbar();
         return v;
+    }
+
+    private void setupToolbar(){
+        toolbar.setTitle(getString(R.string.champions_fragment_title));
     }
 
     private void getExtras(){
@@ -48,26 +52,23 @@ public class ChampionDetailFragment extends Fragment {
     }
 
     private void setTabhost(View v){
-        pager = (ViewPager) v.findViewById(R.id.pager);
+        ViewPager pager = (ViewPager) v.findViewById(R.id.pager);
         pager.setOffscreenPageLimit(3);
         pager.setAdapter(new ChampionDetailAdapter(getChildFragmentManager()));
 
-        tabs = (PagerSlidingTabStrip) v.findViewById(R.id.tabs);
+        PagerSlidingTabStrip tabs = (PagerSlidingTabStrip) v.findViewById(R.id.tabs);
         tabs.setIndicatorColor(getResources().getColor(R.color.accent));
         tabs.setBackgroundColor(getResources().getColor(R.color.primary));
-        /*tabs.setDividerColor(getResources().getColor(R.color.white));*/
         tabs.setTextColor(getResources().getColor(R.color.white));
-        DisplayMetrics metrics = getActivity().getResources().getDisplayMetrics();
         int textSize = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 11, getActivity().getResources().getDisplayMetrics());
         tabs.setTextSize(textSize);
-
         tabs.setIndicatorHeight(8);
         tabs.setViewPager(pager);
     }
 
-    public class ChampionDetailAdapter extends FragmentPagerAdapter {
+    private class ChampionDetailAdapter extends FragmentPagerAdapter {
 
-        public ChampionDetailAdapter(FragmentManager fm) {
+        ChampionDetailAdapter(FragmentManager fm) {
             super(fm);
         }
         @Override

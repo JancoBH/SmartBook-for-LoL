@@ -60,20 +60,18 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-/**
- * Created by Janco on 09-Feb-17.
- */
+/* Created by Janco.*/
 
 public class ServiceRequest {
 
-    public static final String TAG_GET_REQUEST = "get_request";
+    private static final String TAG_GET_REQUEST = "get_request";
 
     private static ServiceRequest instance;
     private RequestQueue mRequestQueue;
     private ImageLoader mImageLoader;
     private Context mContext;
 
-    public static Dialog progressDialog;
+    private static Dialog progressDialog;
     private HttpResponse response;
 
     public static ServiceRequest getInstance(Context context) {
@@ -90,7 +88,7 @@ public class ServiceRequest {
 
     }
 
-    public <T> void addToRequestQueue(com.android.volley.Request<T> req, String tag) {
+    private <T> void addToRequestQueue(com.android.volley.Request<T> req, String tag) {
         // set the default tag if tag is empty
         req.setTag(tag);
         getRequestQueue().add(req);
@@ -175,7 +173,7 @@ public class ServiceRequest {
                         listener.onFailure(json);
                     } else {
                         if (error instanceof TimeoutError || error instanceof NoConnectionError) {
-                            String json = new String(getContext().getResources().getString(R.string.networkError));
+                            String json = getContext().getResources().getString(R.string.networkError);
                             listener.onFailure(json);
                         } else if (error instanceof AuthFailureError) {
                             //TODO
@@ -230,7 +228,7 @@ public class ServiceRequest {
                 }*/
 
                 if (error instanceof TimeoutError || error instanceof NoConnectionError) {
-                    String json = new String(getContext().getResources().getString(R.string.networkError));
+                    String json = getContext().getResources().getString(R.string.networkError);
                     listener.onFailure(json);
                 } else if (error instanceof AuthFailureError) {
                     listener.onFailure(requestID);
@@ -262,7 +260,7 @@ public class ServiceRequest {
     public void makeGetRecentMatchesRequest(final int requestID, String region, String summonerId, Object requestData,
                                             final ResponseListener listener){
 
-        ArrayList<String> pathParams = new ArrayList<String>();
+        ArrayList<String> pathParams = new ArrayList<>();
         pathParams.add("api");
         pathParams.add("lol");
         pathParams.add(region);
@@ -272,7 +270,7 @@ public class ServiceRequest {
         pathParams.add(summonerId);
         pathParams.add("recent");
 
-        HashMap<String, String> queryParams = new HashMap<String, String>();
+        HashMap<String, String> queryParams = new HashMap<>();
         queryParams.put("api_key", Commons.API_KEY);
 
         final Request request = new Request(requestID, pathParams, queryParams);
@@ -287,16 +285,16 @@ public class ServiceRequest {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                // hideLoading();
-               /* NetworkResponse response = error.networkResponse;
+                hideLoading();
+               NetworkResponse response = error.networkResponse;
                 if(response != null && response.data != null){
                     String json = new String(response.data);
                     json = trimMessage(json, "message");
                     listener.onFailure(json);
-                }*/
+                }
 
                 if (error instanceof TimeoutError || error instanceof NoConnectionError) {
-                    String json = new String(getContext().getResources().getString(R.string.networkError));
+                    String json = getContext().getResources().getString(R.string.networkError);
                     listener.onFailure(json);
                 } else if (error instanceof AuthFailureError) {
                     listener.onFailure(requestID);
@@ -317,17 +315,17 @@ public class ServiceRequest {
 
         getReq.setShouldCache(true);
         addToRequestQueue(getReq, TAG_GET_REQUEST);
-       /* Dialog progress = showLoading(getContext());
+       Dialog progress = showLoading(getContext());
         if(progress != null){
             try {
                 progress.show();
             }catch (Exception ignored){}
-        }*/
+        }
     }
 
     public void makeGetSummonerIdsRequest(final int requestID, String region, String summonerIds, Object requestData,
                                           final ResponseListener listener){
-        ArrayList<String> pathParams = new ArrayList<String>();
+        ArrayList<String> pathParams = new ArrayList<>();
         pathParams.add("api");
         pathParams.add("lol");
         pathParams.add(region);
@@ -335,7 +333,7 @@ public class ServiceRequest {
         pathParams.add("summoner");
         pathParams.add(summonerIds);
 
-        HashMap<String, String> queryParams = new HashMap<String, String>();
+        HashMap<String, String> queryParams = new HashMap<>();
         queryParams.put("api_key", Commons.API_KEY);
 
         final Request request = new Request(requestID, pathParams, queryParams);
@@ -359,7 +357,7 @@ public class ServiceRequest {
                 }*/
 
                 if (error instanceof TimeoutError || error instanceof NoConnectionError) {
-                    String json = new String(getContext().getResources().getString(R.string.networkError));
+                    String json = getContext().getResources().getString(R.string.networkError);
                     listener.onFailure(json);
                 } else if (error instanceof AuthFailureError) {
                     listener.onFailure(requestID);
@@ -392,8 +390,8 @@ public class ServiceRequest {
         return "https://" + region + ".api.pvp.net";
     }
 
-    public String trimMessage(String json, String key){
-        String trimmedString = null;
+    private String trimMessage(String json, String key){
+        String trimmedString;
 
         try{
             JSONObject obj = new JSONObject(json);
@@ -504,7 +502,7 @@ public class ServiceRequest {
                         while (keys.hasNext()) {
                             String key = (String) keys.next();
                             if(key != null){
-                                JSONObject dataJson = null;
+                                JSONObject dataJson;
                                 try {
                                     dataJson = (JSONObject) obj.get(key);
                                     if(dataJson != null) {
@@ -600,7 +598,7 @@ public class ServiceRequest {
     public void makeGetRankedStatsRequest(final int requestID, String region, String summonerId, Object requestData,
                                           final ResponseListener listener){
 
-        ArrayList<String> pathParams = new ArrayList<String>();
+        ArrayList<String> pathParams = new ArrayList<>();
         pathParams.add("api");
         pathParams.add("lol");
         pathParams.add(region);
@@ -610,7 +608,7 @@ public class ServiceRequest {
         pathParams.add(summonerId);
         pathParams.add("ranked");
 
-        HashMap<String, String> queryParams = new HashMap<String, String>();
+        HashMap<String, String> queryParams = new HashMap<>();
         queryParams.put("api_key", Commons.API_KEY);
 
         final Request request = new Request(requestID, pathParams, queryParams);
@@ -637,18 +635,18 @@ public class ServiceRequest {
 
         getReq.setShouldCache(true);
         addToRequestQueue(getReq, TAG_GET_REQUEST);
-      /*  Dialog progress = showLoading(getContext());
+        Dialog progress = showLoading(getContext());
         if(progress != null){
             try {
                 progress.show();
             }catch (Exception ignored){}
-        }*/
+        }
     }
 
     public void makeGetLeagueInfoRequest(final int requestID, String region, String summonerId, Object requestData,
                                          final ResponseListener listener){
 
-        ArrayList<String> pathParams = new ArrayList<String>();
+        ArrayList<String> pathParams = new ArrayList<>();
         pathParams.add("api");
         pathParams.add("lol");
         pathParams.add(region);
@@ -658,7 +656,7 @@ public class ServiceRequest {
         pathParams.add(summonerId);
         pathParams.add("entry");
 
-        HashMap<String, String> queryParams = new HashMap<String, String>();
+        HashMap<String, String> queryParams = new HashMap<>();
         queryParams.put("api_key", Commons.API_KEY);
 
         final Request request = new Request(requestID, pathParams, queryParams);
@@ -666,14 +664,14 @@ public class ServiceRequest {
         StringRequest getReq = new StringRequest(com.android.volley.Request.Method.GET, urlString, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                //hideLoading();
+                hideLoading();
                 Object parsedResponse = parseResponse(request.getRequestID(), response);
                 listener.onSuccess(parsedResponse);
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                //hideLoading();
+                hideLoading();
                 listener.onFailure(requestID);
             }
         }){
@@ -685,12 +683,12 @@ public class ServiceRequest {
 
         getReq.setShouldCache(true);
         addToRequestQueue(getReq, TAG_GET_REQUEST);
-       /* Dialog progress = showLoading(getContext());
+        Dialog progress = showLoading(getContext());
         if(progress != null){
             try {
                 progress.show();
             }catch (Exception ignored){}
-        }*/
+        }
     }
 
     public static Dialog hideLoading() {
@@ -727,7 +725,7 @@ public class ServiceRequest {
                         listener.onFailure(json);
                     } else {
                         if (error instanceof TimeoutError || error instanceof NoConnectionError) {
-                            String json = new String(getContext().getResources().getString(R.string.networkError));
+                            String json = getContext().getResources().getString(R.string.networkError);
                             listener.onFailure(json);
                         } else if (error instanceof AuthFailureError) {
                             //TODO

@@ -2,7 +2,6 @@ package com.jancobh.adapters;
 
 import android.app.Activity;
 import android.content.Context;
-import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,16 +18,12 @@ import com.jancobh.fragments.R;
 
 import java.util.ArrayList;
 
-/**
- * Created by Janco on 08-Feb-17.
- */
+/* Created by Janco.*/
 
 public class GridViewAdapter extends ArrayAdapter<Champion> {
     private Context context;
     private int layoutResourceId;
-    private ArrayList<Champion> data = new ArrayList<Champion>();
-    private ViewHolder holder = null;
-    private AQuery aq;
+    private ArrayList<Champion> data = new ArrayList<>();
 
     public GridViewAdapter(Context context, int layoutResourceId,
                            ArrayList<Champion> data) {
@@ -44,7 +39,7 @@ public class GridViewAdapter extends ArrayAdapter<Champion> {
         View row = convertView;
 
 
-
+        ViewHolder holder;
         if (row == null) {
             LayoutInflater inflater = ((Activity) context).getLayoutInflater();
             row = inflater.inflate(layoutResourceId, parent, false);
@@ -60,7 +55,7 @@ public class GridViewAdapter extends ArrayAdapter<Champion> {
         }
         Champion champion = data.get(position);
         holder.championName.setText(champion.getChampionName());
-        aq = new AQuery(holder.championImage);
+        AQuery aq = new AQuery(holder.championImage);
         aq.image(champion.getChampionImageUrl(), true, true, 0, 0, null, android.R.anim.fade_in);
 
         return row;
