@@ -22,6 +22,14 @@
             android:id="@+id/item_items"
             android:title="@string/items_fragment_title"
             android:icon="@mipmap/ic_cash"/>
+        <item
+            android:id="@+id/item_summoner"
+            android:title="Summoner"
+            android:icon="@mipmap/ic_ifrit"/>
+        <item
+            android:id="@+id/item_match"
+            android:title="Match"
+            android:icon="@mipmap/ic_home_black_48px"/>
 
     </group>
 

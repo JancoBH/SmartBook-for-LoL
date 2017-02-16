@@ -58,8 +58,6 @@ public class StrategyFragment extends Fragment implements ResponseListener {
     }
 
     private void initUI(View v){
-        typeFace = Typeface.createFromAsset(getContext().getAssets(), "fonts/dinproregular.ttf");
-        typeFaceBold = Typeface.createFromAsset(getContext().getAssets(), "fonts/dinprobold.ttf");
         allyTips = (TextView)v.findViewById(R.id.textviewAllyTips);
         enemyTips = (TextView)v.findViewById(R.id.textviewEnemyTips);
         allyTipsTitle = (TextView)v.findViewById(R.id.textviewAllyTipsTitle);
@@ -84,8 +82,8 @@ public class StrategyFragment extends Fragment implements ResponseListener {
 
             String region = Commons.getLanguage();
             if(region.equalsIgnoreCase("es")) {
-                allyTipsTitle.setText("Cuando juegas con " + key + ":");
-                enemyTipstitle.setText("Cuando tu oponente es " + key + ":");
+                allyTipsTitle.setText("Consejos " + key + ":");
+                enemyTipstitle.setText("Consejos sobre counter " + key + ":");
             }else{
                 allyTipsTitle.setText("When you are playing as " + key + ":");
                 enemyTipstitle.setText("When the opponent is " + key + ":");
@@ -94,10 +92,6 @@ public class StrategyFragment extends Fragment implements ResponseListener {
             enemyTipstitle.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
             allyTips.setText(allyTipsString);
             enemyTips.setText(enemyTipsString);
-            allyTips.setTypeface(typeFace);
-            enemyTips.setTypeface(typeFace);
-            allyTipsTitle.setTypeface(typeFaceBold);
-            enemyTipstitle.setTypeface(typeFaceBold);
 
         }
 

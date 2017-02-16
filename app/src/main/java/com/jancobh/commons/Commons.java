@@ -71,8 +71,8 @@ public class Commons {
 
     public static final String GOOGLE_ANALYTICS_TRACKING_ID = "UA-52774268-8";
 
-    public static String LATEST_VERSION = "7.3.1";
-    public static String RECOMMENDED_ITEMS_VERSION = "7.3.1";
+    public static String LATEST_VERSION = "7.3.2";
+    public static String RECOMMENDED_ITEMS_VERSION = "7.3.2";
 
     public static final String API_KEY = "ec2ba3a7-6665-4a73-81b0-03e198cab145";
 
@@ -114,9 +114,9 @@ public class Commons {
     public static final String SPECTATOR_SERVICE_BASE_URL_EUNE = "https://eune.api.pvp.net/observer-mode/rest/consumer/getSpectatorGameInfo/EUN1";
     public static final String SPECTATOR_SERVICE_BASE_URL_EUW = "https://euw.api.pvp.net/observer-mode/rest/consumer/getSpectatorGameInfo/EUW1";
     public static final String SPECTATOR_SERVICE_BASE_URL_NA = "https://na.api.pvp.net/observer-mode/rest/consumer/getSpectatorGameInfo/NA1";
-    public static final String SPECTATOR_SERVICE_BASE_URL_TR = "https://tr.api.pvp.net/observer-mode/rest/consumer/getSpectatorGameInfo/TR1";
+    public static final String SPECTATOR_SERVICE_BASE_URL_LAN = "https://lan.api.pvp.net/observer-mode/rest/consumer/getSpectatorGameInfo/TR1";
     public static final String SERVICE_BASE_URL = "https://" + SELECTED_REGION +".api.pvp.net/api/lol";
-    public static final String SERVICE_BASE_URL_TR = "https://tr.api.pvp.net/api/lol";
+    public static final String SERVICE_BASE_URL_LAN = "https://lan.api.pvp.net/api/lol";
     public static final String SERVICE_BASE_URL_EUNE = "https://eune.api.pvp.net/api/lol";
     public static final String SERVICE_BASE_URL_EUW = "https://euw.api.pvp.net/api/lol";
     public static final String SERVICE_BASE_URL_OCE = "https://oce.api.pvp.net/api/lol";

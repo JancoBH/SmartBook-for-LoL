@@ -2,7 +2,6 @@ package com.jancobh.fragments;
 
 
 import android.content.Context;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -30,7 +29,6 @@ public class ItemDetailFragment extends Fragment implements ResponseListener {
     private String itemImageUrl;
     private ImageView itemImage;
     private TextView itemName, itemGold, itemDescription, descriptionTitle;
-    private Typeface typeface;
     private ProgressBar progress;
     private AQuery aq;
 
@@ -72,11 +70,6 @@ public class ItemDetailFragment extends Fragment implements ResponseListener {
         descriptionTitle = (TextView)v.findViewById(R.id.textViewDescription);
         progress = (ProgressBar) v.findViewById(R.id.imageProgress);
         aq = new AQuery(itemImage);
-        typeface = Typeface.createFromAsset(getContext().getAssets(), "fonts/dinproregular.ttf");
-        itemName.setTypeface(typeface);
-        itemGold.setTypeface(typeface);
-        itemDescription.setTypeface(typeface);
-        descriptionTitle.setTypeface(typeface);
     }
 
     @Override

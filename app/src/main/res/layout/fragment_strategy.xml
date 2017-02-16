@@ -6,8 +6,7 @@
     <ImageView
         android:id="@+id/imageViewSplashImage"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/text_color_light" />
+        android:layout_height="match_parent" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -33,7 +32,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:gravity="center_vertical"
-                android:layout_below="@+id/textviewAllyTipsTitle" />
+                android:layout_below="@+id/textviewAllyTipsTitle"
+                android:textColor="@color/white"/>
 
 
             <TextView
@@ -50,7 +50,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:gravity="center_vertical"
-                android:layout_below="@+id/textviewEnemyTipsTitle" />
+                android:layout_below="@+id/textviewEnemyTipsTitle"
+                android:textColor="@color/white"/>
         </RelativeLayout>
     </ScrollView>
 

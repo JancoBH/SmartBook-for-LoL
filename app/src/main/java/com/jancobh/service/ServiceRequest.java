@@ -108,7 +108,7 @@ public class ServiceRequest {
         return mImageLoader;
     }
 
-    public RequestQueue getRequestQueue() {
+    private RequestQueue getRequestQueue() {
         return mRequestQueue;
     }
 

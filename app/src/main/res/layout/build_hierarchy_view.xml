@@ -10,7 +10,8 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_alignParentLeft="true"
-        android:layout_centerVertical="true"/>
+        android:layout_centerVertical="true"
+        android:contentDescription="@string/app_name" />
 
     <RelativeLayout
         android:id="@+id/relativeLayoutTitleContainer"
@@ -25,7 +26,8 @@
         <TextView
             android:id="@+id/textViewItemName"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"/>
 
         <TextView
             android:id="@+id/textViewItemGold"
@@ -33,7 +35,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/textViewItemName"
             android:layout_marginRight="10dp"
-            android:layout_marginTop="5dp"/>
+            android:layout_marginTop="5dp"
+            android:textColor="@color/white"/>
     </RelativeLayout>
 
 </RelativeLayout>

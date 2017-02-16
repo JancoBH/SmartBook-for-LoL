@@ -55,7 +55,6 @@ public class LegendFragment extends Fragment implements ResponseListener {
     }
 
     private void initUI(View v){
-        typeFace = Typeface.createFromAsset(getContext().getAssets(), "fonts/dinproregular.ttf");
         legend = (TextView)v.findViewById(R.id.textviewLegend);
     }
 
@@ -73,7 +72,6 @@ public class LegendFragment extends Fragment implements ResponseListener {
             String lore = resp.getLore();
             lore = formatLoreString(lore);
             legend.setText(lore);
-            legend.setTypeface(typeFace);
         }
 
     }

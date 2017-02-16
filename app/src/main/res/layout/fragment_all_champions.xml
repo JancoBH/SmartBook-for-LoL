@@ -27,8 +27,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="@drawable/header2">
+        android:orientation="vertical">
 
             <RelativeLayout
                 android:id="@+id/relativeLayoutSearchBar"
@@ -52,10 +51,10 @@
             android:id="@+id/gridview_champions"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="5dp"
-            android:columnWidth="70dp"
+            android:columnWidth="80dp"
             android:drawSelectorOnTop="true"
-            android:gravity="center"
+            android:elevation="2dp"
+            android:gravity="center|bottom"
             android:numColumns="auto_fit"
             android:stretchMode="columnWidth"
             android:verticalSpacing="10dp" />
@@ -67,8 +66,7 @@
             android:gravity="center_horizontal"
             android:text="@string/noChampFound"
             android:textColor="@color/text_color_light"
-            android:visibility="gone"
-            tools:text="sadasdasdasdsadsadas" />
+            android:visibility="gone" />
 
     </LinearLayout>
 

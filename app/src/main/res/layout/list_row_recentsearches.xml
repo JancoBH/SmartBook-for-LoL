@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:id="@+id/row"
+    android:layout_height="55dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp">
+
+    <com.jancobh.view.FadeInNetworkImageView
+        android:id="@+id/summonerProfileIcon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:background="@drawable/question_mark" />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/summonerProfileIcon">
+        <TextView
+            android:id="@+id/summonerName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:textColor="@color/white"/>
+
+        <TextView
+            android:id="@+id/summonerRegion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_below="@+id/summonerName"
+            android:textStyle="italic"
+            android:textColor="@color/white"/>
+    </RelativeLayout>
+
+
+</RelativeLayout>

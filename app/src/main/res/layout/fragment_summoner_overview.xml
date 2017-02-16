@@ -1,0 +1,630 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp">
+
+    <ScrollView
+        android:id="@+id/parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none"
+        android:visibility="visible">
+        <RelativeLayout android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:id="@+id/header"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/border_component"
+                android:paddingBottom="10dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:paddingTop="10dp">
+
+                <com.jancobh.view.FadeInNetworkImageView
+                    android:id="@+id/profileIconIV"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/question_mark"/>
+
+                <TextView
+                    android:id="@+id/summonerNameTV"
+                    android:textColor="@color/accent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/profileIconIV"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_toRightOf="@+id/profileIconIV"
+                    android:text=" ??? "
+                    android:maxLines="1" />
+
+                <TextView
+                    android:id="@+id/regionLevelTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/summonerNameTV"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_toRightOf="@+id/profileIconIV"
+                    android:text="Level: ???"
+                    android:maxLines="1"
+                    android:textColor="@color/white"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/kdaRL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/header"
+                android:layout_marginTop="3dp"
+                android:background="@drawable/border_component"
+                android:paddingBottom="10dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:paddingTop="10dp">
+
+                <TextView
+                    android:id="@+id/averageTV"
+                    android:textColor="@color/accent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/average" />
+
+                <LinearLayout
+                    android:id="@+id/averagesLL"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/averageTV"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:id="@+id/kdaContainer"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/kdaStatsTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:text=" ?/?/? "
+                            android:maxLines="1"
+                            android:textColor="@color/white"/>
+
+                        <TextView
+                            android:id="@+id/kdaStatsStringTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/kdaStatsTV"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="1dp"
+                            android:text="kda"
+                            android:textColor="@color/white"/>
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/minionsContainer"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/minionsStatsTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:text=" ?? "
+                            android:textColor="@color/white"/>
+                        <TextView
+                            android:id="@+id/minionsStatsStringTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/minionsStatsTV"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="1dp"
+                            android:text="@string/minions"
+                            android:maxLines="1"
+                            android:textColor="@color/white"/>
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/winRateContainer"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/winRateStatsTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:text=" ?% "
+                            android:maxLines="1"
+                            android:textColor="@color/white"/>
+                        <TextView
+                            android:id="@+id/winRateStatsStringTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/winRateStatsTV"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="1dp"
+                            android:text="@string/winrate"
+                            android:textColor="@color/white"/>
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <HorizontalScrollView
+                android:id="@+id/mostPlayedSV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/kdaRL"
+                android:layout_marginTop="3dp"
+                android:background="@drawable/border_component"
+                android:fillViewport="true"
+                android:paddingBottom="10dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:paddingTop="10dp"
+                android:scrollbars="none">
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView android:id="@+id/mostPlayedTV"
+                        android:textColor="@color/accent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/mostPlayed"/>
+
+                    <LinearLayout
+                        android:id="@+id/mostPlayedLL"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/mostPlayedTV"
+                        android:orientation="horizontal"
+                        android:padding="5dp"
+                        android:baselineAligned="false">
+
+                        <RelativeLayout
+                            android:id="@+id/mostPlayedRL1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+
+                            <RelativeLayout
+                                android:id="@+id/mostPlayedIVContainer1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <com.jancobh.view.FadeInNetworkImageView
+                                    android:id="@+id/mostPlayedIV1"
+                                    android:layout_width="65dp"
+                                    android:layout_height="65dp"
+                                    android:layout_centerHorizontal="true"
+                                    android:background="@drawable/question_mark">
+
+                                </com.jancobh.view.FadeInNetworkImageView>
+
+                                <TextView
+                                    android:id="@+id/mostPlayedTV1"
+                                    android:layout_width="65dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignBottom="@+id/mostPlayedIV1"
+                                    android:layout_centerHorizontal="true"
+                                    android:background="@color/black"
+                                    android:gravity="center"
+                                    android:padding="0.5dp"
+                                    android:text=" ??? "
+                                    android:textColor="@color/white"/>
+
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:id="@+id/mostPlayedTextContainer1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/mostPlayedIVContainer1"
+                                android:layout_marginTop="2dp"
+                                android:gravity="center_horizontal">
+
+                                <ImageView
+                                    android:id="@+id/ipIV1"
+                                    android:layout_width="11dp"
+                                    android:layout_height="11dp"
+                                    android:background="@drawable/ip"
+                                    android:contentDescription="@string/app_name" />
+
+                                <TextView
+                                    android:id="@+id/kdaTV1"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_toRightOf="@+id/ipIV1"
+                                    android:text=" ?/?/? "
+                                    android:textColor="@color/white"/>
+
+                                <TextView
+                                    android:id="@+id/winRateTV1"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@+id/ipIV1"
+                                    android:layout_marginTop="3dp"
+                                    android:text="W: ? (?%)"
+                                    android:textColor="@color/white"/>
+
+
+                            </RelativeLayout>
+
+                        </RelativeLayout>
+
+
+                        <RelativeLayout
+                            android:id="@+id/mostPlayedRL2"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+
+                            <RelativeLayout
+                                android:id="@+id/mostPlayedIVContainer2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <com.jancobh.view.FadeInNetworkImageView
+                                    android:id="@+id/mostPlayedIV2"
+                                    android:layout_width="65dp"
+                                    android:layout_height="65dp"
+                                    android:layout_centerHorizontal="true"
+                                    android:background="@drawable/question_mark">
+
+                                </com.jancobh.view.FadeInNetworkImageView>
+
+                                <TextView
+                                    android:id="@+id/mostPlayedTV2"
+                                    android:layout_width="65dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignBottom="@+id/mostPlayedIV2"
+                                    android:layout_centerHorizontal="true"
+                                    android:background="@color/black"
+                                    android:gravity="center"
+                                    android:padding="0.5dp"
+                                    android:text=" ??? "
+                                    android:textColor="@color/white"
+                                    android:maxLines="1" />
+
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:id="@+id/mostPlayedTextContainer2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/mostPlayedIVContainer2"
+                                android:layout_marginTop="2dp"
+                                android:gravity="center_horizontal">
+
+                                <ImageView
+                                    android:id="@+id/ipIV2"
+                                    android:layout_width="11dp"
+                                    android:layout_height="11dp"
+                                    android:background="@drawable/ip"
+                                    android:contentDescription="@string/app_name" />
+
+                                <TextView
+                                    android:id="@+id/kdaTV2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_toRightOf="@+id/ipIV2"
+                                    android:textColor="@color/white"
+                                    android:text=" ?/?/? "/>
+
+                                <TextView
+                                    android:id="@+id/winRateTV2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@+id/ipIV2"
+                                    android:layout_marginTop="3dp"
+                                    android:textColor="@color/white"
+                                    android:text="W: ? (?%)"/>
+
+
+                            </RelativeLayout>
+                        </RelativeLayout>
+
+
+                        <RelativeLayout
+                            android:id="@+id/mostPlayedRL3"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+
+                            <RelativeLayout
+                                android:id="@+id/mostPlayedIVContainer3"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <com.jancobh.view.FadeInNetworkImageView
+                                    android:id="@+id/mostPlayedIV3"
+                                    android:layout_width="65dp"
+                                    android:layout_height="65dp"
+                                    android:layout_centerHorizontal="true"
+                                    android:background="@drawable/question_mark">
+
+                                </com.jancobh.view.FadeInNetworkImageView>
+
+                                <TextView
+                                    android:id="@+id/mostPlayedTV3"
+                                    android:layout_width="65dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignBottom="@+id/mostPlayedIV3"
+                                    android:layout_centerHorizontal="true"
+                                    android:background="@color/black"
+                                    android:gravity="center"
+                                    android:padding="0.5dp"
+                                    android:text=" ??? "
+                                    android:textColor="@color/white"/>
+
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:id="@+id/mostPlayedTextContainer3"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/mostPlayedIVContainer3"
+                                android:layout_marginTop="2dp"
+                                android:gravity="center_horizontal">
+
+                                <ImageView
+                                    android:id="@+id/ipIV3"
+                                    android:layout_width="11dp"
+                                    android:layout_height="11dp"
+                                    android:background="@drawable/ip"
+                                    android:contentDescription="@string/app_name" />
+
+                                <TextView
+                                    android:id="@+id/kdaTV3"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_toRightOf="@+id/ipIV3"
+                                    android:text=" ?/?/? "
+                                    android:textColor="@color/white"/>
+
+                                <TextView
+                                    android:id="@+id/winRateTV3"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@+id/ipIV3"
+                                    android:layout_marginTop="3dp"
+                                    android:text="W: ? (?%)"
+                                    android:textColor="@color/white"/>
+
+                            </RelativeLayout>
+                        </RelativeLayout>
+                    </LinearLayout>
+                </RelativeLayout>
+            </HorizontalScrollView>
+
+            <RelativeLayout
+                android:id="@+id/rankedRL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/mostPlayedSV"
+                android:layout_marginTop="3dp"
+                android:background="@drawable/border_component"
+                android:paddingBottom="10dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:layout_marginBottom="10dp"
+                android:paddingTop="10dp">
+
+                <TextView
+                    android:id="@+id/rankedTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:textColor="@color/accent"
+                    android:text="@string/ranked" />
+
+                <com.jancobh.view.FadeInNetworkImageView
+                    android:id="@+id/rankedLeagueIV"
+                    android:layout_width="110dp"
+                    android:layout_height="110dp"
+                    android:layout_below="@+id/rankedTV"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/unranked_badge"/>
+
+
+                <TextView
+                    android:id="@+id/soloDuoTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/rankedLeagueIV"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/rankedLeagueIV"
+                    android:gravity="left"
+                    android:paddingTop="10dp"
+                    android:text="@string/solo_duo"
+                    android:textColor="@color/white" />
+
+                <TextView
+                    android:id="@+id/leagueNameTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/soloDuoTV"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_toRightOf="@+id/rankedLeagueIV"
+                    android:gravity="left"
+                    android:text="@string/unranked"
+                    android:textColor="@color/white"/>
+
+                <TextView
+                    android:id="@+id/winLoseLPTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/leagueNameTV"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_toRightOf="@+id/rankedLeagueIV"
+                    android:gravity="left"
+                    android:text=""
+                    android:textColor="@color/white"/>
+
+                <RelativeLayout
+                    android:id="@+id/team5v5RL"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/rankedLeagueIV"
+                    android:layout_marginTop="10dp">
+
+                    <com.jancobh.view.FadeInNetworkImageView
+                        android:id="@+id/ranked5v5IV"
+                        android:layout_width="30dp" android:layout_height="30dp"
+                        android:layout_alignParentLeft="true"
+                        android:background="@drawable/unranked_badge" />
+
+                    <TextView
+                        android:id="@+id/team5v5rankTV"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignTop="@+id/ranked5v5IV"
+                        android:layout_marginLeft="7dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="3dp"
+                        android:layout_toLeftOf="@+id/team5v5TV"
+                        android:layout_toRightOf="@+id/ranked5v5IV"
+                        android:gravity="center_vertical|left"
+                        android:text="@string/unranked"
+                        android:textColor="@color/white" />
+
+                    <TextView
+                        android:id="@+id/team5v5lpTV"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/team5v5rankTV"
+                        android:layout_marginLeft="7dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="2dp"
+                        android:layout_toLeftOf="@+id/team5v5nameTV"
+                        android:layout_toRightOf="@+id/ranked5v5IV"
+                        android:gravity="left"
+                        android:textColor="@color/white" />
+
+                    <TextView
+                        android:id="@+id/team5v5TV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignTop="@+id/ranked5v5IV"
+                        android:layout_marginTop="3dp"
+                        android:text="@string/team55"
+                        android:textColor="@color/white"
+                        android:maxLines="1" />
+
+                    <TextView
+                        android:id="@+id/team5v5nameTV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_below="@+id/team5v5TV"
+                        android:layout_marginTop="2dp"
+                        android:textColor="@color/white" />
+
+                </RelativeLayout>
+
+                <View
+                    android:id="@+id/separator"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_below="@+id/team5v5RL"
+                    android:background="@color/white"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp" />
+
+                <RelativeLayout
+                    android:id="@+id/team3v3RL"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/separator"
+                    android:layout_marginTop="10dp">
+
+                    <com.jancobh.view.FadeInNetworkImageView
+                        android:id="@+id/ranked3v3IV"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_alignParentLeft="true"
+                        android:background="@drawable/unranked_badge" />
+
+                    <TextView
+                        android:id="@+id/team3v3rankTV"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignTop="@+id/ranked3v3IV"
+                        android:layout_marginLeft="7dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="3dp"
+                        android:layout_toLeftOf="@+id/team3v3TV"
+                        android:layout_toRightOf="@+id/ranked3v3IV"
+                        android:gravity="left"
+                        android:text="@string/unranked"
+                        android:maxLines="1"
+                        android:textColor="@color/white"/>
+
+                    <TextView
+                        android:id="@+id/team3v3lpTV"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/team3v3rankTV"
+                        android:layout_marginLeft="7dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="2dp"
+                        android:layout_toLeftOf="@+id/team3v3nameTV"
+                        android:layout_toRightOf="@+id/ranked3v3IV"
+                        android:gravity="center_vertical|left"
+                        android:textColor="@color/white" />
+
+                    <TextView
+                        android:id="@+id/team3v3TV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignTop="@+id/ranked3v3IV"
+                        android:layout_marginTop="3dp"
+                        android:text="@string/team33"
+                        android:textColor="@color/white" />
+
+                    <TextView
+                        android:id="@+id/team3v3nameTV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_below="@+id/team3v3TV"
+                        android:layout_marginTop="2dp"
+                        android:textColor="@color/white"/>
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

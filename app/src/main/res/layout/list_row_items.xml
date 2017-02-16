@@ -2,7 +2,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/text_color_light"
     android:minHeight="60dp">
 
 
@@ -34,7 +33,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/itemName"
-            android:layout_marginTop="5dp"/>
+            android:layout_marginTop="5dp"
+            android:textColor="@color/text_color_light"/>
 
 
 

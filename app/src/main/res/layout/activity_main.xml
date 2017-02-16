@@ -6,7 +6,8 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.jancobh.MainActivity">
+    tools:context="com.jancobh.MainActivity"
+    android:background="@drawable/bg">
 
     <FrameLayout
         android:id="@+id/fragment_container"

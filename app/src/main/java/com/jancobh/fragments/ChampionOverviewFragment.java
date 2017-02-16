@@ -6,7 +6,6 @@ import android.animation.PropertyValuesHolder;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Paint;
-import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -141,7 +140,6 @@ public class ChampionOverviewFragment extends Fragment implements ResponseListen
         gridviewEssentialItems.setOnItemClickListener(this);
         gridviewOffensiveItems.setOnItemClickListener(this);
         gridviewDeffensiveItems.setOnItemClickListener(this);
-        Typeface typeFace = Typeface.createFromAsset(getContext().getAssets(), "fonts/dinproregular.ttf");
         ImageView champLogo = (ImageView) v.findViewById(R.id.imageViewChampionImage);
         AQuery aq = new AQuery(champLogo);
         ProgressBar progress = (ProgressBar) v.findViewById(R.id.imageProgress);
@@ -159,10 +157,6 @@ public class ChampionOverviewFragment extends Fragment implements ResponseListen
         tags = (TextView)v.findViewById(R.id.textviewTags);
         TextView tagsTitle = (TextView) v.findViewById(R.id.textviewTagsTitle);
         tagsTitle.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
-        tagsTitle.setTypeface(typeFace);
-        tags.setTypeface(typeFace);
-        champName.setTypeface(typeFace);
-        champTitle.setTypeface(typeFace);
         barAttack = (RelativeLayout)v.findViewById(R.id.relativeLayoutBarAttack);
         barDefense = (RelativeLayout)v.findViewById(R.id.relativeLayoutBarDefense);
         barMagic = (RelativeLayout)v.findViewById(R.id.relativeLayoutBarMagic);

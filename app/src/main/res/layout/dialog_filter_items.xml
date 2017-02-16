@@ -2,8 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/app_color"
-    android:padding="15dp">
+    android:padding="15dp"
+    android:background="@drawable/bg">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -20,7 +20,8 @@
                 android:layout_height="22dp"
                 android:background="@drawable/shield"
                 android:layout_above="@id/separator1"
-                android:layout_alignParentLeft="true"/>
+                android:layout_alignParentLeft="true"
+                android:contentDescription="@string/app_name" />
 
             <TextView
                 android:id="@+id/defenceText"
@@ -28,7 +29,7 @@
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/icon_defence"
                 android:layout_marginLeft="5dp"
-                android:text="defence"
+                android:text="@string/defence"
                 android:textColor="@color/accent"
                 android:textStyle="bold"/>
 
@@ -59,7 +60,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="5dp"
                         android:layout_centerVertical="true"
-                        android:text="health"/>
+                        android:text="@string/health"
+                        android:textColor="@color/white"/>
 
                     <CheckBox
                         android:id="@+id/cbHealth"
@@ -90,7 +92,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="5dp"
                         android:layout_centerVertical="true"
-                        android:text="magic_resistance"/>
+                        android:text="@string/magic_resistance"
+                        android:textColor="@color/white"/>
 
                     <CheckBox
                         android:id="@+id/cbMagicResistance"
@@ -118,7 +121,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="5dp"
                         android:layout_centerVertical="true"
-                        android:text="health_regeneration"/>
+                        android:text="@string/health_regeneration"
+                        android:textColor="@color/white"/>
 
                     <CheckBox
                         android:id="@+id/cbHealthRegen"
@@ -146,7 +150,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="5dp"
                         android:layout_centerVertical="true"
-                        android:text="armor"/>
+                        android:text="@string/armor"
+                        android:textColor="@color/white"/>
 
                     <CheckBox
                         android:id="@+id/cbArmor"
@@ -173,7 +178,8 @@
                 android:layout_height="22dp"
                 android:background="@drawable/swords"
                 android:layout_above="@id/separator2"
-                android:layout_alignParentLeft="true"/>
+                android:layout_alignParentLeft="true"
+                android:contentDescription="@string/app_name" />
 
             <TextView
                 android:id="@+id/attackText"
@@ -183,7 +189,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_toRightOf="@+id/icon_attack"
                 android:layout_marginLeft="5dp"
-                android:text="attack"
+                android:text="@string/attack"
                 android:textColor="@color/accent"
                 android:textStyle="bold"/>
 
@@ -214,7 +220,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="5dp"
                         android:layout_centerVertical="true"
-                        android:text="damage"/>
+                        android:text="@string/damage"
+                        android:textColor="@color/white"/>
 
                     <CheckBox
                         android:id="@+id/cbDamage"
@@ -245,7 +252,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="5dp"
                         android:layout_centerVertical="true"
-                        android:text="critical"/>
+                        android:text="@string/critical"
+                        android:textColor="@color/white"/>
 
                     <CheckBox
                         android:id="@+id/cbCriticalStrike"
@@ -273,7 +281,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="5dp"
                         android:layout_centerVertical="true"
-                        android:text="attack_speed"/>
+                        android:text="@string/attack_speed"
+                        android:textColor="@color/white"/>
 
                     <CheckBox
                         android:id="@+id/cbAttackSpeed"
@@ -301,7 +310,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="5dp"
                         android:layout_centerVertical="true"
-                        android:text="life_steal"/>
+                        android:text="@string/life_steal"
+                        android:textColor="@color/white"/>
 
                     <CheckBox
                         android:id="@+id/cbLifeSteal"
@@ -329,7 +339,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="5dp"
                         android:layout_centerVertical="true"
-                        android:text="armor_penetration"/>
+                        android:text="@string/armor_penetration"
+                        android:textColor="@color/white"/>
 
                     <CheckBox
                         android:id="@+id/cbArmorPenetration"
@@ -366,7 +377,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_toRightOf="@+id/icon_magic"
                 android:layout_marginLeft="5dp"
-                android:text="magic"
+                android:text="@string/magic"
                 android:textColor="@color/accent"
                 android:textStyle="bold"/>
 
@@ -397,7 +408,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="5dp"
                         android:layout_centerVertical="true"
-                        android:text="spell_damage"/>
+                        android:text="@string/spell_damage"
+                        android:textColor="@color/white"/>
 
                     <CheckBox
                         android:id="@+id/cbSpellDamage"
@@ -428,7 +440,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="5dp"
                         android:layout_centerVertical="true"
-                        android:text="cooldown_reduction"/>
+                        android:text="@string/cooldown_reduction"
+                        android:textColor="@color/white"/>
 
                     <CheckBox
                         android:id="@+id/cbCooldownReduction"
@@ -456,7 +469,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="5dp"
                         android:layout_centerVertical="true"
-                        android:text="mana"/>
+                        android:text="@string/mana"
+                        android:textColor="@color/white"/>
 
                     <CheckBox
                         android:id="@+id/cbMana"
@@ -484,7 +498,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="5dp"
                         android:layout_centerVertical="true"
-                        android:text="mana_reg"/>
+                        android:text="@string/mana_reg"
+                        android:textColor="@color/white"/>
 
                     <CheckBox
                         android:id="@+id/cbManaReg"
@@ -512,7 +527,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="5dp"
                         android:layout_centerVertical="true"
-                        android:text="magic_penet"/>
+                        android:text="@string/magic_penet"
+                        android:textColor="@color/white"/>
 
                     <CheckBox
                         android:id="@+id/cbMagicPenetration"
@@ -540,7 +556,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="5dp"
                         android:layout_centerVertical="true"
-                        android:text="spell_vamp"/>
+                        android:text="@string/spell_vamp"
+                        android:textColor="@color/white"/>
 
                     <CheckBox
                         android:id="@+id/cbSpellVamp"
@@ -567,7 +584,8 @@
                 android:layout_height="22dp"
                 android:background="@drawable/flask"
                 android:layout_above="@+id/separator4"
-                android:layout_alignParentLeft="true"/>
+                android:layout_alignParentLeft="true"
+                android:contentDescription="@string/app_name" />
 
             <TextView
                 android:id="@+id/otherText"
@@ -577,7 +595,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_toRightOf="@+id/icon_other"
                 android:layout_marginLeft="5dp"
-                android:text="others"
+                android:text="@string/others"
                 android:textColor="@color/accent"
                 android:textStyle="bold"/>
 
@@ -608,7 +626,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="5dp"
                         android:layout_centerVertical="true"
-                        android:text="vision"/>
+                        android:text="@string/vision"
+                        android:textColor="@color/white"/>
 
                     <CheckBox
                         android:id="@+id/cbVision"
@@ -639,7 +658,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="5dp"
                         android:layout_centerVertical="true"
-                        android:text="movement"/>
+                        android:text="@string/movement"
+                        android:textColor="@color/white"/>
 
                     <CheckBox
                         android:id="@+id/cbMovement"
@@ -667,7 +687,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="5dp"
                         android:layout_centerVertical="true"
-                        android:text="Consumable"/>
+                        android:text="@string/Consumable"
+                        android:textColor="@color/white"/>
 
                     <CheckBox
                         android:id="@+id/cbConsumable"
@@ -695,7 +716,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="5dp"
                         android:layout_centerVertical="true"
-                        android:text="gold_give"/>
+                        android:text="@string/gold_give"
+                        android:textColor="@color/white"/>
 
                     <CheckBox
                         android:id="@+id/cbGold"
@@ -731,7 +753,7 @@
                     android:layout_weight="10"
                     android:background="@drawable/selector_secondary_button"
                     android:textColor="@color/white"
-                    android:text="cancel"/>
+                    android:text="@string/cancel"/>
 
                 <Button
                     android:id="@+id/buttonOk"
@@ -741,7 +763,7 @@
                     android:layout_weight="10"
                     android:background="@drawable/selector_primary_button"
                     android:textColor="@color/white"
-                    android:text="ok"/>
+                    android:text="@string/ok"/>
 
 
             </LinearLayout>

@@ -15,7 +15,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -52,7 +53,9 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/textViewItemName"
                     android:layout_marginRight="10dp"
-                    android:layout_marginTop="5dp" />
+                    android:layout_marginTop="5dp"
+                    android:textColor="@color/white"/>
+
             </RelativeLayout>
 
             <TextView
@@ -72,8 +75,8 @@
                 android:layout_height="0.5dp"
                 android:layout_below="@+id/textViewDescription"
                 android:layout_marginTop="3dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                 android:background="@color/accent"/>
 
             <TextView
@@ -83,7 +86,8 @@
                 android:layout_below="@+id/separator1"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="10dp"
-                android:layout_marginTop="5dp" />
+                android:layout_marginTop="5dp"
+                android:textColor="@color/white"/>
 
             <TextView
                 android:id="@+id/itemFromText"
@@ -102,8 +106,8 @@
                 android:layout_height="0.5dp"
                 android:layout_below="@+id/itemFromText"
                 android:layout_marginTop="3dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                 android:background="@color/accent"/>
 
             <LinearLayout
@@ -121,7 +125,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:visibility="gone"
-                    android:text="@string/noFrom"/>
+                    android:text="@string/noFrom"
+                    android:textColor="@color/white"/>
 
 
             </LinearLayout>
@@ -143,8 +148,8 @@
                 android:layout_height="0.5dp"
                 android:layout_below="@+id/itemToText"
                 android:layout_marginTop="3dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                 android:background="@color/accent"/>
 
             <LinearLayout
@@ -162,7 +167,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:visibility="gone"
-                    android:text="@string/noTo"/>
+                    android:text="@string/noTo"
+                    android:textColor="@color/white"/>
 
 
             </LinearLayout>

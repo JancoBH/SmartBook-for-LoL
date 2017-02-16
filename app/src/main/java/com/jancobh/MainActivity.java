@@ -14,43 +14,36 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.jancobh.commons.Commons;
-import com.jancobh.data.Champion;
 import com.jancobh.fragments.AboutFragment;
 import com.jancobh.fragments.AllChampionsFragment;
 import com.jancobh.fragments.CollapsingToolbarFragment;
+import com.jancobh.fragments.MatchInfoFragment;
 import com.jancobh.fragments.NewItemsFragment;
 import com.jancobh.fragments.R;
+import com.jancobh.fragments.SummonerChampionsFragment;
+import com.jancobh.fragments.SummonerSearchFragment;
 import com.jancobh.fragments.TabFragment;
-import com.jancobh.listener.ResponseListener;
-import com.jancobh.responseclasses.AllChampionsResponse;
-import com.jancobh.responseclasses.SummonerSpellsResponse;
-import com.jancobh.service.ServiceRequest;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.Map;
 
 
-public class MainActivity extends AppCompatActivity implements
-        NavigationView.OnNavigationItemSelectedListener,View.OnClickListener, ResponseListener {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private final static String COLLAPSING_TOOLBAR_FRAGMENT_TAG = "collapsing_toolbar";
     private final static String TAB_FRAGMENT_TAG = "tab";
     private final static String ABOUT_FRAGMENT_TAG = "about";
     private final static String CHAMPIONS_FRAGMENT_TAG = "champions";
     private final static String ITEMS_FRAGMENT_TAG = "items";
+    private final static String SUMMONER_FRAGMENT_TAG = "summoner";
+    private final static String MATCH_FRAGMENT_TAG = "match";
     private final static String SELECTED_TAG = "selected_index";
     private final static int COLLAPSING_TOOLBAR = 0;
     private final static int TAB = 1;
     private final static int ABOUT = 2;
     private final static int CHAMPIONS = 3;
     private final static int ITEMS = 4;
+    private final static int SUMMONER = 5;
+    private final static int MATCH = 5;
 
     private static int selectedIndex;
-    int allchampionsRequestCount = 0, allSpellsRequestCount = 0;
 
     private DrawerLayout drawerLayout;
 
@@ -74,9 +67,6 @@ public class MainActivity extends AppCompatActivity implements
 
         getSupportFragmentManager().beginTransaction().add(R.id.fragment_container,
                 new CollapsingToolbarFragment(),COLLAPSING_TOOLBAR_FRAGMENT_TAG).commit();
-
-        makeGetAllChampionsRequest();
-        makeGetAllSpellsRequest();
 
     }
 
@@ -151,13 +141,26 @@ public class MainActivity extends AppCompatActivity implements
                 }
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return true;
+            case R.id.item_summoner:
+                if(!menuItem.isChecked()){
+                    selectedIndex = SUMMONER;
+                    menuItem.setChecked(true);
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                            new SummonerSearchFragment(),SUMMONER_FRAGMENT_TAG).commit();
+                }
+                drawerLayout.closeDrawer(GravityCompat.START);
+                return true;
+            case R.id.item_match:
+                if(!menuItem.isChecked()){
+                    selectedIndex = MATCH;
+                    menuItem.setChecked(true);
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                            new MatchInfoFragment(),MATCH_FRAGMENT_TAG).commit();
+                }
+                drawerLayout.closeDrawer(GravityCompat.START);
+                return true;
         }
         return false;
-    }
-
-    //Click listener for Snackbar UNDO action
-    @Override
-    public void onClick(View view) {
     }
 
     public void setupNavigationDrawer(Toolbar toolbar){
@@ -175,90 +178,6 @@ public class MainActivity extends AppCompatActivity implements
         };
         drawerLayout.setDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
-    }
-
-    private void makeGetAllChampionsRequest(){
-        ArrayList<String> pathParams = new ArrayList<>();
-        pathParams.add("static-data");
-        pathParams.add(Commons.getRegion());
-        pathParams.add("v1.2");
-        pathParams.add("champion");
-        HashMap<String, String> queryParams = new HashMap<>();
-        queryParams.put("locale", Commons.getLocale());
-        queryParams.put("version", Commons.LATEST_VERSION);
-        queryParams.put("champData", "altimages");
-        queryParams.put("api_key", Commons.API_KEY);
-        ServiceRequest.getInstance(getContext()).makeGetRequest(Commons.ALL_CHAMPIONS_REQUEST, pathParams, queryParams, null, this);
-    }
-
-    private void makeGetAllSpellsRequest(){
-        ArrayList<String> pathParams2 = new ArrayList<>();
-        pathParams2.add("static-data");
-        pathParams2.add(Commons.getRegion());
-        pathParams2.add("v1.2");
-        pathParams2.add("summoner-spell");
-        HashMap<String, String> queryParams2 = new HashMap<>();
-        queryParams2.put("spellData", "image");
-        queryParams2.put("api_key", Commons.API_KEY);
-        ServiceRequest.getInstance(getContext()).makeGetRequest(Commons.SUMMONER_SPELLS_REQUEST, pathParams2, queryParams2, null, this);
-
-    }
-
-    public void onSuccess(Object response) {
-        if (response instanceof AllChampionsResponse) {
-            try {
-                AllChampionsResponse resp = (AllChampionsResponse) response;
-                Map<String, Map<String, String>> data = resp.getData();
-                if (Commons.allChampions != null) {
-                    Commons.allChampions.clear();
-                } else {
-                    Commons.allChampions = new ArrayList<>();
-                }
-                for (Map.Entry<String, Map<String, String>> entry : data.entrySet()) {
-                    String key = entry.getKey();
-                    String imageUrl = Commons.CHAMPION_IMAGE_BASE_URL + key + ".png";
-                    Champion c = new Champion();
-                    c.setChampionImageUrl(imageUrl);
-                    c.setChampionName(entry.getValue().get("name"));
-                    c.setId(Integer.parseInt(entry.getValue().get("id")));
-                    c.setKey(entry.getValue().get("key"));
-                    c.setTitle("\"" + entry.getValue().get("title") + "\"");
-                    Commons.allChampions.add(c);
-                }
-                if (Commons.allChampions != null) {
-                    Collections.sort(Commons.allChampions, new Comparator<Champion>() {
-                        @Override
-                        public int compare(Champion c1, Champion c2) {
-                            return c1.getChampionName().compareTo(c2.getChampionName());
-                        }
-                    });
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-
-        } else if (response instanceof SummonerSpellsResponse){
-            SummonerSpellsResponse summonerSpellsResponse = (SummonerSpellsResponse) response;
-            Commons.allSpells = summonerSpellsResponse.getSpells();
-        }
-    }
-
-    public void onFailure (Object response){
-        if(response instanceof Integer){
-            Integer requestID = (Integer) response;
-            if(requestID == Commons.ALL_CHAMPIONS_REQUEST) {
-                if (allchampionsRequestCount < 3) {
-                    allchampionsRequestCount++;
-                    makeGetAllChampionsRequest();
-                }
-            }else if(requestID == Commons.SUMMONER_SPELLS_REQUEST){
-                if(allSpellsRequestCount < 3){
-                    allSpellsRequestCount++;
-                    makeGetAllSpellsRequest();
-                }
-            }
-        }
     }
 
     public Context getContext () {

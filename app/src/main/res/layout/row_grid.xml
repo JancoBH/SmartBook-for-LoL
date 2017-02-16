@@ -6,11 +6,12 @@
 
     <ImageView
         android:id="@+id/championImage"
-        android:layout_width="65dp"
-        android:layout_height="65dp"
-        android:padding="2dp"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
         android:background="@drawable/img_view"
-        android:contentDescription="@string/app_name" />
+        android:contentDescription="@string/app_name"
+        android:layout_centerHorizontal="true"
+        android:padding="2dp" />
 
 
     <TextView

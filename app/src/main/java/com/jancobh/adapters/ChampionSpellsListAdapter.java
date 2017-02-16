@@ -2,10 +2,10 @@ package com.jancobh.adapters;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +14,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.androidquery.AQuery;
 import com.jancobh.commons.Commons;
@@ -28,14 +29,11 @@ import java.util.List;
 public class ChampionSpellsListAdapter extends ArrayAdapter<Spell> implements View.OnClickListener {
 
     private Context mContext;
-    private Typeface typeFace;
 
     public ChampionSpellsListAdapter(Context context, int resource,
                                      List<Spell> objects) {
         super(context, resource, objects);
         this.mContext = context;
-        typeFace = Typeface.createFromAsset(getContext().getAssets(),
-                "fonts/dinproregular.ttf");
     }
 
     @NonNull
@@ -74,16 +72,20 @@ public class ChampionSpellsListAdapter extends ArrayAdapter<Spell> implements Vi
         holder.spellKey.setText(championSpell.getSpellKey());
         AQuery aq = new AQuery(holder.spellImage);
 
-        if (championSpell.getName().contains(getContext().getResources().getString(R.string.passive))) {
-            aq.progress(holder.progress).image(Commons.CHAMPION_PASSIVE_IMAGE_BASE_URL
-                    + championSpell.getImage().getFull(), true, true);
+        System.out.println(championSpell.getName());
+
+        if(championSpell.getName() == null){
+            Toast.makeText(mContext, "Problems to charge the Ability", Toast.LENGTH_SHORT).show();
+
         } else {
-            aq.progress(holder.progress).image(Commons.CHAMPION_SPELL_IMAGE_BASE_URL
-                    + championSpell.getImage().getFull(), true, true);
+            if (championSpell.getName().contains(getContext().getResources().getString(R.string.passive))) {
+                aq.progress(holder.progress).image(Commons.CHAMPION_PASSIVE_IMAGE_BASE_URL
+                        + championSpell.getImage().getFull(), true, true);
+            } else {
+                aq.progress(holder.progress).image(Commons.CHAMPION_SPELL_IMAGE_BASE_URL
+                        + championSpell.getImage().getFull(), true, true);
+            }
         }
-        holder.spellKey.setTypeface(typeFace);
-        holder.spellBody.setTypeface(typeFace);
-        holder.spellTitle.setTypeface(typeFace);
         holder.playVideoButton.setTag(position);
         holder.playVideoButton.setOnClickListener(this);
         holder.textViewVideo.setTag(position);
