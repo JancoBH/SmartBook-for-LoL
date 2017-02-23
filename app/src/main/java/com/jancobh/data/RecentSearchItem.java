@@ -2,9 +2,6 @@ package com.jancobh.data;
 
 import java.io.Serializable;
 
-/**
- * Created by yrazlik on 1/7/16.
- */
 public class RecentSearchItem implements Serializable{
 
     private static final long serialVersionUID = 5L;

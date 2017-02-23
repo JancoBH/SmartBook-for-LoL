@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.jancobh.activities.ChampionDetailActivity;
 import com.jancobh.adapters.ChampionSpellsListAdapter;
 import com.jancobh.commons.Commons;
 import com.jancobh.data.Passive;
@@ -54,7 +55,7 @@ public class ChampionSpellsFragment extends Fragment implements ResponseListener
     private void getExtras(){
         Bundle args = getArguments();
         if(args != null){
-            champId = args.getInt(ChampionDetailFragment.EXTRA_CHAMPION_ID);
+            champId = args.getInt(ChampionDetailActivity.EXTRA_CHAMPION_ID);
         }
     }
 

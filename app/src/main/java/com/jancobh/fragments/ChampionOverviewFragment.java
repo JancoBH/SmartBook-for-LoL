@@ -27,12 +27,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.androidquery.AQuery;
+import com.jancobh.activities.ChampionDetailActivity;
 import com.jancobh.adapters.GridViewItemsAdapter;
 import com.jancobh.commons.Commons;
 import com.jancobh.data.Blocks;
 import com.jancobh.data.Items;
 import com.jancobh.data.Recommended;
 import com.jancobh.listener.ResponseListener;
+import com.jancobh.responseclasses.ChampionLegendResponse;
 import com.jancobh.responseclasses.ChampionOverviewResponse;
 import com.jancobh.responseclasses.RecommendedItemsResponse;
 import com.jancobh.service.ServiceRequest;
@@ -47,8 +49,8 @@ public class ChampionOverviewFragment extends Fragment implements ResponseListen
 
     private int champId;
     private String champLogoImageUrl;
+    TextView legend;
 
-    private ImageView splashImage;
     private TextView champName;
     private TextView champTitle;
     private RelativeLayout barAttack;
@@ -79,6 +81,20 @@ public class ChampionOverviewFragment extends Fragment implements ResponseListen
     }
 
     private void getFragmentData() {
+
+        ArrayList<String> pathParamsL = new ArrayList<>();
+        pathParamsL.add("static-data");
+        pathParamsL.add(Commons.getRegion());
+        pathParamsL.add("v1.2");
+        pathParamsL.add("champion");
+        pathParamsL.add(String.valueOf(champId));
+        HashMap<String, String> queryParamsL = new HashMap<>();
+        queryParamsL.put("locale", Commons.getLocale());
+        queryParamsL.put("champData", "lore");
+        queryParamsL.put("api_key", Commons.API_KEY);
+
+        ServiceRequest.getInstance(getContext()).makeGetRequest(Commons.CHAMPION_LEGEND_REQUEST, pathParamsL, queryParamsL, null, this);
+
         if(championOverviewResponse == null) {
             ArrayList<String> pathParams = new ArrayList<>();
             pathParams.add("static-data");
@@ -124,10 +140,9 @@ public class ChampionOverviewFragment extends Fragment implements ResponseListen
     private void getExtras(){
         Bundle args = getArguments();
         if(args != null){
-            champId = args.getInt(ChampionDetailFragment.EXTRA_CHAMPION_ID);
+            champId = args.getInt(ChampionDetailActivity.EXTRA_CHAMPION_ID);
             lastSelectedChampionId = champId;
-            champLogoImageUrl = args.getString(ChampionDetailFragment.EXTRA_CHAMPION_IMAGE_URL);
-            String extraChampName = args.getString(ChampionDetailFragment.EXTRA_CHAMPION_NAME);
+            champLogoImageUrl = args.getString(ChampionDetailActivity.EXTRA_CHAMPION_IMAGE_URL);
         }
     }
 
@@ -161,6 +176,14 @@ public class ChampionOverviewFragment extends Fragment implements ResponseListen
         barDefense = (RelativeLayout)v.findViewById(R.id.relativeLayoutBarDefense);
         barMagic = (RelativeLayout)v.findViewById(R.id.relativeLayoutBarMagic);
         barDifficulty = (RelativeLayout)v.findViewById(R.id.relativeLayoutBarDifficulty);
+        legend = (TextView)v.findViewById(R.id.tvLore);
+    }
+
+    private String formatLoreString(String lore) {
+        if(lore.contains("<br>")){
+            lore = lore.replaceAll("<br>", "\n");
+        }
+        return lore;
     }
 
     @Override
@@ -367,6 +390,11 @@ public class ChampionOverviewFragment extends Fragment implements ResponseListen
                 recommendedItemsResponse = (RecommendedItemsResponse) response;
                 handleRecommendedItemsResponse();
             }catch (Exception ignored){}
+        } else if(response instanceof ChampionLegendResponse){
+            ChampionLegendResponse resp = (ChampionLegendResponse) response;
+            String lore = resp.getLore();
+            lore = formatLoreString(lore);
+            legend.setText(lore);
         }
 
     }

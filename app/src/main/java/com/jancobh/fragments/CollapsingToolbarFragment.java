@@ -1,6 +1,5 @@
 package com.jancobh.fragments;
 
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -9,6 +8,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -24,8 +25,6 @@ import java.util.List;
  * A simple {@link Fragment} subclass.
  */
 public class CollapsingToolbarFragment extends Fragment {
-
-
 
     private List<CardItemModel> cardItems = new ArrayList<>(30);
     private MainActivity appCompatActivity;
@@ -43,9 +42,18 @@ public class CollapsingToolbarFragment extends Fragment {
         appCompatActivity = (MainActivity)activity;
     }
 
+    @Override // Hide Search Icon with setHasOptionsMenu(true);
+    public void onPrepareOptionsMenu(Menu menu) {
+        MenuItem item=menu.findItem(R.id.action_search);
+        item.setVisible(false);
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        setHasOptionsMenu(true);
+
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_collapsing_toolbar, container, false);
 
@@ -77,18 +85,7 @@ public class CollapsingToolbarFragment extends Fragment {
     private void setupRecyclerView(){
         recyclerView.setLayoutManager(new LinearLayoutManager(appCompatActivity));
         recyclerView.setHasFixedSize(true);
-        initializeCardItemList();
         recyclerView.setAdapter(new RecyclerAdapter(cardItems));
     }
 
-    private void initializeCardItemList(){
-        CardItemModel cardItemModel;
-        String[] cardTitles = getResources().getStringArray(R.array.card_titles);
-        String[] cardContents = getResources().getStringArray(R.array.card_contents);
-        final int length = cardTitles.length;
-        for(int i=0;i<length;i++){
-            cardItemModel = new CardItemModel(cardTitles[i],cardContents[i]);
-            cardItems.add(cardItemModel);
-        }
-    }
 }

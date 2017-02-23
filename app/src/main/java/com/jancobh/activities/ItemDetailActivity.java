@@ -107,7 +107,7 @@ public class ItemDetailActivity extends AppCompatActivity {
                 ImageView buildFromItemImage = (ImageView) v.findViewById(R.id.itemImage);
                 TextView buildFromItemName = (TextView) v.findViewById(R.id.textViewItemName);
                 TextView buildFromItemGold = (TextView) v.findViewById(R.id.textViewItemGold);
-                String buildFromItemNameString = "";
+                String buildFromItemNameString;
                 String buildFromItemGoldString = "";
 
                 if (Commons.allItemsNew != null && Commons.allItemsNew.size() > 0) {

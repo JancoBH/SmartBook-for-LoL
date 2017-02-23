@@ -20,6 +20,13 @@
                 android:background="@color/primary"
                 app:layout_scrollFlags="scroll|enterAlways"/>
 
+            <View
+                android:id="@+id/divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/img_view" />
+
         </android.support.design.widget.AppBarLayout>
 
     <com.astuetz.PagerSlidingTabStrip
@@ -31,7 +38,6 @@
     <android.support.v4.view.ViewPager
         android:id="@+id/pager"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tabs" />
+        android:layout_height="wrap_content" />
 
 </LinearLayout>

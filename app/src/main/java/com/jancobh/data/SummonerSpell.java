@@ -1,8 +1,7 @@
 package com.jancobh.data;
 
-/**
- * Created by yrazlik on 1/6/16.
- */
+/* Created by JancoBH.*/
+
 public class SummonerSpell {
 
     private int id;

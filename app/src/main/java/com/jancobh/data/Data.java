@@ -5,9 +5,8 @@ import com.jancobh.data.Image;
 
 import java.util.ArrayList;
 
-/**
- * Created by yrazlik on 8/6/15.
- */
+/* Created by JancoBH.*/
+
 public class Data {
 
     private ArrayList<String> tags;

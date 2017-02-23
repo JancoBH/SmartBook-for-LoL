@@ -49,11 +49,8 @@ public class Commons {
         regular
     }
 
-    public static String base64EncodedPublicKey = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAnZHsXqXjxssy8qMs7Ekl/PjTQDSlT9AcjyFOpauiVnBCOVv81zvJODMOsgLY1A+kMRvbjkrD2I3Ey6FVFfpE5Rl6gLSs6fDv9iEm22iDASU/pKMsMG4keaNgKxw9+GP0anyzvSbhuYar6MZHefcr/3WuElakkxN4z/wOGXcaIRx8ZNqk4Fh4CL06xERnD+ZT6jBFztUM8Jpdf+DdVoxqFamh8Cu74H+/2x4OGgp4JAU+HKJXDHE51x15ezDBHGpSGNeuH57Ew4xvq27Ixvx+GbfJYioiJmAYpZk5OuvK6Zx6YzS8jPy7kCXZJJRFswcKjuGL286dDhE2J6zPL3pRQwIDAQAB";
     public static final int REMOVE_ADS_REQUEST_CODE = 1111;
     public static final String REMOVE_ADS_ID = "remove_ads";
-
-    public static String TEXT = "AAA";
 
     public static final String PURCHASE_CLICK = "PURCHASE_CLICK";
     public static final String PURCHASE_SUCCESSFUL = "PURCHASE_SUCCESSFUL";
@@ -71,8 +68,8 @@ public class Commons {
 
     public static final String GOOGLE_ANALYTICS_TRACKING_ID = "UA-52774268-8";
 
-    public static String LATEST_VERSION = "7.3.2";
-    public static String RECOMMENDED_ITEMS_VERSION = "7.3.2";
+    public static String LATEST_VERSION = "7.3.3";
+    public static String RECOMMENDED_ITEMS_VERSION = "7.3.3";
 
     public static final String API_KEY = "ec2ba3a7-6665-4a73-81b0-03e198cab145";
 
@@ -109,22 +106,20 @@ public class Commons {
     public static String YAHO_RSS_FEED_URL = "https://esports.yahoo.com/league-of-legends/rss";
     public static String SELECTED_REGION = "lan";
     public static String SELECTED_LANGUAGE = "es";
-    public static String SPECTATOR_SERVICE_BASE_URL_CURRENT_SELECTED = "https://" + SELECTED_REGION + ".api.pvp.net/observer-mode/rest/consumer/getSpectatorGameInfo/TR1";
+    public static String SPECTATOR_SERVICE_BASE_URL_CURRENT_SELECTED = "https://" + SELECTED_REGION + ".api.pvp.net/observer-mode/rest/consumer/getSpectatorGameInfo/LA1";
     public static final String SPECTATOR_SERVICE_BASE_URL_OC = "https://oce.api.pvp.net/observer-mode/rest/consumer/getSpectatorGameInfo/OC1";
     public static final String SPECTATOR_SERVICE_BASE_URL_EUNE = "https://eune.api.pvp.net/observer-mode/rest/consumer/getSpectatorGameInfo/EUN1";
     public static final String SPECTATOR_SERVICE_BASE_URL_EUW = "https://euw.api.pvp.net/observer-mode/rest/consumer/getSpectatorGameInfo/EUW1";
     public static final String SPECTATOR_SERVICE_BASE_URL_NA = "https://na.api.pvp.net/observer-mode/rest/consumer/getSpectatorGameInfo/NA1";
-    public static final String SPECTATOR_SERVICE_BASE_URL_LAN = "https://lan.api.pvp.net/observer-mode/rest/consumer/getSpectatorGameInfo/TR1";
+    public static final String SPECTATOR_SERVICE_BASE_URL_LAN = "https://lan.api.pvp.net/observer-mode/rest/consumer/getSpectatorGameInfo/LA1";
     public static final String SERVICE_BASE_URL = "https://" + SELECTED_REGION +".api.pvp.net/api/lol";
     public static final String SERVICE_BASE_URL_LAN = "https://lan.api.pvp.net/api/lol";
     public static final String SERVICE_BASE_URL_EUNE = "https://eune.api.pvp.net/api/lol";
     public static final String SERVICE_BASE_URL_EUW = "https://euw.api.pvp.net/api/lol";
     public static final String SERVICE_BASE_URL_OCE = "https://oce.api.pvp.net/api/lol";
     public static final String SERVICE_BASE_URL_NA = "https://na.api.pvp.net/api/lol";
-    public static String SERVICE_BASE_URL_FOR_MATCH_INFO = "https://tr.api.pvp.net/api/lol";
+    public static String SERVICE_BASE_URL_FOR_MATCH_INFO = "https://lan.api.pvp.net/api/lol";
     public static String PROFILE_ICON_BASE_URL = "http://ddragon.leagueoflegends.com/cdn/" + Commons.LATEST_VERSION + "/img/profileicon/";
-
-
 
 
     public static final String STATIC_DATA_BASE_URL = "https://global.api.pvp.net/api/lol";

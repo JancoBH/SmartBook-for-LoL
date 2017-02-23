@@ -4,6 +4,8 @@ package com.jancobh.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -51,6 +53,18 @@ public class FilterActivity extends AppCompatActivity implements CompoundButton.
             }
         }
         initUI();
+
+        setTitle("Items Filter");
+
+        /* Toolbar*/
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.filter_toolbar);
+        setSupportActionBar(myToolbar);
+
+        if(getSupportActionBar()!=null){
+            // enabling action bar app icon and behaving it as toggle button
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setHomeButtonEnabled(true);
+        }
     }
 
     private void initUI(){
@@ -423,6 +437,13 @@ public class FilterActivity extends AppCompatActivity implements CompoundButton.
     public void onBackPressed() {
         super.onBackPressed();
         overridePendingTransition(R.anim.fadein, R.anim.slide_bottom_out);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        if(item.getItemId() == android.R.id.home)
+            finish();
+        return super.onOptionsItemSelected(item);
     }
 
 }

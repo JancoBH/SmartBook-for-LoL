@@ -4,9 +4,8 @@ import com.jancobh.data.Streams;
 
 import java.util.ArrayList;
 
-/**
- * Created by yrazlik on 1/10/15.
- */
+/* Created by JancoBH.*/
+
 public class LiveChannelsResponse {
 
     private ArrayList<Streams> streams;

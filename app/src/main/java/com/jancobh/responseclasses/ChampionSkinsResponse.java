@@ -4,9 +4,8 @@ import com.jancobh.data.Skin;
 
 import java.util.ArrayList;
 
-/**
- * Created by yrazlik on 2/1/15.
- */
+/* Created by JancoBH.*/
+
 public class ChampionSkinsResponse {
 
     public ArrayList<Skin> skins;

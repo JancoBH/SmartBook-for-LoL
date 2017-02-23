@@ -1,8 +1,7 @@
 package com.jancobh.data;
 
-/**
- * Created by yrazlik on 8/6/15.
- */
+/* Created by JancoBH */
+
 public class Image {
 
     private String full;

@@ -1,8 +1,6 @@
 package com.jancobh.data;
 
-/**
- * Created by Janco on 09-Feb-17.
- */
+/* Created by JancoBH */
 
 public class Info {
     private int defense;

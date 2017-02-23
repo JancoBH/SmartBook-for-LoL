@@ -2,9 +2,7 @@ package com.jancobh.data;
 
 import java.io.Serializable;
 
-/**
- * Created by yrazlik on 3/10/15.
- */
+/* Created by JancoBH.*/
 public class Summoner implements Serializable{
 
     private boolean bot;

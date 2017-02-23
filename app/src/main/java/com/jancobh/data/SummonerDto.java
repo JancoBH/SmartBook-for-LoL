@@ -1,8 +1,6 @@
 package com.jancobh.data;
 
-/**
- * Created by yrazlik on 3/10/15.
- */
+/* Created by JancoBH.*/
 public class SummonerDto {
     private long id;
     private String name;

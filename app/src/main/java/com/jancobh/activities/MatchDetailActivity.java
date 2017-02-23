@@ -3,7 +3,9 @@ package com.jancobh.activities;
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -20,7 +22,6 @@ import com.jancobh.data.Player;
 import com.jancobh.data.Statistics;
 import com.jancobh.data.Stats;
 import com.jancobh.data.SummonerNames;
-import com.jancobh.data.SummonerSpell;
 import com.jancobh.fragments.R;
 import com.jancobh.listener.ResponseListener;
 import com.jancobh.responseclasses.SummonerNamesResponse;
@@ -32,6 +33,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -52,11 +54,13 @@ public class MatchDetailActivity extends AppCompatActivity implements ResponseLi
     private Game game;
     private long summonerId;
     private String summonerIds = "";
+    Toolbar toolbar;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_match_detail);
         if(getIntent() != null){
             Bundle extras = getIntent().getExtras();
@@ -81,6 +85,16 @@ public class MatchDetailActivity extends AppCompatActivity implements ResponseLi
             }else{
                 initUI();
             }
+        }
+
+        toolbar = (Toolbar) findViewById(R.id.match_detail_toolbar);
+        setSupportActionBar(toolbar);
+        setTitle("Game Detail");
+
+        if(getSupportActionBar()!=null){
+            // enabling action bar app icon and behaving it as toggle button
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setHomeButtonEnabled(true);
         }
     }
 
@@ -130,7 +144,44 @@ public class MatchDetailActivity extends AppCompatActivity implements ResponseLi
             int summonerSpell1 = game.getSpell1();
             int summonerSpell2 = game.getSpell2();
 
-            if (Commons.allSpells != null) {
+            int Intspell21 = 21, Intspell30 = 30, Intspell1 = 1, Intspell12 = 12, Intspell4 = 4, Intspell32 = 32, Intspell7 = 7,
+                    Intspell13 = 13, Intspell31 = 31, Intspell11 = 11, Intspell3 = 3, Intspell14 = 14, Intspell6 = 6;
+
+            String spell21Name = "SummonerBarrier.png", spell30Name = "SummonerPoroRecall.png", spell1Name = "SummonerBoost.png",
+                    spell12Name = "SummonerTeleport.png", spell4Name = "SummonerFlash.png", spell32Name = "SummonerSnowball.png",
+                    spell7Name = "SummonerHeal.png", spell13Name = "SummonerMana.png", spell31Name = "SummonerPoroThrow.png",
+                    spell11Name = "SummonerSmite.png", spell3Name = "SummonerExhaust.png", spell14Name = "SummonerDot.png",
+                    spell6Name = "SummonerHaste.png";
+
+            if(summonerSpell1 == Intspell21){spell1.setImageUrl(Commons.SUMMONER_SPELL_IMAGE_BASE_URL + spell21Name, ServiceRequest.getInstance((this)).getImageLoader());}
+            else if(summonerSpell1 == Intspell30){spell1.setImageUrl(Commons.SUMMONER_SPELL_IMAGE_BASE_URL + spell30Name, ServiceRequest.getInstance((this)).getImageLoader());}
+            else if(summonerSpell1 == Intspell1){spell1.setImageUrl(Commons.SUMMONER_SPELL_IMAGE_BASE_URL + spell1Name, ServiceRequest.getInstance((this)).getImageLoader());}
+            else if(summonerSpell1 == Intspell12){spell1.setImageUrl(Commons.SUMMONER_SPELL_IMAGE_BASE_URL + spell12Name, ServiceRequest.getInstance((this)).getImageLoader());}
+            else if(summonerSpell1 == Intspell4){spell1.setImageUrl(Commons.SUMMONER_SPELL_IMAGE_BASE_URL + spell4Name, ServiceRequest.getInstance((this)).getImageLoader());}
+            else if(summonerSpell1 == Intspell32){spell1.setImageUrl(Commons.SUMMONER_SPELL_IMAGE_BASE_URL + spell32Name, ServiceRequest.getInstance((this)).getImageLoader());}
+            else if(summonerSpell1 == Intspell7){spell1.setImageUrl(Commons.SUMMONER_SPELL_IMAGE_BASE_URL + spell7Name, ServiceRequest.getInstance((this)).getImageLoader());}
+            else if(summonerSpell1 == Intspell13){spell1.setImageUrl(Commons.SUMMONER_SPELL_IMAGE_BASE_URL + spell13Name, ServiceRequest.getInstance((this)).getImageLoader());}
+            else if(summonerSpell1 == Intspell31){spell1.setImageUrl(Commons.SUMMONER_SPELL_IMAGE_BASE_URL + spell31Name, ServiceRequest.getInstance((this)).getImageLoader());}
+            else if(summonerSpell1 == Intspell11){spell1.setImageUrl(Commons.SUMMONER_SPELL_IMAGE_BASE_URL + spell11Name, ServiceRequest.getInstance((this)).getImageLoader());}
+            else if(summonerSpell1 == Intspell3){spell1.setImageUrl(Commons.SUMMONER_SPELL_IMAGE_BASE_URL + spell3Name, ServiceRequest.getInstance((this)).getImageLoader());}
+            else if(summonerSpell1 == Intspell14){spell1.setImageUrl(Commons.SUMMONER_SPELL_IMAGE_BASE_URL + spell14Name, ServiceRequest.getInstance((this)).getImageLoader());}
+            else if(summonerSpell1 == Intspell6){spell1.setImageUrl(Commons.SUMMONER_SPELL_IMAGE_BASE_URL + spell6Name, ServiceRequest.getInstance((this)).getImageLoader());}
+
+            if(summonerSpell2 == Intspell21){spell2.setImageUrl(Commons.SUMMONER_SPELL_IMAGE_BASE_URL + spell21Name, ServiceRequest.getInstance((this)).getImageLoader());}
+            else if(summonerSpell2 == Intspell30){spell2.setImageUrl(Commons.SUMMONER_SPELL_IMAGE_BASE_URL + spell30Name, ServiceRequest.getInstance((this)).getImageLoader());}
+            else if(summonerSpell2 == Intspell1){spell2.setImageUrl(Commons.SUMMONER_SPELL_IMAGE_BASE_URL + spell1Name, ServiceRequest.getInstance((this)).getImageLoader());}
+            else if(summonerSpell2 == Intspell12){spell2.setImageUrl(Commons.SUMMONER_SPELL_IMAGE_BASE_URL + spell12Name, ServiceRequest.getInstance((this)).getImageLoader());}
+            else if(summonerSpell2 == Intspell4){spell2.setImageUrl(Commons.SUMMONER_SPELL_IMAGE_BASE_URL + spell4Name, ServiceRequest.getInstance((this)).getImageLoader());}
+            else if(summonerSpell2 == Intspell32){spell2.setImageUrl(Commons.SUMMONER_SPELL_IMAGE_BASE_URL + spell32Name, ServiceRequest.getInstance((this)).getImageLoader());}
+            else if(summonerSpell2 == Intspell7){spell2.setImageUrl(Commons.SUMMONER_SPELL_IMAGE_BASE_URL + spell7Name, ServiceRequest.getInstance((this)).getImageLoader());}
+            else if(summonerSpell2 == Intspell13){spell2.setImageUrl(Commons.SUMMONER_SPELL_IMAGE_BASE_URL + spell13Name, ServiceRequest.getInstance((this)).getImageLoader());}
+            else if(summonerSpell2 == Intspell31){spell2.setImageUrl(Commons.SUMMONER_SPELL_IMAGE_BASE_URL + spell31Name, ServiceRequest.getInstance((this)).getImageLoader());}
+            else if(summonerSpell2 == Intspell11){spell2.setImageUrl(Commons.SUMMONER_SPELL_IMAGE_BASE_URL + spell11Name, ServiceRequest.getInstance((this)).getImageLoader());}
+            else if(summonerSpell2 == Intspell3){spell2.setImageUrl(Commons.SUMMONER_SPELL_IMAGE_BASE_URL + spell3Name, ServiceRequest.getInstance((this)).getImageLoader());}
+            else if(summonerSpell2 == Intspell14){spell2.setImageUrl(Commons.SUMMONER_SPELL_IMAGE_BASE_URL + spell14Name, ServiceRequest.getInstance((this)).getImageLoader());}
+            else if(summonerSpell2 == Intspell6){spell2.setImageUrl(Commons.SUMMONER_SPELL_IMAGE_BASE_URL + spell6Name, ServiceRequest.getInstance((this)).getImageLoader());}
+
+            /*if (Commons.allSpells != null) {
                 String spell1Name = null, spell2Name = null;
                 for (SummonerSpell sp : Commons.allSpells) {
                     if (sp.getId() == summonerSpell1) {
@@ -159,7 +210,7 @@ public class MatchDetailActivity extends AppCompatActivity implements ResponseLi
                     spell2.setImageUrl(null, ServiceRequest.getInstance(this).getImageLoader());
                     spell2.setBackgroundResource(R.drawable.question_mark);
                 }
-            }
+            }*/
 
             long createDate = game.getCreateDate();
 
@@ -322,9 +373,6 @@ public class MatchDetailActivity extends AppCompatActivity implements ResponseLi
             }
         }
 
-
-
-
         progress.setVisibility(View.GONE);
         parent.setVisibility(View.VISIBLE);
     }
@@ -436,6 +484,8 @@ public class MatchDetailActivity extends AppCompatActivity implements ResponseLi
                 gameTypeText += this.getResources().getString(R.string.firstblood);
             } else if (gameMode.equalsIgnoreCase("kingporo")) {
                 gameTypeText += this.getResources().getString(R.string.kingporo);
+            } else if (gameMode.equalsIgnoreCase("Assassinate")){
+                gameTypeText += this.getResources().getString(R.string.summoners_rift);
             }
         }
         return gameTypeText;
@@ -480,6 +530,8 @@ public class MatchDetailActivity extends AppCompatActivity implements ResponseLi
                         gameTypeText += this.getResources().getString(R.string.counter_pick);
                     } else if (subType.equalsIgnoreCase("bilgewater")) {
                         gameTypeText += this.getResources().getString(R.string.bilgewater);
+                    }else if (subType.equalsIgnoreCase("Assassinate")) {
+                        gameTypeText += this.getResources().getString(R.string.assassinate);
                     } else if (subType.contains("ranked") || subType.contains("RANKED")) {
                         gameTypeText += this.getResources().getString(R.string.ranked);
                     } else {
@@ -516,19 +568,14 @@ public class MatchDetailActivity extends AppCompatActivity implements ResponseLi
     }
 
     @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        if(item.getItemId() == android.R.id.home)
+            finish();
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
     public Context getContext() {
         return this;
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        overridePendingTransition(R.anim.slide_bottom_in, android.R.anim.fade_out);
-    }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        overridePendingTransition(R.anim.fadein, R.anim.slide_top_out);
     }
 }

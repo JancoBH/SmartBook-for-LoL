@@ -2,9 +2,8 @@ package com.jancobh.data;
 
 import java.io.Serializable;
 
-/**
- * Created by yrazlik on 3/13/15.
- */
+/* Created by JancoBH */
+
 public class Entries implements Serializable{
 
     private static final long serialVersionUID = 12L;

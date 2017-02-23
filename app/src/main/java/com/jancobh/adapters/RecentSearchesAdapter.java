@@ -3,6 +3,7 @@ package com.jancobh.adapters;
 
 import android.app.Activity;
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,17 +23,16 @@ public class RecentSearchesAdapter extends ArrayAdapter<RecentSearchItem> {
 
     private Context mContext;
     private int resourceId;
-    private List<RecentSearchItem> items;
 
     public RecentSearchesAdapter(Context context, int resource, List<RecentSearchItem> objects) {
         super(context, resource, objects);
         this.mContext = context;
         this.resourceId = resource;
-        this.items = objects;
     }
 
+    @NonNull
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int position, View convertView, @NonNull ViewGroup parent) {
 
         ViewHolder holder;
         if(convertView == null){
@@ -49,14 +49,9 @@ public class RecentSearchesAdapter extends ArrayAdapter<RecentSearchItem> {
             holder = (ViewHolder) convertView.getTag();
         }
 
-     /*   if(position%2 == 0){
-            holder.row.setBackgroundColor(mContext.getResources().getColor(R.color.material_green));
-        }else{
-            holder.row.setBackgroundColor(mContext.getResources().getColor(R.color.material_dark_green));
-        }*/
-
         RecentSearchItem item = getItem(position);
 
+        assert item != null;
         if(item.getName() != null && item.getName().length() > 0){
             holder.summonerName.setText(item.getName());
         }else{
@@ -74,10 +69,10 @@ public class RecentSearchesAdapter extends ArrayAdapter<RecentSearchItem> {
 
 
     static class ViewHolder {
-        public FadeInNetworkImageView summonerProfileIcon;
-        public TextView summonerName;
-        public TextView summonerRegion;
-        public RelativeLayout row;
+        FadeInNetworkImageView summonerProfileIcon;
+        TextView summonerName;
+        TextView summonerRegion;
+        RelativeLayout row;
     }
 
 }

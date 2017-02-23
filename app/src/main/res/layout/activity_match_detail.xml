@@ -1,15 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:visibility="visible"
-    android:background="@drawable/bg">
+    android:background="@color/primary_dark"
+    android:orientation="vertical">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/mathcdetail_appbar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="@dimen/toolbar_elevation"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/match_detail_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/primary"
+            app:layout_scrollFlags="scroll|enterAlways"/>
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/img_view" />
+
+    </android.support.design.widget.AppBarLayout>
 
     <ProgressBar android:id="@+id/progress"
         android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_centerInParent="true"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal"
         android:visibility="visible">
     </ProgressBar>
 
@@ -170,13 +194,17 @@
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_alignParentLeft="true"
-                    android:layout_marginLeft="2dp"/>
+                    android:layout_marginLeft="2dp"
+                    android:background="@drawable/img_view"
+                    android:padding="1dp"/>
 
                 <com.jancobh.view.FadeInNetworkImageView
                     android:id="@+id/spell2"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:layout_alignParentRight="true"/>
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/img_view"
+                    android:padding="1dp"/>
 
 
             </RelativeLayout>
@@ -274,24 +302,15 @@
 
                 <LinearLayout
                     android:id="@+id/team1LL"
-                    android:layout_width="0dp"
+                    android:layout_width="2dp"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_weight="12">
+                    android:layout_weight="10"
+                    android:orientation="vertical">
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/accent"
                         android:text="@string/team1"/>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/teamsSeparator"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:orientation="vertical">
 
                 </LinearLayout>
 
@@ -325,6 +344,9 @@
                     android:id="@+id/statisticsTV"
                     android:layout_width="match_parent" android:layout_height="wrap_content"
                     android:textColor="@color/accent"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:gravity="center_horizontal"
                     android:text="@string/statistics" />
 
                 <ListView
@@ -333,7 +355,8 @@
                     android:layout_marginTop="5dp"
                     android:layout_width="match_parent"
                     android:scrollbars="none"
-                    android:layout_height="450dp">
+                    android:layout_height="480dp"
+                    android:divider="@drawable/img_view">
 
                 </ListView>
 
@@ -344,4 +367,4 @@
 
     </ScrollView>
 
-</RelativeLayout>
+</LinearLayout>

@@ -2,9 +2,6 @@ package com.jancobh.data;
 
 import java.io.Serializable;
 
-/**
- * Created by yrazlik on 1/5/16.
- */
 public class Player implements Serializable{
 
     private static final long serialVersionUID = 2L;

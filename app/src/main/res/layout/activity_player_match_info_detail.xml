@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/primary">
 
     <RelativeLayout
         android:id="@+id/toolbar"
@@ -99,7 +100,7 @@
                     android:id="@+id/leagueInfoTV"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="leagueInfo"
+                    android:text="@string/leagueInfo"
                     android:textColor="@color/accent"
                     />
 
@@ -194,7 +195,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="7dp"
                     android:layout_marginTop="5dp"
-                    android:text="Dereceli Kazanma/Kaybetme:"
+                    android:text="Grado Ganadora / Perder:"
                     android:layout_below="@+id/totalWonMatchCountTV"
                     android:textColor="@color/white"/>
                 <TextView

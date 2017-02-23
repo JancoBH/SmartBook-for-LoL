@@ -3,9 +3,6 @@ package com.jancobh.data;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-/**
- * Created by yrazlik on 3/13/15.
- */
 public class LeagueDto implements Serializable{
 
     private static final long serialVersionUID = 11L;

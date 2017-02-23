@@ -17,8 +17,8 @@
 
     <com.jancobh.view.FadeInNetworkImageView
         android:id="@+id/champIV"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
         android:layout_alignBottom="@+id/winLoseLabel"
         android:layout_alignTop="@+id/winLoseLabel"
         android:layout_toRightOf="@+id/winLoseLabel"
@@ -77,14 +77,15 @@
         <RelativeLayout
             android:id="@+id/goldContainer"
             android:layout_width="wrap_content"
-            android:layout_height="60dp"
+            android:layout_height="80dp"
             android:layout_marginRight="7dp"
-            android:layout_toLeftOf="@+id/timeContainer">
+            android:layout_toLeftOf="@+id/timeContainer"
+            android:gravity="center_vertical">
 
             <ImageView
                 android:id="@+id/goldIV"
-                android:layout_width="15dp"
-                android:layout_height="15dp"
+                android:layout_width="14dp"
+                android:layout_height="14dp"
                 android:layout_centerVertical="true"
                 android:background="@drawable/coins"
                 android:contentDescription="@string/app_name" />
@@ -96,15 +97,59 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="5dp"
                 android:layout_toRightOf="@+id/goldIV"
-                android:textColor="@color/white"/>
+                android:textColor="@color/white"
+                android:textSize="12sp"/>
 
+            <!-- Minions -->
+
+            <ImageView
+                android:id="@+id/minionsIV"
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:layout_centerVertical="true"
+                android:background="@drawable/coins"
+                android:layout_below="@+id/goldIV"
+                android:contentDescription="@string/app_name" />
+
+            <TextView
+                android:id="@+id/minionsTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/minionsIV"
+                android:layout_below="@+id/goldTV"
+                android:textColor="@color/white"
+                android:textSize="12sp"/>
+
+            <!-- Wards -->
+            <ImageView
+                android:id="@+id/wardsIV"
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:layout_marginTop="5dp"
+                android:layout_centerVertical="true"
+                android:background="@drawable/coins"
+                android:layout_below="@+id/minionsIV"
+                android:contentDescription="@string/app_name" />
+
+            <TextView
+                android:id="@+id/wardsTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/wardsIV"
+                android:layout_below="@+id/minionsTV"
+                android:textColor="@color/white"
+                android:textSize="12sp"/>
 
         </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/timeContainer"
             android:layout_width="wrap_content"
-            android:layout_height="60dp"
+            android:layout_height="80dp"
             android:layout_alignParentRight="true"
             android:layout_marginRight="5dp"
             android:gravity="center_vertical">
@@ -114,7 +159,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:textColor="@color/white"/>
+                android:textColor="@color/white"
+                android:textSize="12sp"/>
 
             <TextView
                 android:id="@+id/matchDateTV"
@@ -122,7 +168,8 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/matchTimeTV"
                 android:layout_centerHorizontal="true"
-                android:textColor="@color/white"/>
+                android:textColor="@color/white"
+                android:textSize="12sp"/>
 
         </RelativeLayout>
 
@@ -143,13 +190,17 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginLeft="2dp"
-            android:layout_alignParentLeft="true"/>
+            android:layout_alignParentLeft="true"
+            android:background="@drawable/img_view"
+            android:padding="1dp"/>
 
         <com.jancobh.view.FadeInNetworkImageView
             android:id="@+id/spell2"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_alignParentRight="true"/>
+            android:layout_alignParentRight="true"
+            android:background="@drawable/img_view"
+            android:padding="1dp"/>
 
 
     </RelativeLayout>

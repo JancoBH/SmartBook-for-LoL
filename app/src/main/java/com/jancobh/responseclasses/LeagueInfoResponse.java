@@ -5,9 +5,8 @@ import com.jancobh.data.LeagueDto;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-/**
- * Created by yrazlik on 3/13/15.
- */
+/* Created by JancoBH.*/
+
 public class LeagueInfoResponse extends HashMap<String, ArrayList<LeagueDto>>{
 
 

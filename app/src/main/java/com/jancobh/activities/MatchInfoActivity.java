@@ -5,17 +5,17 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
 import com.jancobh.adapters.MatchInfoAdapter;
 import com.jancobh.commons.Commons;
 import com.jancobh.data.Champion;
@@ -44,28 +44,24 @@ public class MatchInfoActivity extends AppCompatActivity implements ResponseList
     private ProgressBar loadingProgress;
     private ScrollView scrollContent;
     private String selectedRegion;
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         if(Commons.getInstance(getApplicationContext()).ADS_ENABLED) {
             setContentView(R.layout.activity_match_info);
         } else {
             setContentView(R.layout.activity_match_info);
         }
-        ImageView backButton = (ImageView) findViewById(R.id.backButton);
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
         matchTime = (TextView)findViewById(R.id.matchTime);
-        Gson gson = new Gson();
         response = (MatchInfoResponse) getIntent().getSerializableExtra("MATCH_INFO_RESPONSE");
         selectedRegion = getIntent().getStringExtra("SELECTED_REGION");
         loadingProgress = (ProgressBar)findViewById(R.id.loadingProgress);
         scrollContent = (ScrollView)findViewById(R.id.scrollContent);
+
+        setTitle(response.getGameMode().toLowerCase()+" mode");
 
         if(response != null){
             team1LV = (ListView) findViewById(R.id.team1LV);
@@ -94,12 +90,12 @@ public class MatchInfoActivity extends AppCompatActivity implements ResponseList
                     }
                 }
 
-                ArrayList<String> pathParams = new ArrayList<String>();
+                ArrayList<String> pathParams = new ArrayList<>();
                 pathParams.add("static-data");
                 pathParams.add(Commons.getInstance(getContext().getApplicationContext()).getRegion());
                 pathParams.add("v1.2");
                 pathParams.add("champion");
-                HashMap<String, String> queryParams = new HashMap<String, String>();
+                HashMap<String, String> queryParams = new HashMap<>();
                 queryParams.put("locale", Commons.getInstance(getContext().getApplicationContext()).getLocale());
                 queryParams.put("version", Commons.LATEST_VERSION);
                 queryParams.put("champData", "altimages");
@@ -110,15 +106,24 @@ public class MatchInfoActivity extends AppCompatActivity implements ResponseList
                 }else{
                     setAdapters();
                 }
-
-
             }
 
         }else{
             Toast.makeText(getApplicationContext(), R.string.anErrorOccured, Toast.LENGTH_SHORT).show();
             finish();
         }
+
+        toolbar = (Toolbar) findViewById(R.id.match_info_toolbar);
+        setSupportActionBar(toolbar);
+        toolbar.setTitle(response.getGameMode()+" Mode");
+
+        if(getSupportActionBar()!=null){
+            // enabling action bar app icon and behaving it as toggle button
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setHomeButtonEnabled(true);
+        }
     }
+
     private void startTimer(long secs) {
         Timer t = new Timer();
         counter = secs;
@@ -161,7 +166,6 @@ public class MatchInfoActivity extends AppCompatActivity implements ResponseList
             }
         }
 
-
         MatchInfoAdapter team1Adapter = new MatchInfoAdapter(MatchInfoActivity.this, R.layout.match_info_detail_listrow, team1Summoners);
         MatchInfoAdapter team2Adapter = new MatchInfoAdapter(MatchInfoActivity.this, R.layout.match_info_detail_listrow, team2Summoners);
         Resources resources = getResources();
@@ -179,7 +183,6 @@ public class MatchInfoActivity extends AppCompatActivity implements ResponseList
         }catch (Exception ignored){}
 
         startTimer(response.getGameLength());
-
 
     }
 
@@ -267,5 +270,12 @@ public class MatchInfoActivity extends AppCompatActivity implements ResponseList
             i.putExtra("SELECTED_REGION", selectedRegion);
             startActivity(i);
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        if(item.getItemId() == android.R.id.home)
+            finish();
+        return super.onOptionsItemSelected(item);
     }
 }

@@ -8,10 +8,8 @@
     <ListView
         android:id="@+id/statisticsLV"
         android:layout_width="match_parent"
-        android:layout_height="440dp">
-
+        android:layout_height="460dp"
+        android:divider="@drawable/img_view">
     </ListView>
-
-
 
 </RelativeLayout>

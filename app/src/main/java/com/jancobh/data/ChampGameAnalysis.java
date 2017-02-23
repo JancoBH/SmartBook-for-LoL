@@ -1,8 +1,7 @@
 package com.jancobh.data;
 
-/**
- * Created by yrazlik on 1/11/16.
- */
+/* Created by JancoBH.*/
+
 public class ChampGameAnalysis {
 
     private int champId;

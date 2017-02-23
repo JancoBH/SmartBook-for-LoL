@@ -4,23 +4,21 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.jancobh.MainActivity;
 import com.jancobh.activities.FilterActivity;
 import com.jancobh.activities.ItemDetailActivity;
 import com.jancobh.adapters.ItemsAdapter;
+import com.jancobh.base.BaseFragment;
 import com.jancobh.commons.Commons;
 import com.jancobh.data.Data;
 import com.jancobh.data.Item;
@@ -34,7 +32,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 
-public class NewItemsFragment extends Fragment implements ResponseListener, TextWatcher {
+public class NewItemsFragment extends BaseFragment implements ResponseListener {
 
     private MainActivity mainActivity;
     private Toolbar toolbar;
@@ -100,8 +98,6 @@ public class NewItemsFragment extends Fragment implements ResponseListener, Text
 
         filters = new ArrayList<>();
         itemsLV = (ListView) v.findViewById(R.id.itemsLV);
-        EditText searchBar = (EditText) v.findViewById(R.id.searchBar);
-        searchBar.addTextChangedListener(this);
         ImageView filterIcon = (ImageView) v.findViewById(R.id.filterIcon);
         allItems = new ArrayList<>();
         itemsLV.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -115,7 +111,6 @@ public class NewItemsFragment extends Fragment implements ResponseListener, Text
                         Intent i = new Intent(getContext(), ItemDetailActivity.class);
                         i.putExtra(EXTRA_ITEM_DETAIL, extraItemDataJSON);
                         i.putExtra(EXTRA_FIRST_ITEM_STACK, true);
-                        showInterstitial();
                         startActivity(i);
                     }
                 }
@@ -143,27 +138,6 @@ public class NewItemsFragment extends Fragment implements ResponseListener, Text
         toolbar.setTitle(getString(R.string.items_fragment_title));
         mainActivity.setSupportActionBar(toolbar);
     }
-
-    private void showInterstitial(){
-        /*try {
-            if (((LolApplication) (getActivity().getApplication())).shouldShowInterstitial()) {
-                ((LolApplication) (getActivity().getApplication())).showInterstitial();
-            }
-        }catch (Exception ignored){}*/
-    }
-
-    /*@Override
-    public void reportGoogleAnalytics() {
-        Tracker t = ((LolApplication) getActivity().getApplication()).getTracker();
-        t.setScreenName("NewAllItemsFragment");
-        t.send(new HitBuilders.ScreenViewBuilder().build());
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        reportGoogleAnalytics();
-    }*/
 
     @Override
     public void onSuccess(Object response) {
@@ -206,17 +180,15 @@ public class NewItemsFragment extends Fragment implements ResponseListener, Text
 
     @Override
     public void onFailure(Object response) {
-
+        try {
+            String errorMessage = String.valueOf(response);
+            Toast.makeText(getContext(), errorMessage, Toast.LENGTH_LONG).show();
+        }catch (Exception ignored){}
     }
 
     @Override
     public Context getContext() {
         return getActivity();
-    }
-
-    @Override
-    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
     }
 
     public static boolean containsIgnoreCase(String src, String what) {
@@ -240,33 +212,6 @@ public class NewItemsFragment extends Fragment implements ResponseListener, Text
         }
 
         return false;
-    }
-
-    @Override
-    public void onTextChanged(CharSequence s, int start, int before, int count) {
-        if(s.length() >= 2){
-            if(filters != null && filters.size() > 0){
-                filters.clear();
-            }
-            ArrayList<Item> searchResultItems = new ArrayList<>();
-            for(Item i : allItems){
-                if(containsIgnoreCase(i.getData().getName(), String.valueOf(s))){
-                    searchResultItems.add(i);
-                }
-            }
-            itemsLVAdapter = new ItemsAdapter(getContext(), R.layout.list_row_items, searchResultItems);
-            itemsLV.setAdapter(itemsLVAdapter);
-            itemsLVAdapter.notifyDataSetChanged();
-        }else{
-            itemsLVAdapter = new ItemsAdapter(getContext(), R.layout.list_row_items, allItems);
-            itemsLV.setAdapter(itemsLVAdapter);
-            itemsLVAdapter.notifyDataSetChanged();
-        }
-    }
-
-    @Override
-    public void afterTextChanged(Editable s) {
-
     }
 
     @Override
@@ -303,4 +248,25 @@ public class NewItemsFragment extends Fragment implements ResponseListener, Text
         }
     }
 
+    @Override
+    public void onSearch(String s) {
+        if(s.length() >= 2){
+            if(filters != null && filters.size() > 0){
+                filters.clear();
+            }
+            ArrayList<Item> searchResultItems = new ArrayList<>();
+            for(Item i : allItems){
+                if(containsIgnoreCase(i.getData().getName(), String.valueOf(s))){
+                    searchResultItems.add(i);
+                }
+            }
+            itemsLVAdapter = new ItemsAdapter(getContext(), R.layout.list_row_items, searchResultItems);
+            itemsLV.setAdapter(itemsLVAdapter);
+            itemsLVAdapter.notifyDataSetChanged();
+        }else{
+            itemsLVAdapter = new ItemsAdapter(getContext(), R.layout.list_row_items, allItems);
+            itemsLV.setAdapter(itemsLVAdapter);
+            itemsLVAdapter.notifyDataSetChanged();
+        }
+    }
 }

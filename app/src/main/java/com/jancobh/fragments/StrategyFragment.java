@@ -2,7 +2,6 @@ package com.jancobh.fragments;
 
 import android.content.Context;
 import android.graphics.Paint;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -12,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.jancobh.activities.ChampionDetailActivity;
 import com.jancobh.commons.Commons;
 import com.jancobh.listener.ResponseListener;
 import com.jancobh.responseclasses.ChampionStrategyResponse;
@@ -23,7 +23,6 @@ import java.util.HashMap;
 public class StrategyFragment extends Fragment implements ResponseListener {
     private int champId;
     private TextView allyTips, enemyTips, allyTipsTitle, enemyTipstitle;
-    private Typeface typeFace, typeFaceBold;
 
     @Override
     public View onCreateView(LayoutInflater inflater,
@@ -53,7 +52,7 @@ public class StrategyFragment extends Fragment implements ResponseListener {
     private void getExtras(){
         Bundle args = getArguments();
         if(args != null){
-            champId = args.getInt(ChampionDetailFragment.EXTRA_CHAMPION_ID);
+            champId = args.getInt(ChampionDetailActivity.EXTRA_CHAMPION_ID);
         }
     }
 

@@ -6,9 +6,8 @@ import com.jancobh.data.Summoner;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-/**
- * Created by yrazlik on 3/5/15.
- */
+/* Created by JancoBH.*/
+
 public class MatchInfoResponse implements Serializable{
 
     private long gameLength;

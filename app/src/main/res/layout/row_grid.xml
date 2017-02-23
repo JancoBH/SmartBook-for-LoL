@@ -16,10 +16,16 @@
 
     <TextView
         android:id="@+id/championName"
-        android:layout_width="wrap_content"
+        android:layout_width="73dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/championImage"
-        android:textColor="@color/accent"
-        android:layout_centerHorizontal="true"/>
+        android:layout_alignBottom="@+id/championImage"
+        android:layout_centerHorizontal="true"
+        android:background="@color/black_transparent"
+        android:gravity="center"
+        android:maxLines="1"
+        android:text=" ??? "
+        android:layout_marginBottom="2dp"
+        android:textColor="@color/white"
+        android:textSize="10sp"/>
 
 </RelativeLayout>

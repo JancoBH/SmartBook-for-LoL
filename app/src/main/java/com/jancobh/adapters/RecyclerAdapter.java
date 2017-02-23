@@ -25,8 +25,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         TextView content;
         ViewHolder(View itemView) {
             super(itemView);
-            this.title = (TextView)itemView.findViewById(R.id.card_title);
-            this.content = (TextView)itemView.findViewById(R.id.card_content);
         }
     }
 

@@ -5,9 +5,8 @@ import com.jancobh.data.ChampionStatsDto;
 import java.io.Serializable;
 import java.util.List;
 
-/**
- * Created by yrazlik on 1/11/16.
- */
+/* Created by JancoBH.*/
+
 public class RankedStatsResponse  implements Serializable{
 
     private static final long serialVersionUID = 8L;

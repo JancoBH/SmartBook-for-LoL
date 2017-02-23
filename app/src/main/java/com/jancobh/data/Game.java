@@ -1,12 +1,10 @@
 package com.jancobh.data;
 
-
 import java.io.Serializable;
 import java.util.List;
 
-/**
- * Created by yrazlik on 1/5/16.
- */
+/* Created by JancoBH.*/
+
 public class Game implements Serializable{
 
     private static final long serialVersionUID = 1L;

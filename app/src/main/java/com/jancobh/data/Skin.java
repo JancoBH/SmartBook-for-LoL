@@ -1,8 +1,5 @@
 package com.jancobh.data;
 
-/**
- * Created by yrazlik on 2/1/15.
- */
 public class Skin {
 
     private int id, num;

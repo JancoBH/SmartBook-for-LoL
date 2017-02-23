@@ -1,8 +1,5 @@
 package com.jancobh.data;
 
-/**
- * Created by yrazlik on 3/13/15.
- */
 public class PlayerStatsSummaryDto {
 
     private int wins;

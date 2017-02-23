@@ -2,9 +2,8 @@ package com.jancobh.data;
 
 import java.util.Date;
 
-/**
- * Created by yrazlik on 12/25/15.
- */
+/* Created by JancoBH.*/
+
 public class Discount {
 
     private String discountType;

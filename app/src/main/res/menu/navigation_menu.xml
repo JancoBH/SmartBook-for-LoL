@@ -7,13 +7,8 @@
         <item
             android:id="@+id/item_collapsing_toolbar"
             android:title="@string/collapsing_toolbar_fragment_title"
-            android:checked="true"/>
-        <item
-            android:id="@+id/item_tab"
-            android:title="@string/tab_fragment_title"/>
-        <item
-            android:id="@+id/item_about"
-            android:title="@string/about_fragment_title"/>
+            android:checked="true"
+            android:icon="@mipmap/ic_welcome"/>
         <item
             android:id="@+id/item_champions"
             android:title="@string/champions_fragment_title"
@@ -29,8 +24,21 @@
         <item
             android:id="@+id/item_match"
             android:title="Match"
-            android:icon="@mipmap/ic_home_black_48px"/>
+            android:icon="@mipmap/ic_crossed_swords"/>
+        <item
+            android:id="@+id/item_runes"
+            android:title="Runes"
+            android:icon="@mipmap/ic_artificial_hive"/>
 
+        <item
+            android:id="@+id/item_about"
+            android:title="@string/about_fragment_title"
+            android:icon="@mipmap/ic_about"/>
+
+        <item
+            android:id="@+id/item_settings"
+            android:title="Settings"
+            android:icon="@mipmap/ic_settings"/>
     </group>
 
 </menu>

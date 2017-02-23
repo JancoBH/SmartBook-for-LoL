@@ -35,7 +35,6 @@ public class ChampionAbilitiesVideosFragment extends DialogFragment {
 
         dialog.getWindow().getAttributes().windowAnimations = R.style.dialogAnimation;
 
-
         return dialog;
     }
 

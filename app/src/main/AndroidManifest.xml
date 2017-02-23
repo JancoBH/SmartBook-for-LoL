@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.jancobh.fragments">
 
     <uses-permission android:name="com.android.vending.BILLING" />
@@ -31,18 +32,32 @@
         <activity
             android:name="com.jancobh.activities.ItemDetailActivity"
             android:label="@string/title_activity_item_detail"
-            android:theme="@style/AppTheme" />
+            android:screenOrientation="portrait"
+            android:theme="@style/DetailTheme" />
         <activity
             android:name="com.jancobh.activities.FilterActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light" />
+            android:theme="@style/DetailTheme" />
+        <activity
+            android:name="com.jancobh.activities.MatchInfoActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/DetailTheme" />
+        <activity
+            android:name="com.jancobh.activities.MatchDetailActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/DetailTheme" />
+        <activity
+            android:name="com.jancobh.activities.PlayerMatchInfoDetailActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/DetailTheme" />
         <activity
             android:name="com.jancobh.activities.ChampionDetailActivity"
-            android:label="@string/title_activity_champion_detail"
-            android:theme="@style/AppTheme" />
-        <activity android:name="com.jancobh.activities.MatchDetailActivity" />
-        <activity android:name="com.jancobh.activities.MatchInfoActivity" />
-        <activity android:name="com.jancobh.activities.PlayerMatchInfoDetailActivity"></activity>
+            android:screenOrientation="portrait"
+            android:theme="@style/DetailTheme" />
+        <activity
+            android:name="com.jancobh.activities.FullScreenSkinActivity"
+            android:theme="@style/DetailTheme" />
+        <activity android:name="com.jancobh.activities.SummonerContainerActivity"></activity>
     </application>
 
 </manifest>

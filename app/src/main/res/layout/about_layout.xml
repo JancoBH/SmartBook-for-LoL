@@ -6,10 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.jancobh.fragments.AboutFragment"
-    android:divider="@drawable/divider"
-    android:showDividers="middle"
-    android:paddingLeft="10dp"
-    android:paddingRight="10dp">
+    android:divider="@drawable/img_view"
+    android:showDividers="middle">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -57,6 +55,22 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/text_about"
+            android:autoLink="web"
+            android:textColorLink="@color/accent"
+            android:textColor="@color/white"
+            android:padding="16dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/text_ads"
             android:autoLink="web"
             android:textColorLink="@color/accent"
             android:textColor="@color/white"

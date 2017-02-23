@@ -1,5 +1,6 @@
 package com.jancobh.fragments;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
@@ -10,22 +11,26 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.astuetz.PagerSlidingTabStrip;
 import com.jancobh.MainActivity;
 import com.jancobh.data.ChampionStatsDto;
+import com.jancobh.listener.ResponseListener;
 import com.jancobh.responseclasses.LeagueInfoResponse;
 import com.jancobh.responseclasses.RankedStatsResponse;
 import com.jancobh.responseclasses.RecentMatchesResponse;
 import com.jancobh.responseclasses.SummonerInfo;
 
-public class SummonerContainerFragment extends Fragment {
+public class SummonerContainerFragment extends Fragment implements ResponseListener {
 
     private ViewPager pager;
     private PagerSlidingTabStrip tabs;
     private Toolbar toolbar;
+    private MainActivity mainActivity;
 
     private RecentMatchesResponse recentMatchesResponse;
     private SummonerInfo summonerInfo;
@@ -33,11 +38,31 @@ public class SummonerContainerFragment extends Fragment {
     private LeagueInfoResponse leagueInfoResponse;
     private ChampionStatsDto averageStats;
 
+    public SummonerContainerFragment() {
+        // Required empty public constructor
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        mainActivity = (MainActivity)activity;
+    }
+
+    @Override // Hide Search Icon with setHasOptionsMenu(true);
+    public void onPrepareOptionsMenu(Menu menu) {
+        MenuItem item=menu.findItem(R.id.action_search);
+        item.setVisible(false);
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View v = inflater.inflate(R.layout.fragment_summoner_container, container, false);
         Bundle extras = getArguments();
+        setHasOptionsMenu(true);
+
+        toolbar = (Toolbar)v.findViewById(R.id.summoner_detail_toolbar);
+        setupToolbar();
 
         if (extras != null) {
             recentMatchesResponse = (RecentMatchesResponse) extras.getSerializable(SummonerOverviewFragment.EXTRA_RECENTMATCHES);
@@ -56,7 +81,7 @@ public class SummonerContainerFragment extends Fragment {
                 tabs = (PagerSlidingTabStrip) v.findViewById(R.id.tabs);
                 tabs.setIndicatorColor(getResources().getColor(R.color.accent));
                 tabs.setBackgroundColor(getResources().getColor(R.color.primary));
-                tabs.setDividerColor(getResources().getColor(R.color.white));
+                tabs.setDividerColor(getResources().getColor(R.color.accent));
                 tabs.setTextColor(getResources().getColor(R.color.white));
                 int textSize = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 11, getActivity().getResources().getDisplayMetrics());
                 tabs.setTextSize(textSize);
@@ -64,9 +89,30 @@ public class SummonerContainerFragment extends Fragment {
                 tabs.setIndicatorHeight(8);
                 tabs.setViewPager(pager);
             }
-        }, 300);
+        }, 500);
 
         return v;
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        mainActivity.setupNavigationDrawer(toolbar);
+    }
+
+    private void setupToolbar(){
+        toolbar.setTitle(getString(R.string.summoner_fragment_title));
+        mainActivity.setSupportActionBar(toolbar);
+    }
+
+    @Override
+    public void onSuccess(Object response) {
+
+    }
+
+    @Override
+    public void onFailure(Object response) {
+
     }
 
     private class SummonerPagerAdapter extends FragmentPagerAdapter {

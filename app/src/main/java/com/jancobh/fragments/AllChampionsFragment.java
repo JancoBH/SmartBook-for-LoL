@@ -2,27 +2,24 @@ package com.jancobh.fragments;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.Toolbar;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
-import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jancobh.MainActivity;
+import com.jancobh.activities.ChampionDetailActivity;
 import com.jancobh.adapters.GridViewAdapter;
+import com.jancobh.base.BaseFragment;
 import com.jancobh.commons.Commons;
 import com.jancobh.data.Champion;
 import com.jancobh.listener.ResponseListener;
@@ -35,8 +32,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AllChampionsFragment extends Fragment implements ResponseListener, AdapterView.OnItemClickListener, TextWatcher {
-
+public class AllChampionsFragment extends BaseFragment implements ResponseListener {
 
     private MainActivity mainActivity;
     private Toolbar toolbar;
@@ -97,9 +93,21 @@ public class AllChampionsFragment extends Fragment implements ResponseListener, 
     private void initUI(View v){
         noChampsFoundTV = (TextView)v.findViewById(R.id.noChampsFoundTV);
         gridView = (GridView)v.findViewById(R.id.gridview_champions);
-        EditText searchBar = (EditText) v.findViewById(R.id.edittextSearchBar);
-        searchBar.addTextChangedListener(this);
-        gridView.setOnItemClickListener(this);
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                hideKeyboard();
+                Champion c = (Champion)gridView.getItemAtPosition(position);
+                int champId = c.getId();
+                Intent intent = new Intent(getContext(), ChampionDetailActivity.class);
+                Bundle extras = new Bundle();
+                extras.putInt(ChampionDetailActivity.EXTRA_CHAMPION_ID, champId);
+                extras.putString(ChampionDetailActivity.EXTRA_CHAMPION_IMAGE_URL, c.getChampionImageUrl());
+                extras.putString(ChampionDetailActivity.EXTRA_CHAMPION_NAME, c.getKey());
+                intent.putExtras(extras);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -114,7 +122,7 @@ public class AllChampionsFragment extends Fragment implements ResponseListener, 
     }
 
     @Override
-    public void onTextChanged(CharSequence s, int start, int before, int count) {
+    public void onSearch(String s) {
         noChampsFoundTV.setVisibility(View.GONE);
         if(s.length() >= 2){
             ArrayList<Champion> searchResultChampions = new ArrayList<>();
@@ -156,23 +164,6 @@ public class AllChampionsFragment extends Fragment implements ResponseListener, 
         }
     }
 
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        hideKeyboard();
-        Champion c = (Champion)gridView.getItemAtPosition(position);
-        int champId = c.getId();
-        ChampionDetailFragment fragment = new ChampionDetailFragment();
-        Bundle args = new Bundle();
-        args.putInt(ChampionDetailFragment.EXTRA_CHAMPION_ID, champId);
-        args.putString(ChampionDetailFragment.EXTRA_CHAMPION_IMAGE_URL, c.getChampionImageUrl());
-        args.putString(ChampionDetailFragment.EXTRA_CHAMPION_NAME, c.getKey());
-        fragment.setArguments(args);
-        FragmentManager fm = getFragmentManager();
-        FragmentTransaction ft = fm.beginTransaction();
-        Commons.setAnimation(ft, Commons.ANIM_OPEN_FROM_RIGHT_WITH_POPSTACK);
-        ft.replace(R.id.fragment_container, fragment).addToBackStack(Commons.CHAMPION_DETAILS_FRAGMENT).commit();
-    }
-
     public static boolean containsIgnoreCase(String src, String what) {
         final int length = what.length();
         if (length == 0)
@@ -190,7 +181,6 @@ public class AllChampionsFragment extends Fragment implements ResponseListener, 
             if (src.regionMatches(true, i, what, 0, length))
                 return true;
         }
-
         return false;
     }
 
@@ -231,7 +221,6 @@ public class AllChampionsFragment extends Fragment implements ResponseListener, 
         }catch(Exception e){
             e.printStackTrace();
         }
-
     }
 
     @Override
@@ -245,18 +234,5 @@ public class AllChampionsFragment extends Fragment implements ResponseListener, 
     @Override
     public Context getContext() {
         return getActivity();
-    }
-
-    @Override
-    public void afterTextChanged(Editable s) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public void beforeTextChanged(CharSequence s, int start, int count,
-                                  int after) {
-        // TODO Auto-generated method stub
-
     }
 }

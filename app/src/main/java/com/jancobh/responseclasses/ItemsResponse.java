@@ -4,9 +4,8 @@ import com.jancobh.data.Data;
 
 import java.util.Map;
 
-/**
- * Created by yrazlik on 8/6/15.
- */
+/* Created by JancoBH.*/
+
 public class ItemsResponse {
 
     private Map<String, Data> data;

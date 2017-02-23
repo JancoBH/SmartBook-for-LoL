@@ -3,6 +3,7 @@ package com.jancobh.adapters;
 
 import android.app.Activity;
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,15 +21,15 @@ import java.util.List;
 
 public class MatchInfoAdapter extends ArrayAdapter<Summoner> {
     private Context mContext;
-    private AQuery aq;
 
     public MatchInfoAdapter(Context context, int resource, List<Summoner> objects) {
         super(context, resource, objects);
         this.mContext = context;
     }
 
+    @NonNull
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int position, View convertView, @NonNull ViewGroup parent) {
         ViewHolder holder;
         if(convertView == null){
             LayoutInflater inflater = ((Activity) mContext).getLayoutInflater();
@@ -46,7 +47,8 @@ public class MatchInfoAdapter extends ArrayAdapter<Summoner> {
 
         Summoner summoner = getItem(position);
 
-        aq = new AQuery(holder.champImage);
+        AQuery aq = new AQuery(holder.champImage);
+        assert summoner != null;
         aq.progress(holder.progress).image("http://ddragon.leagueoflegends.com/cdn/" + Commons.LATEST_VERSION + "/img/champion/" + summoner.getKey() + ".png", true, true);
         holder.champName.setText(mContext.getString(R.string.chosenChampion) + " " + summoner.getChampName());
         holder.userName.setText(mContext.getString(R.string.player) + " " + summoner.getSummonerName());
@@ -57,9 +59,9 @@ public class MatchInfoAdapter extends ArrayAdapter<Summoner> {
 
 
     static class ViewHolder {
-        public ImageView champImage;
-        public TextView champName;
-        public TextView userName;
+        ImageView champImage;
+        TextView champName;
+        TextView userName;
         public ProgressBar progress;
     }
 }

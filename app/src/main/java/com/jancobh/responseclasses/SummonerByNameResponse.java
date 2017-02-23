@@ -2,9 +2,8 @@ package com.jancobh.responseclasses;
 
 import java.util.Map;
 
-/**
- * Created by yrazlik on 1/4/16.
- */
+/* Created by JancoBH.*/
+
 public class SummonerByNameResponse {
 
     private Map<String, SummonerInfo> summonerInfo;

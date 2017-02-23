@@ -2,6 +2,7 @@ package com.jancobh.adapters;
 /* Created by Janco.*/
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,8 +44,9 @@ public class SummonerChampionsAdapter extends ArrayAdapter<ChampionStatsDto> imp
         this.layoutResourceId = resource;
     }
 
+    @NonNull
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int position, View convertView, @NonNull ViewGroup parent) {
         final ViewHolder holder;
         if (convertView == null) {
             convertView = ((AppCompatActivity) mContext).getLayoutInflater().inflate(layoutResourceId, parent, false);
@@ -132,7 +134,7 @@ public class SummonerChampionsAdapter extends ArrayAdapter<ChampionStatsDto> imp
                 }
             }
 
-            if (champImageUrl != null && champImageUrl.length() > 0) {
+            if (champImageUrl.length() > 0) {
                 holder.champIV.setImageUrl(champImageUrl, ServiceRequest.getInstance(mContext).getImageLoader());
             } else {
                 holder.champIV.setBackgroundResource(R.drawable.question_mark);
@@ -156,7 +158,6 @@ public class SummonerChampionsAdapter extends ArrayAdapter<ChampionStatsDto> imp
                 holder.winCountTV.setText(mContext.getResources().getString(R.string.games_won) + ": " + stats.getTotalSessionsWon());
 
             }
-        } else {
         }
 
         return convertView;
@@ -173,7 +174,7 @@ public class SummonerChampionsAdapter extends ArrayAdapter<ChampionStatsDto> imp
         suffixes.put(1_000_000_000_000_000_000L, "E");
     }
 
-    public String format(long value) {
+    private String format(long value) {
         //Long.MIN_VALUE == -Long.MIN_VALUE so we need an adjustment here
         if (value == Long.MIN_VALUE) return format(Long.MIN_VALUE + 1);
         if (value < 0) return "-" + format(-value);
@@ -194,13 +195,13 @@ public class SummonerChampionsAdapter extends ArrayAdapter<ChampionStatsDto> imp
             ChampionStatsDto champion = champions.get(position);
             if (champion != null) {
                 int id = champion.getId();
-                return Long.valueOf(id);
+                return (long) id;
             }
         }
         return 0;
     }
 
-    class HeaderViewHolder {
+    private class HeaderViewHolder {
         FadeInNetworkImageView champIV;
         TextView kdaTV, goldTV, gamesPlayedTV, winCountTV;
     }

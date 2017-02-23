@@ -1,5 +1,6 @@
 package com.jancobh.fragments;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
@@ -7,8 +8,11 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
@@ -20,6 +24,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.jancobh.MainActivity;
 import com.jancobh.adapters.RecentSearchesAdapter;
 import com.jancobh.commons.Commons;
 import com.jancobh.data.ChampionStatsDto;
@@ -42,10 +47,8 @@ import java.util.List;
 
 public class SummonerSearchFragment extends Fragment implements ResponseListener {
 
-    public SummonerSearchFragment() {
-        // Required empty public constructor
-    }
-
+    private Toolbar toolbar;
+    private MainActivity mainActivity;
     private EditText usernameET;
     private ImageButton searchButton;
     private String region = "";
@@ -58,10 +61,30 @@ public class SummonerSearchFragment extends Fragment implements ResponseListener
 
     private boolean recentMatchesResponseReceived, rankedStatsResponseReceived, leagueInfoResponseReceived;
 
+    public SummonerSearchFragment() {
+        // Required empty public constructor
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        mainActivity = (MainActivity)activity;
+    }
+
+    @Override // Hide Search Icon with setHasOptionsMenu(true);
+    public void onPrepareOptionsMenu(Menu menu) {
+        MenuItem item=menu.findItem(R.id.action_search);
+        item.setVisible(false);
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_summoner_search, container, false);
+        setHasOptionsMenu(true);
+
+        toolbar = (Toolbar)v.findViewById(R.id.summoner_toolbar);
+        setupToolbar();
 
         recentMatchesResponseReceived = false;
         rankedStatsResponseReceived = false;
@@ -130,6 +153,17 @@ public class SummonerSearchFragment extends Fragment implements ResponseListener
         if(d != null){
             d.show();
         }
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        mainActivity.setupNavigationDrawer(toolbar);
+    }
+
+    private void setupToolbar(){
+        toolbar.setTitle(getString(R.string.summoner_fragment_title));
+        mainActivity.setSupportActionBar(toolbar);
     }
 
     private void makeSearchRequest(String itemName){
@@ -264,7 +298,6 @@ public class SummonerSearchFragment extends Fragment implements ResponseListener
 
         }
     }
-
 
     private void sortChampionsByMostPlayed() {
         if (rankedStatsResponse != null) {

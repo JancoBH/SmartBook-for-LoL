@@ -13,7 +13,6 @@ import com.jancobh.commons.Commons;
 import com.jancobh.data.Champion;
 import com.jancobh.data.Game;
 import com.jancobh.data.Stats;
-import com.jancobh.data.SummonerSpell;
 import com.jancobh.fragments.R;
 import com.jancobh.service.ServiceRequest;
 import com.jancobh.view.FadeInNetworkImageView;
@@ -80,7 +79,44 @@ public class MatchHistoryRVAdapter extends RecyclerView.Adapter<MatchHistoryRVAd
                 int spell1 = game.getSpell1();
                 int spell2 = game.getSpell2();
 
-                if (Commons.allSpells != null) {
+                int Intspell21 = 21, Intspell30 = 30, Intspell1 = 1, Intspell12 = 12, Intspell4 = 4, Intspell32 = 32, Intspell7 = 7,
+                        Intspell13 = 13, Intspell31 = 31, Intspell11 = 11, Intspell3 = 3, Intspell14 = 14, Intspell6 = 6;
+
+                String spell21Name = "SummonerBarrier.png", spell30Name = "SummonerPoroRecall.png", spell1Name = "SummonerBoost.png",
+                        spell12Name = "SummonerTeleport.png", spell4Name = "SummonerFlash.png", spell32Name = "SummonerSnowball.png",
+                        spell7Name = "SummonerHeal.png", spell13Name = "SummonerMana.png", spell31Name = "SummonerPoroThrow.png",
+                        spell11Name = "SummonerSmite.png", spell3Name = "SummonerExhaust.png", spell14Name = "SummonerDot.png",
+                        spell6Name = "SummonerHaste.png";
+
+                if(spell1 == Intspell21){holder.spell1.setImageUrl(Commons.SUMMONER_SPELL_IMAGE_BASE_URL + spell21Name, ServiceRequest.getInstance((mContext)).getImageLoader());}
+                else if(spell1 == Intspell30){holder.spell1.setImageUrl(Commons.SUMMONER_SPELL_IMAGE_BASE_URL + spell30Name, ServiceRequest.getInstance((mContext)).getImageLoader());}
+                else if(spell1 == Intspell1){holder.spell1.setImageUrl(Commons.SUMMONER_SPELL_IMAGE_BASE_URL + spell1Name, ServiceRequest.getInstance((mContext)).getImageLoader());}
+                else if(spell1 == Intspell12){holder.spell1.setImageUrl(Commons.SUMMONER_SPELL_IMAGE_BASE_URL + spell12Name, ServiceRequest.getInstance((mContext)).getImageLoader());}
+                else if(spell1 == Intspell4){holder.spell1.setImageUrl(Commons.SUMMONER_SPELL_IMAGE_BASE_URL + spell4Name, ServiceRequest.getInstance((mContext)).getImageLoader());}
+                else if(spell1 == Intspell32){holder.spell1.setImageUrl(Commons.SUMMONER_SPELL_IMAGE_BASE_URL + spell32Name, ServiceRequest.getInstance((mContext)).getImageLoader());}
+                else if(spell1 == Intspell7){holder.spell1.setImageUrl(Commons.SUMMONER_SPELL_IMAGE_BASE_URL + spell7Name, ServiceRequest.getInstance((mContext)).getImageLoader());}
+                else if(spell1 == Intspell13){holder.spell1.setImageUrl(Commons.SUMMONER_SPELL_IMAGE_BASE_URL + spell13Name, ServiceRequest.getInstance((mContext)).getImageLoader());}
+                else if(spell1 == Intspell31){holder.spell1.setImageUrl(Commons.SUMMONER_SPELL_IMAGE_BASE_URL + spell31Name, ServiceRequest.getInstance((mContext)).getImageLoader());}
+                else if(spell1 == Intspell11){holder.spell1.setImageUrl(Commons.SUMMONER_SPELL_IMAGE_BASE_URL + spell11Name, ServiceRequest.getInstance((mContext)).getImageLoader());}
+                else if(spell1 == Intspell3){holder.spell1.setImageUrl(Commons.SUMMONER_SPELL_IMAGE_BASE_URL + spell3Name, ServiceRequest.getInstance((mContext)).getImageLoader());}
+                else if(spell1 == Intspell14){holder.spell1.setImageUrl(Commons.SUMMONER_SPELL_IMAGE_BASE_URL + spell14Name, ServiceRequest.getInstance((mContext)).getImageLoader());}
+                else if(spell1 == Intspell6){holder.spell1.setImageUrl(Commons.SUMMONER_SPELL_IMAGE_BASE_URL + spell6Name, ServiceRequest.getInstance((mContext)).getImageLoader());}
+
+                if(spell2 == Intspell21){holder.spell2.setImageUrl(Commons.SUMMONER_SPELL_IMAGE_BASE_URL + spell21Name, ServiceRequest.getInstance((mContext)).getImageLoader());}
+                else if(spell2 == Intspell30){holder.spell2.setImageUrl(Commons.SUMMONER_SPELL_IMAGE_BASE_URL + spell30Name, ServiceRequest.getInstance((mContext)).getImageLoader());}
+                else if(spell2 == Intspell1){holder.spell2.setImageUrl(Commons.SUMMONER_SPELL_IMAGE_BASE_URL + spell1Name, ServiceRequest.getInstance((mContext)).getImageLoader());}
+                else if(spell2 == Intspell12){holder.spell2.setImageUrl(Commons.SUMMONER_SPELL_IMAGE_BASE_URL + spell12Name, ServiceRequest.getInstance((mContext)).getImageLoader());}
+                else if(spell2 == Intspell4){holder.spell2.setImageUrl(Commons.SUMMONER_SPELL_IMAGE_BASE_URL + spell4Name, ServiceRequest.getInstance((mContext)).getImageLoader());}
+                else if(spell2 == Intspell32){holder.spell2.setImageUrl(Commons.SUMMONER_SPELL_IMAGE_BASE_URL + spell32Name, ServiceRequest.getInstance((mContext)).getImageLoader());}
+                else if(spell2 == Intspell7){holder.spell2.setImageUrl(Commons.SUMMONER_SPELL_IMAGE_BASE_URL + spell7Name, ServiceRequest.getInstance((mContext)).getImageLoader());}
+                else if(spell2 == Intspell13){holder.spell2.setImageUrl(Commons.SUMMONER_SPELL_IMAGE_BASE_URL + spell13Name, ServiceRequest.getInstance((mContext)).getImageLoader());}
+                else if(spell2 == Intspell31){holder.spell2.setImageUrl(Commons.SUMMONER_SPELL_IMAGE_BASE_URL + spell31Name, ServiceRequest.getInstance((mContext)).getImageLoader());}
+                else if(spell2 == Intspell11){holder.spell2.setImageUrl(Commons.SUMMONER_SPELL_IMAGE_BASE_URL + spell11Name, ServiceRequest.getInstance((mContext)).getImageLoader());}
+                else if(spell2 == Intspell3){holder.spell2.setImageUrl(Commons.SUMMONER_SPELL_IMAGE_BASE_URL + spell3Name, ServiceRequest.getInstance((mContext)).getImageLoader());}
+                else if(spell2 == Intspell14){holder.spell2.setImageUrl(Commons.SUMMONER_SPELL_IMAGE_BASE_URL + spell14Name, ServiceRequest.getInstance((mContext)).getImageLoader());}
+                else if(spell2 == Intspell6){holder.spell2.setImageUrl(Commons.SUMMONER_SPELL_IMAGE_BASE_URL + spell6Name, ServiceRequest.getInstance((mContext)).getImageLoader());}
+
+                /*if (Commons.allSpells != null) {
                     String spell1Name = null, spell2Name = null;
                     for (SummonerSpell sp : Commons.allSpells) {
                         if (sp.getId() == spell1) {
@@ -109,7 +145,7 @@ public class MatchHistoryRVAdapter extends RecyclerView.Adapter<MatchHistoryRVAd
                         holder.spell2.setImageUrl(null, ServiceRequest.getInstance(mContext).getImageLoader());
                         holder.spell2.setBackgroundResource(R.drawable.question_mark);
                     }
-                }
+                }*/
 
                 long createDate = game.getCreateDate();
 
@@ -147,6 +183,8 @@ public class MatchHistoryRVAdapter extends RecyclerView.Adapter<MatchHistoryRVAd
                     holder.levelTV.setText(stats.getLevel() + "");
                     holder.kdaTV.setText(stats.getChampionsKilled() + " / " + stats.getNumDeaths() + " / " + stats.getAssists());
                     holder.goldTV.setText(format(stats.getGoldEarned()));
+                    holder.minionsTV.setText(format(stats.getMinionsKilled()));
+                    holder.wardsTV.setText(format(stats.getWardPlaced()));
                     String timeString = convertSecondsToHoursMinutes(stats.getTimePlayed());
                     if (timeString != null) {
                         holder.matchTimeTV.setText(timeString);
@@ -220,6 +258,8 @@ public class MatchHistoryRVAdapter extends RecyclerView.Adapter<MatchHistoryRVAd
         private TextView matchModeTV;
         private TextView kdaTV;
         private TextView goldTV;
+        private TextView minionsTV;
+        private TextView wardsTV;
         private TextView matchTimeTV;
         private TextView matchDateTV;
         private FadeInNetworkImageView spell1;
@@ -242,6 +282,8 @@ public class MatchHistoryRVAdapter extends RecyclerView.Adapter<MatchHistoryRVAd
             this.matchModeTV = (TextView) itemView.findViewById(R.id.matchModeTV);
             this.kdaTV = (TextView) itemView.findViewById(R.id.kdaTV);
             this.goldTV = (TextView) itemView.findViewById(R.id.goldTV);
+            this.minionsTV = (TextView) itemView.findViewById(R.id.minionsTV);
+            this.wardsTV = (TextView) itemView.findViewById(R.id.wardsTV);
             this.matchTimeTV = (TextView) itemView.findViewById(R.id.matchTimeTV);
             this.matchDateTV = (TextView) itemView.findViewById(R.id.matchDateTV);
             this.spell1 = (FadeInNetworkImageView) itemView.findViewById(R.id.spell1);
@@ -263,7 +305,7 @@ public class MatchHistoryRVAdapter extends RecyclerView.Adapter<MatchHistoryRVAd
         }
 
         interface ViewHolderClickListener {
-            public void onItemClick(View caller, int position);
+            void onItemClick(View caller, int position);
         }
     }
 
@@ -329,6 +371,8 @@ public class MatchHistoryRVAdapter extends RecyclerView.Adapter<MatchHistoryRVAd
                 gameTypeText += mContext.getResources().getString(R.string.firstblood);
             } else if (gameMode.equalsIgnoreCase("kingporo")) {
                 gameTypeText += mContext.getResources().getString(R.string.kingporo);
+            } else if (gameMode.equalsIgnoreCase("Assassinate")) {
+                gameTypeText += mContext.getResources().getString(R.string.summoners_rift);
             }
         }
         return gameTypeText;
@@ -373,7 +417,9 @@ public class MatchHistoryRVAdapter extends RecyclerView.Adapter<MatchHistoryRVAd
                         gameTypeText += mContext.getResources().getString(R.string.counter_pick);
                     }else if(subType.equalsIgnoreCase("bilgewater")){
                         gameTypeText += mContext.getResources().getString(R.string.bilgewater);
-                    }else if (subType.contains("ranked") || subType.contains("RANKED")) {
+                    }else if (subType.equalsIgnoreCase("Assassinate")) {
+                        gameTypeText += mContext.getResources().getString(R.string.assassinate);
+                    } else if (subType.contains("ranked") || subType.contains("RANKED")) {
                         gameTypeText += mContext.getResources().getString(R.string.ranked);
                     }else{
                         gameTypeText += mContext.getResources().getString(R.string.unknown);

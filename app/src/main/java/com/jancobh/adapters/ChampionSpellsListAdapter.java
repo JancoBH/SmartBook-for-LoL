@@ -5,7 +5,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -71,8 +70,6 @@ public class ChampionSpellsListAdapter extends ArrayAdapter<Spell> implements Vi
         holder.spellBody.setText(championSpell.getSanitizedDescription());
         holder.spellKey.setText(championSpell.getSpellKey());
         AQuery aq = new AQuery(holder.spellImage);
-
-        System.out.println(championSpell.getName());
 
         if(championSpell.getName() == null){
             Toast.makeText(mContext, "Problems to charge the Ability", Toast.LENGTH_SHORT).show();

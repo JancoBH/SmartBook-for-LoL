@@ -29,7 +29,8 @@
             android:paddingBottom="5dp"
             android:paddingLeft="10dp"
             android:paddingTop="5dp"
-            android:contentDescription="@string/app_name" />
+            android:contentDescription="@string/app_name"
+            android:focusableInTouchMode="true"/>
 
         <TextView
             android:id="@+id/textViewVideo"
@@ -43,14 +44,26 @@
             android:paddingTop="5dp"
             android:textColor="@color/accent"
             android:text="@string/video"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:focusableInTouchMode="true"/>
 
     </RelativeLayout>
+
+
+
+    <View
+        android:id="@+id/dividerAbility"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/img_view"
+        android:layout_below="@id/relativeLayoutSpellTitle"/>
 
     <RelativeLayout android:id="@+id/relativeLayoutSpellBody"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/relativeLayoutSpellTitle">
+        android:layout_below="@+id/dividerAbility"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
         <ImageView
             android:id="@+id/imageViewSpellImage"

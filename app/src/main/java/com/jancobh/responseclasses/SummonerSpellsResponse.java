@@ -4,9 +4,7 @@ import com.jancobh.data.SummonerSpell;
 
 import java.util.ArrayList;
 
-/**
- * Created by yrazlik on 1/6/16.
- */
+/* Created by JancoBH.*/
 public class SummonerSpellsResponse {
 
     private String type;

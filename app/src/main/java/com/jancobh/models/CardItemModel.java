@@ -1,8 +1,7 @@
 package com.jancobh.models;
 
-/**
- * Created by Sagar on 6/14/2015.
- */
+/* Created by JancoBH.*/
+
 public class CardItemModel {
 
     public String title;

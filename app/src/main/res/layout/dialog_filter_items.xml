@@ -1,14 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="15dp"
-    android:background="@drawable/bg">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/primary"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/filter_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/primary"
+        android:elevation="@dimen/toolbar_elevation"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@drawable/img_view" />
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:scrollbars="none">
+        android:scrollbars="none"
+        android:layout_marginTop="10dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -39,7 +55,7 @@
                 android:layout_height="0.7dp"
                 android:layout_below="@+id/defenceText"
                 android:layout_marginTop="3dp"
-                android:background="@android:color/darker_gray"/>
+                android:background="@drawable/img_view"/>
 
             <LinearLayout
                 android:id="@+id/filterDefence"
@@ -68,14 +84,14 @@
                         android:layout_marginTop="2dp"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:buttonTint="@color/white"
+                        android:buttonTint="@color/accent"
                         android:layout_alignParentRight="true"/>
 
                     <View
                         android:layout_below="@+id/cbHealth"
                         android:layout_width="match_parent"
                         android:layout_height="0.5dp"
-                        android:background="@android:color/darker_gray" />
+                        android:background="@drawable/img_view" />
 
                 </RelativeLayout>
 
@@ -99,14 +115,14 @@
                         android:id="@+id/cbMagicResistance"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:buttonTint="@color/white"
+                        android:buttonTint="@color/accent"
                         android:layout_alignParentRight="true"/>
 
                     <View
                         android:layout_below="@+id/cbMagicResistance"
                         android:layout_width="match_parent"
                         android:layout_height="0.5dp"
-                        android:background="@android:color/darker_gray" />
+                        android:background="@drawable/img_view" />
 
                 </RelativeLayout>
 
@@ -128,14 +144,14 @@
                         android:id="@+id/cbHealthRegen"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:buttonTint="@color/white"
+                        android:buttonTint="@color/accent"
                         android:layout_alignParentRight="true"/>
 
                     <View
                         android:layout_below="@+id/cbHealthRegen"
                         android:layout_width="match_parent"
                         android:layout_height="0.5dp"
-                        android:background="@android:color/darker_gray" />
+                        android:background="@drawable/img_view" />
 
                 </RelativeLayout>
 
@@ -157,14 +173,14 @@
                         android:id="@+id/cbArmor"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:buttonTint="@color/white"
+                        android:buttonTint="@color/accent"
                         android:layout_alignParentRight="true"/>
 
                     <View
                         android:layout_below="@+id/cbArmor"
                         android:layout_width="match_parent"
                         android:layout_height="0.5dp"
-                        android:background="@android:color/darker_gray" />
+                        android:background="@drawable/img_view" />
 
                 </RelativeLayout>
 
@@ -199,7 +215,7 @@
                 android:layout_height="0.7dp"
                 android:layout_below="@+id/attackText"
                 android:layout_marginTop="3dp"
-                android:background="@android:color/darker_gray"/>
+                android:background="@drawable/img_view"/>
 
             <LinearLayout
                 android:id="@+id/filterAttack"
@@ -228,14 +244,14 @@
                         android:layout_marginTop="2dp"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:buttonTint="@color/white"
+                        android:buttonTint="@color/accent"
                         android:layout_alignParentRight="true"/>
 
                     <View
                         android:layout_below="@+id/cbDamage"
                         android:layout_width="match_parent"
                         android:layout_height="0.5dp"
-                        android:background="@android:color/darker_gray" />
+                        android:background="@drawable/img_view" />
 
                 </RelativeLayout>
 
@@ -259,14 +275,14 @@
                         android:id="@+id/cbCriticalStrike"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:buttonTint="@color/white"
+                        android:buttonTint="@color/accent"
                         android:layout_alignParentRight="true"/>
 
                     <View
                         android:layout_below="@+id/cbCriticalStrike"
                         android:layout_width="match_parent"
                         android:layout_height="0.5dp"
-                        android:background="@android:color/darker_gray" />
+                        android:background="@drawable/img_view" />
 
                 </RelativeLayout>
 
@@ -288,14 +304,14 @@
                         android:id="@+id/cbAttackSpeed"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:buttonTint="@color/white"
+                        android:buttonTint="@color/accent"
                         android:layout_alignParentRight="true"/>
 
                     <View
                         android:layout_below="@+id/cbAttackSpeed"
                         android:layout_width="match_parent"
                         android:layout_height="0.5dp"
-                        android:background="@android:color/darker_gray" />
+                        android:background="@drawable/img_view" />
 
                 </RelativeLayout>
 
@@ -317,14 +333,14 @@
                         android:id="@+id/cbLifeSteal"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:buttonTint="@color/white"
+                        android:buttonTint="@color/accent"
                         android:layout_alignParentRight="true"/>
 
                     <View
                         android:layout_below="@+id/cbLifeSteal"
                         android:layout_width="match_parent"
                         android:layout_height="0.5dp"
-                        android:background="@android:color/darker_gray" />
+                        android:background="@drawable/img_view" />
 
                 </RelativeLayout>
 
@@ -346,14 +362,14 @@
                         android:id="@+id/cbArmorPenetration"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:buttonTint="@color/white"
+                        android:buttonTint="@color/accent"
                         android:layout_alignParentRight="true"/>
 
                     <View
                         android:layout_below="@+id/cbArmorPenetration"
                         android:layout_width="match_parent"
                         android:layout_height="0.5dp"
-                        android:background="@android:color/darker_gray" />
+                        android:background="@drawable/img_view" />
 
                 </RelativeLayout>
 
@@ -387,7 +403,7 @@
                 android:layout_height="0.7dp"
                 android:layout_below="@+id/magicText"
                 android:layout_marginTop="3dp"
-                android:background="@android:color/darker_gray"/>
+                android:background="@drawable/img_view"/>
 
             <LinearLayout
                 android:id="@+id/filterMagic"
@@ -416,14 +432,14 @@
                         android:layout_marginTop="2dp"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:buttonTint="@color/white"
+                        android:buttonTint="@color/accent"
                         android:layout_alignParentRight="true"/>
 
                     <View
                         android:layout_below="@+id/cbSpellDamage"
                         android:layout_width="match_parent"
                         android:layout_height="0.5dp"
-                        android:background="@android:color/darker_gray" />
+                        android:background="@drawable/img_view" />
 
                 </RelativeLayout>
 
@@ -447,14 +463,14 @@
                         android:id="@+id/cbCooldownReduction"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:buttonTint="@color/white"
+                        android:buttonTint="@color/accent"
                         android:layout_alignParentRight="true"/>
 
                     <View
                         android:layout_below="@+id/cbCooldownReduction"
                         android:layout_width="match_parent"
                         android:layout_height="0.5dp"
-                        android:background="@android:color/darker_gray" />
+                        android:background="@drawable/img_view" />
 
                 </RelativeLayout>
 
@@ -476,14 +492,14 @@
                         android:id="@+id/cbMana"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:buttonTint="@color/white"
+                        android:buttonTint="@color/accent"
                         android:layout_alignParentRight="true"/>
 
                     <View
                         android:layout_below="@+id/cbMana"
                         android:layout_width="match_parent"
                         android:layout_height="0.5dp"
-                        android:background="@android:color/darker_gray" />
+                        android:background="@drawable/img_view" />
 
                 </RelativeLayout>
 
@@ -505,14 +521,14 @@
                         android:id="@+id/cbManaReg"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:buttonTint="@color/white"
+                        android:buttonTint="@color/accent"
                         android:layout_alignParentRight="true"/>
 
                     <View
                         android:layout_below="@+id/cbManaReg"
                         android:layout_width="match_parent"
                         android:layout_height="0.5dp"
-                        android:background="@android:color/darker_gray" />
+                        android:background="@drawable/img_view" />
 
                 </RelativeLayout>
 
@@ -534,14 +550,14 @@
                         android:id="@+id/cbMagicPenetration"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:buttonTint="@color/white"
+                        android:buttonTint="@color/accent"
                         android:layout_alignParentRight="true"/>
 
                     <View
                         android:layout_below="@+id/cbMagicPenetration"
                         android:layout_width="match_parent"
                         android:layout_height="0.5dp"
-                        android:background="@android:color/darker_gray" />
+                        android:background="@drawable/img_view" />
 
                 </RelativeLayout>
 
@@ -563,14 +579,14 @@
                         android:id="@+id/cbSpellVamp"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:buttonTint="@color/white"
+                        android:buttonTint="@color/accent"
                         android:layout_alignParentRight="true"/>
 
                     <View
                         android:layout_below="@+id/cbSpellVamp"
                         android:layout_width="match_parent"
                         android:layout_height="0.5dp"
-                        android:background="@android:color/darker_gray" />
+                        android:background="@drawable/img_view" />
 
                 </RelativeLayout>
 
@@ -605,7 +621,7 @@
                 android:layout_height="0.7dp"
                 android:layout_below="@+id/otherText"
                 android:layout_marginTop="3dp"
-                android:background="@android:color/darker_gray"/>
+                android:background="@drawable/img_view"/>
 
             <LinearLayout
                 android:id="@+id/filterOthers"
@@ -634,14 +650,14 @@
                         android:layout_marginTop="2dp"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:buttonTint="@color/white"
+                        android:buttonTint="@color/accent"
                         android:layout_alignParentRight="true"/>
 
                     <View
                         android:layout_below="@+id/cbVision"
                         android:layout_width="match_parent"
                         android:layout_height="0.5dp"
-                        android:background="@android:color/darker_gray" />
+                        android:background="@drawable/img_view" />
 
                 </RelativeLayout>
 
@@ -665,14 +681,14 @@
                         android:id="@+id/cbMovement"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:buttonTint="@color/white"
+                        android:buttonTint="@color/accent"
                         android:layout_alignParentRight="true"/>
 
                     <View
                         android:layout_below="@+id/cbMovement"
                         android:layout_width="match_parent"
                         android:layout_height="0.5dp"
-                        android:background="@android:color/darker_gray" />
+                        android:background="@drawable/img_view" />
 
                 </RelativeLayout>
 
@@ -694,14 +710,14 @@
                         android:id="@+id/cbConsumable"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:buttonTint="@color/white"
+                        android:buttonTint="@color/accent"
                         android:layout_alignParentRight="true"/>
 
                     <View
                         android:layout_below="@+id/cbConsumable"
                         android:layout_width="match_parent"
                         android:layout_height="0.5dp"
-                        android:background="@android:color/darker_gray" />
+                        android:background="@drawable/img_view" />
 
                 </RelativeLayout>
 
@@ -723,14 +739,14 @@
                         android:id="@+id/cbGold"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:buttonTint="@color/white"
+                        android:buttonTint="@color/accent"
                         android:layout_alignParentRight="true"/>
 
                     <View
                         android:layout_below="@+id/cbGold"
                         android:layout_width="match_parent"
                         android:layout_height="0.5dp"
-                        android:background="@android:color/darker_gray" />
+                        android:background="@drawable/img_view" />
 
                 </RelativeLayout>
 
@@ -743,26 +759,29 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_below="@+id/filterOthers"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="10dp"
+                android:padding="5dp">
 
                 <Button
                     android:id="@+id/buttonCancel"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:minHeight="45dp"
+                    android:layout_margin="5dp"
                     android:layout_weight="10"
-                    android:background="@drawable/selector_secondary_button"
-                    android:textColor="@color/white"
+                    android:background="@drawable/img_view"
+                    android:textColor="@color/accent"
                     android:text="@string/cancel"/>
 
                 <Button
                     android:id="@+id/buttonOk"
-                    android:layout_width="0dp"
+                    android:layout_margin="5dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:minHeight="45dp"
                     android:layout_weight="10"
-                    android:background="@drawable/selector_primary_button"
-                    android:textColor="@color/white"
+                    android:background="@drawable/img_view"
+                    android:textColor="@color/accent"
                     android:text="@string/ok"/>
 
 
@@ -773,4 +792,4 @@
     </ScrollView>
 
 
-</RelativeLayout>
+</LinearLayout>

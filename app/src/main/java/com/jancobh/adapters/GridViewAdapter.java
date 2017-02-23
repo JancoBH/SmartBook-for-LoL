@@ -38,7 +38,6 @@ public class GridViewAdapter extends ArrayAdapter<Champion> {
     public View getView(int position, View convertView, @NonNull ViewGroup parent) {
         View row = convertView;
 
-
         ViewHolder holder;
         if (row == null) {
             LayoutInflater inflater = ((Activity) context).getLayoutInflater();

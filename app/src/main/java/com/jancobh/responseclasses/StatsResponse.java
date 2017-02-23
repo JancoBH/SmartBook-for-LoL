@@ -4,9 +4,8 @@ import com.jancobh.data.PlayerStatsSummaryDto;
 
 import java.util.ArrayList;
 
-/**
- * Created by yrazlik on 3/13/15.
- */
+/* Created by JancoBH.*/
+
 public class StatsResponse {
 
     private ArrayList<PlayerStatsSummaryDto> playerStatSummaries;

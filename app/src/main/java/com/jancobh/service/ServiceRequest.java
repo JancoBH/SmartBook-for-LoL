@@ -461,36 +461,39 @@ public class ServiceRequest {
             case Commons.SUMMONER_SPELLS_REQUEST:
                 SummonerSpellsResponse summonerSpellsResponse = new SummonerSpellsResponse();
                 summonerSpellsResponse.setSpells(new ArrayList<SummonerSpell>());
-                try {
-                    JSONObject obj = new JSONObject(response);
-                    Iterator<?> keys = obj.keys();
-                    if(keys != null){
-                        while (keys.hasNext()){
-                            String key = (String) keys.next();
-                            if(key.equalsIgnoreCase("data")){
-                                JSONObject dataJson = (JSONObject) obj.get(key);
-                                Iterator<?> dataKeys = dataJson.keys();
-                                if(dataKeys != null){
-                                    while (dataKeys.hasNext()){
-                                        String dataKey = (String) dataKeys.next();
-                                        JSONObject dataObject = (JSONObject) dataJson.get(dataKey);
-                                        if(dataObject != null){
-                                            SummonerSpell spell = gson.fromJson(String.valueOf(dataObject), SummonerSpell.class);
-                                            summonerSpellsResponse.getSpells().add(spell);
+                if(response.length() > 0){
+                    try {
+                        JSONObject obj = new JSONObject(response);
+                        Iterator<?> keys = obj.keys();
+                        if(keys != null){
+                            while (keys.hasNext()){
+                                String key = (String) keys.next();
+                                if(key.equalsIgnoreCase("data")){
+                                    JSONObject dataJson = (JSONObject) obj.get(key);
+                                    Iterator<?> dataKeys = dataJson.keys();
+                                    if(dataKeys != null){
+                                        while (dataKeys.hasNext()){
+                                            String dataKey = (String) dataKeys.next();
+                                            JSONObject dataObject = (JSONObject) dataJson.get(dataKey);
+                                            if(dataObject != null){
+                                                SummonerSpell spell = gson.fromJson(String.valueOf(dataObject), SummonerSpell.class);
+                                                summonerSpellsResponse.getSpells().add(spell);
+                                            }
                                         }
                                     }
-                                }
 
-                            }else if(key.equalsIgnoreCase("type")){
-                                summonerSpellsResponse.setType((String) obj.get(key));
-                            }else if(key.equalsIgnoreCase("version")){
-                                summonerSpellsResponse.setVersion((String) obj.get(key));
+                                }else if(key.equalsIgnoreCase("type")){
+                                    summonerSpellsResponse.setType((String) obj.get(key));
+                                }else if(key.equalsIgnoreCase("version")){
+                                    summonerSpellsResponse.setVersion((String) obj.get(key));
+                                }
                             }
                         }
+                    } catch (JSONException e) {
+                        return  null;
                     }
-                } catch (JSONException e) {
-                    return  null;
                 }
+
                 return summonerSpellsResponse;
             case Commons.SUMMONER_NAMES_REQUEST:
                 SummonerNamesResponse summonerNamesResponse = new SummonerNamesResponse();

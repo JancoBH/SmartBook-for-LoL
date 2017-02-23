@@ -2,9 +2,7 @@ package com.jancobh.data;
 
 import java.io.Serializable;
 
-/**
- * Created by Janco on 08-Feb-17.
- */
+/* Created by JancoBH.*/
 
 public class Champion implements Serializable {
 

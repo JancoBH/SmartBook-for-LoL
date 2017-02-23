@@ -1,6 +1,8 @@
 package com.jancobh.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -9,7 +11,9 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.jancobh.adapters.GridViewAdapter;
 import com.jancobh.commons.Commons;
 import com.jancobh.data.AggregatedStatsDto;
 import com.jancobh.data.ChampGameAnalysis;
@@ -19,6 +23,7 @@ import com.jancobh.data.Entries;
 import com.jancobh.data.Game;
 import com.jancobh.data.LeagueDto;
 import com.jancobh.data.Stats;
+import com.jancobh.listener.ResponseListener;
 import com.jancobh.responseclasses.LeagueInfoResponse;
 import com.jancobh.responseclasses.RankedStatsResponse;
 import com.jancobh.responseclasses.RecentMatchesResponse;
@@ -29,10 +34,11 @@ import com.jancobh.view.FadeInNetworkImageView;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class SummonerOverviewFragment extends Fragment {
+public class SummonerOverviewFragment extends Fragment implements ResponseListener {
 
     ScrollView parent;
 
@@ -303,7 +309,6 @@ public class SummonerOverviewFragment extends Fragment {
                     }
 
                 }
-                break;
             }
         }
     }
@@ -359,6 +364,7 @@ public class SummonerOverviewFragment extends Fragment {
                 }
 
                 String champ1Name = "???", champ2Name = "???", champ3Name = "???";
+
                 if (Commons.allChampions != null && Commons.allChampions.size() > 0) {
                     for (Champion champ : Commons.allChampions) {
                         if (champ1Id != null && champ.getId() == champ1Id) {
@@ -452,7 +458,6 @@ public class SummonerOverviewFragment extends Fragment {
             List<Game> games = recentMatchesResponse.getGames();
             if (games != null && games.size() > 0) {
                 for (Game game : games) {
-                    ChampGameAnalysis gameAnalysis = new ChampGameAnalysis();
                     ChampGameAnalysis existingAnalysis = null;
                     for (ChampGameAnalysis analysis : champGameAnalysises) {
                         if (analysis.getChampId() == game.getChampionId()) {
@@ -567,14 +572,25 @@ public class SummonerOverviewFragment extends Fragment {
                             + "/" + (int) Math.round((((double) (champGameAnalysises.get(2).getDeathCount())) / (double) (champGameAnalysises.get(2).getTotalPlayCount()))) +
                             "/" + (int) Math.round((((double) (champGameAnalysises.get(2).getAssistCount())) / (double) (champGameAnalysises.get(2).getTotalPlayCount()))));
                     winRateTV3.setText("W: " + champGameAnalysises.get(2).getWinCount() + " (" + (int) Math.round(((double) champGameAnalysises.get(2).getWinCount() / (double) champGameAnalysises.get(2).getTotalPlayCount()) * 100) + "%)");
-                } catch (Exception ignored) {
-                }
-
-
-            } else {
-
+                } catch (Exception ignored) {}
             }
         }
     }
 
+    @Override
+    public void onSuccess(Object response) {
+        String errorMessage = (String)response;
+        Toast.makeText(getContext(), errorMessage, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onFailure(Object response) {
+        String errorMessage = (String)response;
+        Toast.makeText(getContext(), errorMessage, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public Context getContext() {
+        return getActivity();
+    }
 }

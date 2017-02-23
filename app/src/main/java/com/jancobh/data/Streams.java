@@ -1,8 +1,7 @@
 package com.jancobh.data;
 
-/**
- * Created by yrazlik on 1/10/15.
- */
+/* Created by JancoBH.*/
+
 public class Streams {
 
     private String viewers;

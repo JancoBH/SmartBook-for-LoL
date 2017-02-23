@@ -1,11 +1,15 @@
 package com.jancobh.fragments;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -15,6 +19,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.jancobh.MainActivity;
 import com.jancobh.activities.MatchInfoActivity;
 import com.jancobh.commons.Commons;
 import com.jancobh.data.SummonerDto;
@@ -28,14 +33,36 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MatchInfoFragment extends Fragment implements ResponseListener {
-    private String[] regions = {"LAN1", "EUW1", "NA1", "EUN1", "OC1",};// "BR1", "LA1", "LA2", "RU", "KR", "PBE1"};
+    private String[] regions = {"LAN", "EUW", "NA", "EUN", "OC",};// "BR1", "LA1", "LA2", "RU", "KR", "PBE1"};
     private EditText summonerNameET;
     private String selectedRegion = "lan";
+    private Toolbar toolbar;
+    private MainActivity mainActivity;
 
+    public MatchInfoFragment() {
+        // Required empty public constructor
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        mainActivity = (MainActivity)activity;
+    }
+
+    @Override // Hide Search Icon with setHasOptionsMenu(true);
+    public void onPrepareOptionsMenu(Menu menu) {
+        MenuItem item=menu.findItem(R.id.action_search);
+        item.setVisible(false);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_match_info, container, false);
+
+        setHasOptionsMenu(true);
+        toolbar = (Toolbar)v.findViewById(R.id.match_toolbar);
+        setupToolbar();
+
         Spinner regionSpinner = (Spinner) v.findViewById(R.id.regionSpinner);
         Button searchButton = (Button) v.findViewById(R.id.searchButton);
         summonerNameET = (EditText)v.findViewById(R.id.summonerNameET);
@@ -107,6 +134,17 @@ public class MatchInfoFragment extends Fragment implements ResponseListener {
     }
 
     @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        mainActivity.setupNavigationDrawer(toolbar);
+    }
+
+    private void setupToolbar(){
+        toolbar.setTitle(getString(R.string.match_fragment_title));
+        mainActivity.setSupportActionBar(toolbar);
+    }
+
+    @Override
     public void onSuccess(Object response) {
         if(response instanceof SummonerInfoResponse){
             SummonerInfoResponse resp = (SummonerInfoResponse)response;
@@ -118,7 +156,6 @@ public class MatchInfoFragment extends Fragment implements ResponseListener {
                 if(entry.getValue() != null) {
                     summonerId = String.valueOf(entry.getValue().getId());
                 }
-                break;
             }
 
             if(summonerId != null && !summonerId.equals("")){

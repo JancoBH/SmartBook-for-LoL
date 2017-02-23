@@ -13,10 +13,16 @@
         android:elevation="@dimen/toolbar_elevation"
         app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
 
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@drawable/img_view" />
+
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/bg">
+        android:layout_height="match_parent"
+        android:background="@color/primary">
 
         <RelativeLayout
             android:layout_width="match_parent"

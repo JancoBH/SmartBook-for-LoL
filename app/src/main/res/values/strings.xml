@@ -1,10 +1,17 @@
 <resources>
+
+
     <!-- General Strings -->
     <string name="app_name">SmartBook for LoL</string>
     <string name="app_version">1.0.0</string>
     <string name="copyright">Copyright 2017 - JancoBH</string>
     <string name="developed_by">Developed by Janco Boscan</string>
     <string name="video">video</string>
+    <string name="action_search">Search</string>
+    <string name="search_hint">Write Something</string>
+    <string name="cancel">Cancel</string>
+    <string name="ok">OK</string>
+    <string name="question_mark">\?\?\?</string>
 
     <!-- Champions Strings -->
 
@@ -27,6 +34,7 @@
     <string name="abilities">Abilities</string>
     <string name="legend">Legend</string>
     <string name="strategy">Strategy</string>
+    <string name="skins">Skins</string>
     <string name="tags">Properties</string>
     <string name="mage">Mage</string>
     <string name="fighter">Fighter</string>
@@ -44,11 +52,15 @@
     <string name="networkError">Please check your Internet connection.</string>
     <string name="loading">Loading…</string>
 
-    <string name="collapsing_toolbar_fragment_title">Collapsing toolbar</string>
+    <string name="collapsing_toolbar_fragment_title">Welcome</string>
     <string name="tab_fragment_title">TAB</string>
     <string name="about_fragment_title">About</string>
     <string name="champions_fragment_title">Champions</string>
     <string name="items_fragment_title">Items</string>
+    <string name="summoner_fragment_title">Summoner</string>
+    <string name="match_fragment_title">Match</string>
+    <string name="runes_fragment_title">Runes</string>
+
 
     <string name="open_drawer">Open</string>
     <string name="close_drawer">Close</string>
@@ -60,11 +72,6 @@
     <string name="gold">Gold</string>
     <string name="passive">Passive</string>
     <string name="no_video_found">No video found.</string>
-
-    <string name="dummy_string">entum, sem libero volutpat nibh, nec pellentesque velit pede quis nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Fusce id purus. Ut varius tincidunt libero. Phasellus dolor. Maecenas vestibulum mollis diam. Pellentesque ut neque.\n\n
-
-Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In dui magna, posuere eget, vestibulum et, tempor auctor, justo. In ac felis quis tortor malesuada pretium. Pellentesque auctor neque nec urna. Proin sapien ipsum, porta a, auctor quis, euismod ut, mi. Aenean viverra rhoncus pede. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Ut non enim eleifend felis pretium feugiat. Vivamus quis mi. Phasellus a est. Phasellus magna. In hac habitasse platea dictumst. Curabitur at lacus ac velit ornare lobortis. Curabitur a felis in nunc fringilla tristique.
-    </string>
 
     <string name="edittext_error">Can\'t be empty</string>
     <string name="titletext_error">Title can\'t be empty</string>
@@ -78,15 +85,15 @@ Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac tu
         a fan of this game needs.
         \n\nCheck out my instagram account at http://instagram.com/jancobh
     \n\nFind more about me on LinkedIn at https://www.linkedin.com/in/jancobh</string>
+    <string name="text_ads">Please click on the ads to support further developments.
+        \n\nAds will only redirect you to Google Play Store.</string>
     <string name="title_activity_activities">activities</string>
     <string name="title_activity_item_detail">ItemDetailActivity</string>
-
 
     <string name="itemDetail">Item Detail</string>
     <string name="anErrorOccured">A connection error occurred. Please try again.</string>
     <string name="filter">Filter</string>
     <string name="title_activity_champion_detail">ChampionDetailActivity</string>
-
 
     <string name="games_played">Games Played</string>
     <string name="games_won">Games Won</string>
@@ -138,7 +145,9 @@ Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac tu
     <string name="firstblood">First Blood</string>
     <string name="tutorial">Tutorial</string>
     <string name="custom_game">Custom Game</string>
+    <string name="assassinate">Hunt of the Blood Moon</string>
 
+    <!-- Game Modes -->
 
     <string name="none">Custom Game</string>
     <string name="normal">Normal</string>
@@ -155,7 +164,6 @@ Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac tu
     <string name="unknown">Unknown</string>
 
     <string name="largest_critical_strike">Largest Critical Strike</string>
-
 
     <string name="totalDamageDealt">Total Damage Dealt</string>
     <string name="totalDamageTaken">Total Damage Taken</string>
@@ -182,7 +190,6 @@ Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac tu
     <string name="player">Summoner:</string>
     <string name="chosenChampion">Champion:</string>
     <string name="playerNotCurrentlyPlaying">This summoner is not currently in a game.</string>
-
 
 
     <string name="rankedStats">Ranked Stats</string>
@@ -213,6 +220,7 @@ Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac tu
     <string name="playerDetail">Summoner Detail</string>
     <string name="matchHistory">Match History</string>
 
+    <!-- -->
 
     <string name="defence">Defence</string>
     <string name="attack">Attack</string>
@@ -237,9 +245,16 @@ Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac tu
     <string name="gold_give">Gold</string>
     <string name="others">Others</string>
     <string name="armor">Armor</string>
-    <string name="cancel">Cancel</string>
-    <string name="ok">Ok</string>
+
+    <string name="leagueInfo">League Info</string>
+    <string name="searchC">SEARCH</string>
+    <string name="search">SEARCH</string>
+    <string name="summonerName">Enter summoner name…</string>
+    <string name="selectRegion">Choose Region:</string>
+    <string name="title_activity_main2">Main2Activity</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
-    <string name="blank">%1$s</string>
 </resources>
